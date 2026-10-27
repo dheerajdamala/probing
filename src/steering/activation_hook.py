@@ -46,6 +46,8 @@ class ActivationSteeringHook:
         # Ensure steering vector is on matching device and dtype
         device = next(self.layer_module.parameters()).device
         dtype = next(self.layer_module.parameters()).dtype
+        if dtype in (torch.uint8, torch.int8):
+            dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float32
         self.steering_vector = steering_vector.to(device=device, dtype=dtype)
 
         # Logging tracking
@@ -84,7 +86,7 @@ class ActivationSteeringHook:
         self.last_input_shape = hidden_states.shape
 
         # Calculate perturbation: alpha * v (broadcasted across batch and sequence)
-        perturbation = self.alpha * self.steering_vector
+        perturbation = (self.alpha * self.steering_vector).to(dtype=hidden_states.dtype, device=hidden_states.device)
 
         # Check for numerical stability
         if torch.isnan(hidden_states).any() or torch.isinf(hidden_states).any():

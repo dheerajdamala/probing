@@ -328,13 +328,16 @@ def run_security_benchmark_unsteered(
         fn_eval = evaluate_functional_correctness(full_code, item["test_cases"], item["id"])
         sec_eval = evaluate_code_security(full_code, item["cwe"])
 
+        is_sec = syn_valid and sec_eval["is_secure"]
+        is_vuln = sec_eval["is_vulnerable"]
+
         if syn_valid:
             syntax_valid_count += 1
         if fn_eval["functional_passed"]:
             functional_pass_count += 1
-        if sec_eval["is_secure"]:
+        if is_sec:
             security_pass_count += 1
-        if sec_eval["is_vulnerable"]:
+        if is_vuln:
             vulnerable_count += 1
 
         record = {
@@ -352,14 +355,14 @@ def run_security_benchmark_unsteered(
             "syntax_error": syn_err,
             "functional_passed": fn_eval["functional_passed"],
             "functional_error": fn_eval.get("error"),
-            "is_secure": sec_eval["is_secure"],
-            "is_vulnerable": sec_eval["is_vulnerable"],
+            "is_secure": is_sec,
+            "is_vulnerable": is_vuln,
             "matched_vuln_pattern": sec_eval["matched_vuln_pattern"],
             "matched_safe_pattern": sec_eval["matched_safe_pattern"],
         }
         results.append(record)
         logger.info(
-            f"  [{item['id']}] syn={syn_valid}, fn={fn_eval['functional_passed']}, sec={sec_eval['is_secure']}, vuln={sec_eval['is_vulnerable']}"
+            f"  [{item['id']}] syn={syn_valid}, fn={fn_eval['functional_passed']}, sec={is_sec}, vuln={is_vuln}"
         )
 
     n = len(items)
