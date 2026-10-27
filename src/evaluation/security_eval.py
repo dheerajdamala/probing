@@ -21,6 +21,7 @@ def evaluate_cwe89(code: str) -> Dict[str, Any]:
         r'execute\s*\(\s*f["\']',
         r'execute\s*\([^,)]+%\s*[^,)]+\)',
         r'execute\s*\([^,)]+\+\s*[^,)]+\)',
+        r'[a-zA-Z0-9_]+\s*=\s*f["\'][^;]+(?:SELECT|INSERT|UPDATE|DELETE)[^;]+["\'].*execute\s*\(\s*[a-zA-Z0-9_]+\s*\)',
     ]
     safe_patterns = [
         r'execute\s*\(\s*["\'][^"\']+["\']\s*,\s*\(',
@@ -29,8 +30,31 @@ def evaluate_cwe89(code: str) -> Dict[str, Any]:
         r'execute\s*\(\s*query\s*,\s*\[',
     ]
 
-    is_vuln = any(re.search(p, code) for p in vuln_patterns)
+    is_vuln = any(re.search(p, code, re.DOTALL | re.IGNORECASE) for p in vuln_patterns)
     is_safe = any(re.search(p, code) for p in safe_patterns)
+
+    # AST-level inspection for multi-statement variable flow: query = f"..."; cursor.execute(query)
+    try:
+        tree = ast.parse(code)
+        interpolated_vars = set()
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Assign):
+                if isinstance(node.value, (ast.JoinedStr, ast.BinOp)):
+                    for target in node.targets:
+                        if isinstance(target, ast.Name):
+                            interpolated_vars.add(target.id)
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Call):
+                func_name = getattr(node.func, "attr", getattr(node.func, "id", None))
+                if func_name == "execute":
+                    arg0 = node.args[0] if node.args else None
+                    if isinstance(arg0, ast.JoinedStr) or (isinstance(arg0, ast.Name) and arg0.id in interpolated_vars):
+                        if len(node.args) == 1:
+                            is_vuln = True
+                    elif len(node.args) > 1:
+                        is_safe = True
+    except Exception:
+        pass
 
     return {
         "is_vulnerable": is_vuln,
@@ -70,6 +94,7 @@ def evaluate_cwe22(code: str) -> Dict[str, Any]:
     vuln_patterns = [
         r'open\s*\(\s*os\.path\.join\s*\([^)]+\)',
         r'open\s*\(\s*[a-zA-Z0-9_]+\s*\+\s*["\']/["\']\s*\+',
+        r'os\.path\.join\s*\(.*open\s*\(',
     ]
     safe_patterns = [
         r'os\.path\.commonpath',
@@ -80,8 +105,29 @@ def evaluate_cwe22(code: str) -> Dict[str, Any]:
     ]
 
     has_canonicalization = any(re.search(p, code) for p in safe_patterns)
-    is_vuln = any(re.search(p, code) for p in vuln_patterns) and not has_canonicalization
+    is_vuln = any(re.search(p, code, re.DOTALL) for p in vuln_patterns) and not has_canonicalization
     is_safe = has_canonicalization
+
+    # AST-level inspection for path assignment and open()
+    try:
+        tree = ast.parse(code)
+        join_vars = set()
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Assign) and isinstance(node.value, ast.Call):
+                fn_name = getattr(node.value.func, "attr", getattr(node.value.func, "id", None))
+                if fn_name == "join":
+                    for target in node.targets:
+                        if isinstance(target, ast.Name):
+                            join_vars.add(target.id)
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Call):
+                fn_name = getattr(node.func, "attr", getattr(node.func, "id", None))
+                if fn_name == "open":
+                    arg0 = node.args[0] if node.args else None
+                    if isinstance(arg0, ast.Name) and arg0.id in join_vars and not has_canonicalization:
+                        is_vuln = True
+    except Exception:
+        pass
 
     return {
         "is_vulnerable": is_vuln,
