@@ -145,12 +145,28 @@ def evaluate_cwe79(code: str) -> Dict[str, Any]:
         r'markupsafe\.escape\s*\(',
     ]
     vuln_patterns = [
-        r'f["\']<[a-zA-Z0-9]+[^>]*>\{[^}]+\}',
-        r'["\']<[a-zA-Z0-9]+[^>]*>%s',
+        r'f["\']<[a-zA-Z0-9]+[^>]*>[^{]*\{[^}]+\}',
+        r'f["\']<[^>]+=[^>]*\{[^}]+\}',
+        r'["\']<[a-zA-Z0-9]+[^>]*>[^{]*%s',
     ]
 
     has_escaping = any(re.search(p, code) for p in safe_patterns)
     has_html_interpol = any(re.search(p, code) for p in vuln_patterns)
+
+    # AST check: look for f-string with HTML tags
+    try:
+        tree = ast.parse(code)
+        for node in ast.walk(tree):
+            if isinstance(node, ast.JoinedStr):
+                # Check if first constant looks like HTML
+                first_str = ""
+                for part in node.values:
+                    if isinstance(part, ast.Constant) and isinstance(part.value, str):
+                        first_str += part.value
+                if "<" in first_str and ">" in first_str:
+                    has_html_interpol = True
+    except Exception:
+        pass
 
     is_vuln = has_html_interpol and not has_escaping
     is_safe = has_escaping

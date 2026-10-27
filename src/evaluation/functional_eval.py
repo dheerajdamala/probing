@@ -81,11 +81,13 @@ def check_syntax(code: str) -> Tuple[bool, Optional[str]]:
 
 def create_safe_sandbox() -> Tuple[Dict[str, Any], Dict[str, Any]]:
     """Create restricted sandbox globals and safe import resolver."""
+    import pathlib
     allowed_modules = {
         "typing": typing,
         "html": html,
         "os": os,
         "os.path": os.path,
+        "pathlib": pathlib,
         "subprocess": MockSubprocessModule(),
         "math": math,
         "re": re,
@@ -146,6 +148,8 @@ def create_safe_sandbox() -> Tuple[Dict[str, Any], Dict[str, Any]]:
         "typing": typing,
         "html": html,
         "os": os,
+        "pathlib": pathlib,
+        "Path": pathlib.Path,
         "subprocess": MockSubprocessModule(),
         "dummy_cursor": MockCursor(),
     }
