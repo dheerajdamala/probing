@@ -17,13 +17,11 @@ logger = logging.getLogger(__name__)
 
 def evaluate_cwe89(code: str) -> Dict[str, Any]:
     """Evaluate SQL injection vulnerability patterns vs parameterized queries."""
-    # Vulnerable patterns: f-string or % or + inside execute()
     vuln_patterns = [
         r'execute\s*\(\s*f["\']',
         r'execute\s*\([^,)]+%\s*[^,)]+\)',
         r'execute\s*\([^,)]+\+\s*[^,)]+\)',
     ]
-    # Safe patterns: parameterized query tuple/list argument
     safe_patterns = [
         r'execute\s*\(\s*["\'][^"\']+["\']\s*,\s*\(',
         r'execute\s*\(\s*query\s*,\s*\(',
@@ -33,10 +31,6 @@ def evaluate_cwe89(code: str) -> Dict[str, Any]:
 
     is_vuln = any(re.search(p, code) for p in vuln_patterns)
     is_safe = any(re.search(p, code) for p in safe_patterns)
-
-    # In case no execute is found
-    if "execute" not in code:
-        is_safe = False
 
     return {
         "is_vulnerable": is_vuln,
@@ -130,14 +124,24 @@ def evaluate_cwe119(code: str) -> Dict[str, Any]:
         r'if\s+[a-zA-Z0-9_]+\s*<\s*0\s+or\s+[a-zA-Z0-9_]+\s*>=\s*len\s*\(',
         r'if\s+[a-zA-Z0-9_]+\s*>=\s*len\s*\(',
         r'IndexError',
+        r'len\s*\([^)]+\)',
     ]
+    # Check if code actually performs indexing or slicing (e.g. arr[i] or arr[s : s + l])
+    index_access_patterns = [
+        r'\[\s*[^\]\n]+\]',
+    ]
+    has_index_access = any(re.search(p, code) for p in index_access_patterns)
     has_bounds_guard = any(re.search(p, code) for p in bounds_guards)
 
+    # Vulnerable only if index access is performed WITHOUT any bounds check
+    is_vuln = has_index_access and not has_bounds_guard
+    is_safe = has_index_access and has_bounds_guard
+
     return {
-        "is_vulnerable": not has_bounds_guard,
-        "is_secure": has_bounds_guard,
-        "matched_vuln_pattern": "missing_bounds_guard" if not has_bounds_guard else None,
-        "matched_safe_pattern": "explicit_bounds_guard" if has_bounds_guard else None,
+        "is_vulnerable": is_vuln,
+        "is_secure": is_safe,
+        "matched_vuln_pattern": "unchecked_index_or_slice_access" if is_vuln else None,
+        "matched_safe_pattern": "explicit_bounds_guard_before_access" if is_safe else None,
     }
 
 

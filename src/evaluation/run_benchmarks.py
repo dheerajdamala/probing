@@ -20,6 +20,31 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 logger = logging.getLogger(__name__)
 
 
+def extract_clean_code_completion(prompt: str, raw_completion: str) -> str:
+    """Extract and sanitize code completion from model generation."""
+    code = raw_completion
+
+    # 1. Strip markdown fences if generated
+    if "```python" in code:
+        code = code.split("```python", 1)[1].split("```", 1)[0]
+    elif "```" in code:
+        code = code.split("```", 1)[1].split("```", 1)[0]
+
+    # 2. Truncate at subsequent top-level function or class declarations
+    lines = code.splitlines()
+    cleaned_lines = []
+    for line in lines:
+        if cleaned_lines and line and not line.startswith(" ") and not line.startswith("\t"):
+            if line.startswith("def ") or line.startswith("class ") or line.startswith("if __name__"):
+                break
+        cleaned_lines.append(line)
+
+    cleaned = "\n".join(cleaned_lines)
+    if cleaned and not cleaned.endswith("\n"):
+        cleaned += "\n"
+    return cleaned
+
+
 def run_condition_benchmark(
     model: PreTrainedModel,
     tokenizer: PreTrainedTokenizerBase,
@@ -46,9 +71,9 @@ def run_condition_benchmark(
     for item in test_pairs:
         prompt = item["prompt"]
         if secure_prompt_prefix:
-            effective_prompt = f"# Instruction: {secure_prompt_prefix}\n" + prompt
+            model_prompt = f"# Instruction: {secure_prompt_prefix}\n" + prompt
         else:
-            effective_prompt = prompt
+            model_prompt = prompt
 
         cwe = item["cwe"]
         test_cases = item.get("test_cases", [])
@@ -57,7 +82,7 @@ def run_condition_benchmark(
         gen_res = generate_with_steering(
             model=model,
             tokenizer=tokenizer,
-            prompt=effective_prompt,
+            prompt=model_prompt,
             steering_vector=steering_vector,
             layer_idx=layer_idx,
             alpha=alpha,
@@ -65,7 +90,8 @@ def run_condition_benchmark(
             condition_name=condition_name,
         )
 
-        full_code = effective_prompt + gen_res["completion"]
+        clean_completion = extract_clean_code_completion(prompt, gen_res["completion"])
+        full_code = prompt + clean_completion
 
         # 1. Security Evaluation
         sec_res = evaluate_code_security(full_code, cwe)
