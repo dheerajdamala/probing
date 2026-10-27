@@ -274,8 +274,11 @@ def evaluate_functional_correctness(
                 else:
                     last_failure_reason = f"Result {repr(res)} did not contain {repr(tc['expected_contains'])}"
             else:
-                # If execution completed without unexpected exception
-                tests_passed += 1
+                # Function must execute and return a non-None value representing computed output
+                if res is not None:
+                    tests_passed += 1
+                else:
+                    last_failure_reason = "Function returned None (body incomplete or missing return statement)"
         except Exception as e:
             last_failure_reason = f"Test execution raised {type(e).__name__}: {str(e)}"
 

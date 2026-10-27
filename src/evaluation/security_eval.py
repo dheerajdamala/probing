@@ -126,11 +126,29 @@ def evaluate_cwe119(code: str) -> Dict[str, Any]:
         r'IndexError',
         r'len\s*\([^)]+\)',
     ]
-    # Check if code actually performs indexing or slicing (e.g. arr[i] or arr[s : s + l])
-    index_access_patterns = [
-        r'\[\s*[^\]\n]+\]',
-    ]
-    has_index_access = any(re.search(p, code) for p in index_access_patterns)
+
+    has_index_access = False
+    try:
+        tree = ast.parse(code)
+        for node in ast.walk(tree):
+            if isinstance(node, ast.FunctionDef):
+                type_ann = set()
+                if node.returns:
+                    type_ann.add(node.returns)
+                for arg in node.args.args:
+                    if arg.annotation:
+                        type_ann.add(arg.annotation)
+                for sub in ast.walk(node):
+                    if isinstance(sub, ast.Subscript) and sub not in type_ann:
+                        val_name = getattr(sub.value, 'id', None)
+                        if val_name not in {'List', 'Dict', 'Tuple', 'Optional', 'Union', 'Sequence'}:
+                            has_index_access = True
+                            break
+    except Exception:
+        # Fallback to regex excluding type annotation prefixes
+        stripped = re.sub(r'\b(List|Dict|Tuple|Optional|Union|Sequence)\s*\[[^\]\n]+\]', '', code)
+        has_index_access = bool(re.search(r'[a-zA-Z0-9_]+\s*\[\s*[^\]\n]+\]', stripped))
+
     has_bounds_guard = any(re.search(p, code) for p in bounds_guards)
 
     # Vulnerable only if index access is performed WITHOUT any bounds check
