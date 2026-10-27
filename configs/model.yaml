@@ -1,0 +1,27 @@
+model:
+  # Primary Mistral architecture model (2.8B parameters, 12 layers, hidden_size 4096)
+  model_id: "wandb/pruned_mistral"
+  license: "Apache-2.0"
+  
+  # Device allocation: "auto", "cuda", or "cpu"
+  device: "auto"
+  
+  # Precision: "float32" for CPU safety, "float16" or "bfloat16" when CUDA available
+  torch_dtype: "float32"
+  
+  # Generation parameters for reproducible deterministic sampling
+  generation:
+    max_new_tokens: 128
+    temperature: 0.0
+    do_sample: false
+    top_p: 1.0
+    pad_token_id: null
+
+  # Layer extraction settings (layers 0 to 11 for 12-layer pruned_mistral)
+  layers:
+    target_layers: [2, 4, 6, 8, 10, 11]
+    default_steering_layer: 6
+    pooling_strategy: "last_token" # "last_token", "mean_prompt", "sink_token"
+
+  # Caching and storage
+  cache_dir: "outputs/activation_cache"

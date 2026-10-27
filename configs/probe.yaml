@@ -1,0 +1,31 @@
+probe:
+  # Target semantic property to probe from representations
+  target_property: "has_source_to_sink_unsanitized_flow"
+  
+  # Probe architectures: "linear" (logistic regression), "mlp" (2-layer neural probe)
+  architecture: "linear"
+  
+  # Regularization parameter (C for logistic regression, weight_decay for MLP)
+  regularization_c: 1.0
+  
+  # Token pooling strategy used for probe features
+  pooling_strategy: "last_token"
+  
+  # Layer to train probe on (or list of layers for layer-wise probing sweep)
+  target_layers: [0, 1, 2, 3] # for miniature/test, [0, 2, 4, 6, 8, 10, 11] for full model
+  selected_probe_layer: 2
+  
+  # Training hyperparameters
+  max_iter: 1000
+  random_seed: 42
+  
+  # Metrics to report
+  metrics:
+    - "accuracy"
+    - "balanced_accuracy"
+    - "f1"
+    - "roc_auc"
+    - "brier_score"
+  
+  # Output path for probe artifacts
+  probe_output_dir: "outputs/probes"

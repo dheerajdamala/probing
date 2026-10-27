@@ -1,0 +1,17 @@
+dataset:
+  name: "isae_paired_security_v1"
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  splits:
+    train_ratio: 0.60
+    val_ratio: 0.20
+    test_ratio: 0.20
+  random_seed: 42
+  cwes:
+    - "CWE-89"   # SQL Injection
+    - "CWE-78"   # OS Command Injection
+    - "CWE-22"   # Path Traversal
+    - "CWE-79"   # Cross-Site Scripting
+    - "CWE-119"  # Buffer / Array Bounds
+  semantic_target: "has_source_to_sink_unsanitized_flow"
+  min_samples_per_cwe: 10

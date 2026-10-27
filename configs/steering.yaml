@@ -1,0 +1,29 @@
+steering:
+  # Extraction methods: "mean_diff" or "pca_diff"
+  extraction_method: "mean_diff"
+  
+  # Normalization of candidate direction vectors
+  normalize_vector: true
+  
+  # Candidate layers to extract and evaluate
+  candidate_layers: [0, 1, 2, 3] # for miniature/test, [2, 4, 6, 8, 10, 11] for full pruned model
+  selected_layer: 2
+  
+  # Steering strength multipliers to evaluate (alpha)
+  strengths: [0.0, 0.5, 1.0, 2.0, 3.0, 5.0]
+  default_strength: 1.5
+  
+  # Token pooling strategy for extraction: "last_token" or "mean_prompt"
+  pooling_strategy: "last_token"
+  
+  # Control conditions
+  controls:
+    - "unsteered"
+    - "random_vector"
+    - "secure_prompt"
+  
+  # Random seed for vector controls
+  seed: 42
+  
+  # Output path for computed vectors
+  vectors_output_path: "outputs/security_vectors.pt"
