@@ -1,0 +1,64 @@
+{
+  "model": "mistralai/Mistral-7B-Instruct-v0.3",
+  "layer": 12,
+  "dimension": 4096,
+  "splits": {
+    "train": {
+      "split": "train",
+      "total_samples": 3304,
+      "reused_historical": 700,
+      "newly_extracted": 2604,
+      "missing_count": 0,
+      "vector_shape": [
+        3304,
+        4096
+      ],
+      "sha256_layer12_npy": "bc3c8331920fbcbef1975865aba06da4fd809c6947a70fc02a271a661e227e9e",
+      "sha256_sample_ids_json": "c6aa972326f894c8f08d49307b30250e72f82d9be32550867dc6471b074c2f4d",
+      "sha256_embeddings_npz": "4cd030f5f997cf1fd047647030812ca8b94d2e544710f0352c65697681ed3e39",
+      "min_norm": 1.2030975818634033,
+      "max_norm": 14.776424407958984,
+      "mean_norm": 1.6142843961715698,
+      "vulnerable_count": 1104,
+      "safe_count": 2200
+    },
+    "validation": {
+      "split": "validation",
+      "total_samples": 674,
+      "reused_historical": 149,
+      "newly_extracted": 525,
+      "missing_count": 0,
+      "vector_shape": [
+        674,
+        4096
+      ],
+      "sha256_layer12_npy": "91b3737a3478f4d2cea5fe4e41b33098ef6780eb999e67b91719193e1cf78238",
+      "sha256_sample_ids_json": "8b18468caa8812f39d073d4b8fb5539e632cfaef21adfb89fb86f3643cffc450",
+      "sha256_embeddings_npz": "15f40bdd01885bd49f019cf0c9bf832a50db73e5d6f79a215141bf8c23b09999",
+      "min_norm": 1.2170238494873047,
+      "max_norm": 12.850422859191895,
+      "mean_norm": 1.5962141752243042,
+      "vulnerable_count": 131,
+      "safe_count": 543
+    },
+    "test": {
+      "split": "test",
+      "total_samples": 695,
+      "reused_historical": 151,
+      "newly_extracted": 544,
+      "missing_count": 0,
+      "vector_shape": [
+        695,
+        4096
+      ],
+      "sha256_layer12_npy": "fcf45ac310be90e8baa04f46ced5b83fcca2e40691f94b953d44eac131c7724a",
+      "sha256_sample_ids_json": "c3e0bffb1c5527b63dde871911d7dab6ed905fbd45ab93de35737afc3cf64c69",
+      "sha256_embeddings_npz": "fb5f1feecd96fcb25950b1990eeff7d1bf0e58d884d1e9132961301ee26104be",
+      "min_norm": 1.264922857284546,
+      "max_norm": 9.269569396972656,
+      "mean_norm": 1.5966451168060303,
+      "vulnerable_count": 203,
+      "safe_count": 492
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "audit_timestamp": "2026-10-31T03:16:30+05:30",
+  "experiment_id": "sqli_probe_v3_full_mistral",
+  "model_verification": {
+    "model_id": "mistralai/Mistral-7B-Instruct-v0.3",
+    "revision": "main",
+    "model_type": "mistral",
+    "hidden_size": 4096,
+    "num_hidden_layers": 32,
+    "num_attention_heads": 32,
+    "num_key_value_heads": 8,
+    "intermediate_size": 14336,
+    "vocab_size": 32768,
+    "parameter_count_exact": 7248023552,
+    "parameter_count_human": "7.25B",
+    "tokenizer_status": "verified_loaded",
+    "tokenizer_vocab_size": 32768
+  },
+  "hardware_environment": {
+    "cuda_available": false,
+    "gpu_model": "None (CPU Execution Only)",
+    "available_vram_gb": 0.0,
+    "host_total_ram_gb": 15.69,
+    "host_available_ram_gb": 2.19,
+    "host_total_swap_gb": 26.28,
+    "host_free_swap_gb": 21.77
+  },
+  "quantization_status": {
+    "bitsandbytes_installed": false,
+    "quantization_supported_on_host": false,
+    "reason": "bitsandbytes 4-bit NF4 requires a CUDA-enabled NVIDIA GPU and is not supported on Windows CPU."
+  },
+  "hard_assertions": {
+    "hidden_dimension_equals_4096": true,
+    "layer_count_equals_32": true,
+    "mock_mode_strictly_disabled": true,
+    "miniature_fixtures_strictly_disabled": true,
+    "synthetic_states_strictly_disabled": true,
+    "local_pretrained_weight_loading_success": false,
+    "assertion_failure_reason": "Pretrained weights require 14.5 GB (float16) to 29.0 GB (float32) memory. Host has 2.19 GB available RAM and 0.00 GB VRAM. Quantized loading (4-bit NF4) is unavailable without CUDA."
+  },
+  "execution_status": "HALTED_AT_PHASE_1_GATE",
+  "recommended_action": "Execute feature extraction on a cloud instance with NVIDIA Tesla T4 (or A10G/V100/A100) using the standalone script 'kaggle_colab_t4_pilot.py' which utilizes 4-bit NF4 (requiring 6.04 GB VRAM) to generate authoritative 4,096-dimensional embeddings."
+}
+

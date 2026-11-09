@@ -1,0 +1,11 @@
+{
+  "PHASE5_IMPLEMENTATION_REPORT.md": "20a0e7bce72a097c491c00abd1b800a1cf31a268a60145f6fd9d0f42c4ba5e4e",
+  "source_attribution_tests.json": "c42f08dd791f27b4c8861be8773337597174788c6cf614f51214bd1b6f682ff7",
+  "mutation_tracking_tests.json": "37fdd26902a89d4e309a9ddcafdd32a5208aa88804e4ed3d66e7ae507381fc78",
+  "loop_analysis_tests.json": "fbf01c23857065469532df0911cfb122e927f5b6f20e1d8c803cba8e9dcac74a",
+  "placeholder_recognition_tests.json": "4d274cb79263878da7935b36003d0f9eb5394858a95e3f1accbf9756dfe7982a",
+  "interprocedural_tests.json": "55e47d02d913d17466e2e87fecf299e03236ca34bf2c1596211d1600896b9ee8",
+  "regression_test_results.json": "d1328660fe151f706c765014349cccfea27a4cccee9a3bf47c3d12294e4e3f39",
+  "before_after_diagnostics.json": "d25ae37611bd994b7c588fbce55e05600ee7e4bb921eb7254cb3edc7f4c51445",
+  "known_limitations.md": "9c0998af75c041c69922fc68185865bb05b767c3a7425cba2733246c54ec63b4"
+}

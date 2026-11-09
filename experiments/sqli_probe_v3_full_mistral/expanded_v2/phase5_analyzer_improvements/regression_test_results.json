@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-11-09T17:04:16Z",
+  "original_regression_tests": {
+    "test_suite_path": "experiments/sqli_probe_v3_full_mistral/extension/tests",
+    "total_tests": 50,
+    "passed": 50,
+    "failed": 0,
+    "all_passed": true
+  },
+  "new_focused_test_suites": {
+    "source_attribution_tests": {
+      "total": 6,
+      "passed": 6
+    },
+    "mutation_tracking_tests": {
+      "total": 5,
+      "passed": 5
+    },
+    "loop_analysis_tests": {
+      "total": 5,
+      "passed": 5
+    },
+    "placeholder_recognition_tests": {
+      "total": 5,
+      "passed": 5
+    },
+    "interprocedural_tests": {
+      "total": 5,
+      "passed": 5
+    },
+    "total_new_tests": 26,
+    "total_new_passed": 26,
+    "new_suites_all_passed": true
+  },
+  "combined_test_count": 76,
+  "combined_passed": 76,
+  "regression_verdict": "ALL TESTS PASSED"
+}

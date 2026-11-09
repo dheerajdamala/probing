@@ -1,0 +1,87 @@
+{
+  "total_test_samples": 151,
+  "total_fp": 5,
+  "total_fn": 3,
+  "fp_sample_ids": [
+    "t_0358",
+    "t_0575",
+    "t_0779",
+    "t_0890",
+    "t_0543"
+  ],
+  "fn_sample_ids": [
+    "t_0843",
+    "t_0867",
+    "t_0665"
+  ],
+  "case_type_breakdown": {
+    "hard_negative": {
+      "n_samples": 24,
+      "accuracy": 0.875,
+      "false_positives": 3,
+      "false_negatives": 0
+    },
+    "hard_positive": {
+      "n_samples": 23,
+      "accuracy": 0.9130434782608695,
+      "false_positives": 0,
+      "false_negatives": 2
+    },
+    "no_sql": {
+      "n_samples": 20,
+      "accuracy": 1.0,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "normal": {
+      "n_samples": 60,
+      "accuracy": 0.9833333333333333,
+      "false_positives": 0,
+      "false_negatives": 1
+    },
+    "safe_db": {
+      "n_samples": 24,
+      "accuracy": 0.9166666666666666,
+      "false_positives": 2,
+      "false_negatives": 0
+    }
+  },
+  "db_api_breakdown": {
+    "django_orm": {
+      "n_samples": 9,
+      "accuracy": 1.0,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "mysql": {
+      "n_samples": 23,
+      "accuracy": 0.8260869565217391,
+      "false_positives": 4,
+      "false_negatives": 0
+    },
+    "other": {
+      "n_samples": 35,
+      "accuracy": 1.0,
+      "false_positives": 0,
+      "false_negatives": 0
+    },
+    "psycopg2": {
+      "n_samples": 34,
+      "accuracy": 0.9705882352941176,
+      "false_positives": 1,
+      "false_negatives": 0
+    },
+    "sqlalchemy": {
+      "n_samples": 19,
+      "accuracy": 0.9473684210526315,
+      "false_positives": 0,
+      "false_negatives": 1
+    },
+    "sqlite3": {
+      "n_samples": 31,
+      "accuracy": 0.9354838709677419,
+      "false_positives": 0,
+      "false_negatives": 2
+    }
+  }
+}

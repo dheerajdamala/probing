@@ -1,0 +1,30 @@
+{
+  "audit_status": "PASSED_ZERO_LEAKAGE",
+  "sample_id_overlaps": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0
+  },
+  "exact_code_hash_overlaps": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0
+  },
+  "normalized_code_hash_overlaps": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0
+  },
+  "group_leakage_cross_split_count": 0,
+  "historical_test_set_isolation": {
+    "historical_test_size": 151,
+    "contained_in_expanded_test": true,
+    "leaked_into_train": 0,
+    "leaked_into_validation": 0
+  },
+  "near_duplicate_jaccard_ge_85": {
+    "val_train_count": 0,
+    "test_train_count": 0,
+    "val_test_count": 0
+  }
+}

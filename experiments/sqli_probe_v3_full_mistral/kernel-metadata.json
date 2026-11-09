@@ -1,0 +1,14 @@
+{
+  "id": "dheerajdamala/probe-v3-mistral-t4-extraction",
+  "title": "Probe V3 Mistral T4 Extraction",
+  "code_file": "probe_v3_t4.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": []
+}
+

@@ -81,7 +81,11 @@ def check_syntax(code: str) -> Tuple[bool, Optional[str]]:
 
 def create_safe_sandbox() -> Tuple[Dict[str, Any], Dict[str, Any]]:
     """Create restricted sandbox globals and safe import resolver."""
+    import json
     import pathlib
+    import sqlite3
+    import urllib
+    import urllib.parse
     allowed_modules = {
         "typing": typing,
         "html": html,
@@ -91,6 +95,10 @@ def create_safe_sandbox() -> Tuple[Dict[str, Any], Dict[str, Any]]:
         "subprocess": MockSubprocessModule(),
         "math": math,
         "re": re,
+        "json": json,
+        "urllib": urllib,
+        "urllib.parse": urllib.parse,
+        "sqlite3": sqlite3,
     }
 
     def safe_import(name, globals=None, locals=None, fromlist=(), level=0):
@@ -152,6 +160,7 @@ def create_safe_sandbox() -> Tuple[Dict[str, Any], Dict[str, Any]]:
         "Path": pathlib.Path,
         "subprocess": MockSubprocessModule(),
         "dummy_cursor": MockCursor(),
+        "sqlite3": sqlite3,
     }
     return safe_globals, {}
 

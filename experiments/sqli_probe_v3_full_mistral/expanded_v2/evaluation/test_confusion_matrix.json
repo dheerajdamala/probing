@@ -1,0 +1,14 @@
+{
+  "primary_threshold_0.66": {
+    "tn": 248,
+    "fp": 244,
+    "fn": 8,
+    "tp": 195
+  },
+  "secondary_threshold_0.36": {
+    "tn": 174,
+    "fp": 318,
+    "fn": 6,
+    "tp": 197
+  }
+}

@@ -21,11 +21,18 @@ hf_cache/
 
 # Data and outputs
 data/raw/
+**/data/raw/
 outputs/
+**/outputs/
 logs/
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Archives and large bundles
+*.zip
+*.tar.gz
+*.7z
 
 # IDE and OS
 .vscode/

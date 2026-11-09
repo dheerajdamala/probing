@@ -1,0 +1,178 @@
+{
+  "sample_id": "t_0075",
+  "ground_truth": "SAFE",
+  "neural_probe": {
+    "prediction": "SAFE",
+    "vulnerable_prob": 0.0001614484644960612,
+    "safe_prob": 0.9998385515355039,
+    "confidence": 0.9998385515355039,
+    "threshold": 0.36,
+    "correct": true,
+    "error_type": "NONE"
+  },
+  "static_dataflow_analysis": {
+    "prediction": "SAFE",
+    "confidence": 0.9,
+    "vulnerability_type": [],
+    "sink_location": [
+      {
+        "function": "db.extra",
+        "file": "t_0075.py",
+        "line": 2,
+        "column": 11
+      }
+    ],
+    "vulnerable_lines": [],
+    "evidence": [
+      {
+        "line": 2,
+        "category": "SQL_EXECUTION",
+        "description": "SQL execution sink 'db.extra' invoked with parameter bindings.",
+        "support": "AST"
+      },
+      {
+        "line": 2,
+        "category": "SAFE_PARAMETERIZATION",
+        "description": "SQL statement passes parameters as a separate argument to execution sink.",
+        "support": "AST"
+      }
+    ]
+  },
+  "source_code": "def posts_since(year):\n    return Post.objects.extra(where=[\"year >= %s\"], params=[year])",
+  "full_report": {
+    "analysis_status": "PARTIAL",
+    "messages": [
+      "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+    ],
+    "prediction": "SAFE",
+    "confidence": 0.9,
+    "probabilities": {
+      "vulnerable": 0.1,
+      "safe": 0.9
+    },
+    "vulnerability_type": [],
+    "sink_location": [
+      {
+        "function": "db.extra",
+        "file": "t_0075.py",
+        "line": 2,
+        "column": 11
+      }
+    ],
+    "vulnerable_lines": [],
+    "evidence": [
+      {
+        "line": 2,
+        "category": "SQL_EXECUTION",
+        "description": "SQL execution sink 'db.extra' invoked with parameter bindings.",
+        "support": "AST"
+      },
+      {
+        "line": 2,
+        "category": "SAFE_PARAMETERIZATION",
+        "description": "SQL statement passes parameters as a separate argument to execution sink.",
+        "support": "AST"
+      }
+    ],
+    "interprocedural_analysis": {
+      "analysis_status": "COMPLETE",
+      "findings": [
+        {
+          "vulnerability_type": "SAFE_PARAMETERIZATION",
+          "is_vulnerable": false,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [],
+          "sink_lines": [
+            {
+              "file": "t_0075.py",
+              "line": 2,
+              "column": 11,
+              "role": "SINK",
+              "function": "posts_since",
+              "evidence": "return Post.objects.extra(where=[\"year >= %s\"], params=[year])"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0075.py",
+              "line": 2,
+              "role": "SINK",
+              "function": "posts_since",
+              "description": "Query is executed via 'db.extra'.",
+              "code": "return Post.objects.extra(where=[\"year >= %s\"], params=[year])"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 2,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'db.extra' invoked.",
+              "support": "AST"
+            },
+            {
+              "line": 2,
+              "category": "SAFE_PARAMETERIZATION",
+              "description": "Query passes parameters via separate argument.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        }
+      ],
+      "functions_analyzed": 1,
+      "call_edges_resolved": 0,
+      "call_edges_unresolved": 1,
+      "maximum_depth_reached": 1,
+      "messages": []
+    },
+    "findings": [
+      {
+        "vulnerability_type": "SAFE_PARAMETERIZATION",
+        "is_vulnerable": false,
+        "source_lines": [],
+        "propagation_lines": [],
+        "vulnerable_lines": [],
+        "sink_lines": [
+          {
+            "file": "t_0075.py",
+            "line": 2,
+            "column": 11,
+            "role": "SINK",
+            "function": "posts_since",
+            "evidence": "return Post.objects.extra(where=[\"year >= %s\"], params=[year])"
+          }
+        ],
+        "dataflow_path": [
+          {
+            "step": 1,
+            "file": "t_0075.py",
+            "line": 2,
+            "role": "SINK",
+            "function": "posts_since",
+            "description": "Query is executed via 'db.extra'.",
+            "code": "return Post.objects.extra(where=[\"year >= %s\"], params=[year])"
+          }
+        ],
+        "evidence": [
+          {
+            "line": 2,
+            "category": "SQL_EXECUTION",
+            "description": "SQL execution call 'db.extra' invoked.",
+            "support": "AST"
+          },
+          {
+            "line": 2,
+            "category": "SAFE_PARAMETERIZATION",
+            "description": "Query passes parameters via separate argument.",
+            "support": "AST"
+          }
+        ],
+        "resolution_status": "RESOLVED",
+        "confidence_note": ""
+      }
+    ]
+  }
+}

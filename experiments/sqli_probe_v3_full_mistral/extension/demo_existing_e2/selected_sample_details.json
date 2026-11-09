@@ -1,0 +1,1788 @@
+[
+  {
+    "sample_id": "t_0157",
+    "ground_truth": "VULNERABLE",
+    "neural_probe": {
+      "prediction": "VULNERABLE",
+      "vulnerable_prob": 0.9987704157829285,
+      "safe_prob": 0.0012295842170715332,
+      "confidence": 0.9987704157829285,
+      "threshold": 0.36,
+      "correct": true,
+      "error_type": "NONE"
+    },
+    "static_dataflow_analysis": {
+      "prediction": "VULNERABLE",
+      "confidence": 0.9,
+      "vulnerability_type": [
+        "FORMAT_METHOD"
+      ],
+      "sink_location": [
+        {
+          "function": "cur.execute",
+          "file": "t_0157.py",
+          "line": 3,
+          "column": 8
+        },
+        {
+          "function": "cur.fetchall",
+          "file": "t_0157.py",
+          "line": 4,
+          "column": 15
+        }
+      ],
+      "vulnerable_lines": [
+        {
+          "line": 3,
+          "role": "QUERY_CONSTRUCTION",
+          "reason": "Inline SQL statement constructed dynamically with variables or formatting."
+        },
+        {
+          "line": 4,
+          "role": "SINK",
+          "reason": "SQL query reaches execution method 'cur.fetchall'."
+        }
+      ],
+      "evidence": [
+        {
+          "line": 3,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cur.execute' invoked without parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 3,
+          "category": "FORMAT_METHOD",
+          "description": "Query string formatted using .format() method.",
+          "support": "AST"
+        },
+        {
+          "line": 3,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "Inline SQL statement constructed dynamically with variables or formatting.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 4,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cur.fetchall' invoked without parameter bindings.",
+          "support": "AST"
+        }
+      ]
+    },
+    "source_code": "def invoices_for(conn, status, year):\n    with conn.cursor() as cur:\n        cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))\n        return cur.fetchall()",
+    "full_report": {
+      "analysis_status": "PARTIAL",
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ],
+      "prediction": "VULNERABLE",
+      "confidence": 0.9,
+      "probabilities": {
+        "vulnerable": 0.9,
+        "safe": 0.1
+      },
+      "vulnerability_type": [
+        "FORMAT_METHOD"
+      ],
+      "sink_location": [
+        {
+          "function": "cur.execute",
+          "file": "t_0157.py",
+          "line": 3,
+          "column": 8
+        },
+        {
+          "function": "cur.fetchall",
+          "file": "t_0157.py",
+          "line": 4,
+          "column": 15
+        }
+      ],
+      "vulnerable_lines": [
+        {
+          "line": 3,
+          "role": "QUERY_CONSTRUCTION",
+          "reason": "Inline SQL statement constructed dynamically with variables or formatting."
+        },
+        {
+          "line": 4,
+          "role": "SINK",
+          "reason": "SQL query reaches execution method 'cur.fetchall'."
+        }
+      ],
+      "evidence": [
+        {
+          "line": 3,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cur.execute' invoked without parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 3,
+          "category": "FORMAT_METHOD",
+          "description": "Query string formatted using .format() method.",
+          "support": "AST"
+        },
+        {
+          "line": 3,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "Inline SQL statement constructed dynamically with variables or formatting.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 4,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cur.fetchall' invoked without parameter bindings.",
+          "support": "AST"
+        }
+      ],
+      "interprocedural_analysis": {
+        "analysis_status": "COMPLETE",
+        "findings": [
+          {
+            "vulnerability_type": "FORMAT_METHOD",
+            "is_vulnerable": true,
+            "source_lines": [],
+            "propagation_lines": [],
+            "vulnerable_lines": [
+              {
+                "file": "t_0157.py",
+                "line": 3,
+                "column": 20,
+                "role": "QUERY_CONSTRUCTION",
+                "function": "invoices_for",
+                "evidence": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+              }
+            ],
+            "sink_lines": [
+              {
+                "file": "t_0157.py",
+                "line": 3,
+                "column": 8,
+                "role": "SINK",
+                "function": "invoices_for",
+                "evidence": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+              }
+            ],
+            "dataflow_path": [
+              {
+                "step": 1,
+                "file": "t_0157.py",
+                "line": 3,
+                "role": "QUERY_CONSTRUCTION",
+                "function": "invoices_for",
+                "description": "Unsafe SQL constructed using .format() interpolation.",
+                "code": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+              },
+              {
+                "step": 2,
+                "file": "t_0157.py",
+                "line": 3,
+                "role": "SINK",
+                "function": "invoices_for",
+                "description": "Query is executed via 'cur.execute'.",
+                "code": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+              }
+            ],
+            "evidence": [
+              {
+                "line": 3,
+                "category": "SQL_EXECUTION",
+                "description": "SQL execution call 'cur.execute' invoked.",
+                "support": "AST"
+              }
+            ],
+            "resolution_status": "RESOLVED",
+            "confidence_note": ""
+          },
+          {
+            "vulnerability_type": "STATIC_OR_SAFE_SQL",
+            "is_vulnerable": false,
+            "source_lines": [],
+            "propagation_lines": [],
+            "vulnerable_lines": [],
+            "sink_lines": [
+              {
+                "file": "t_0157.py",
+                "line": 4,
+                "column": 15,
+                "role": "SINK",
+                "function": "invoices_for",
+                "evidence": "return cur.fetchall()"
+              }
+            ],
+            "dataflow_path": [
+              {
+                "step": 1,
+                "file": "t_0157.py",
+                "line": 4,
+                "role": "SINK",
+                "function": "invoices_for",
+                "description": "Query is executed via 'cur.fetchall'.",
+                "code": "return cur.fetchall()"
+              }
+            ],
+            "evidence": [
+              {
+                "line": 4,
+                "category": "SQL_EXECUTION",
+                "description": "SQL execution call 'cur.fetchall' invoked.",
+                "support": "AST"
+              }
+            ],
+            "resolution_status": "RESOLVED",
+            "confidence_note": ""
+          }
+        ],
+        "functions_analyzed": 1,
+        "call_edges_resolved": 0,
+        "call_edges_unresolved": 4,
+        "maximum_depth_reached": 1,
+        "messages": []
+      },
+      "findings": [
+        {
+          "vulnerability_type": "FORMAT_METHOD",
+          "is_vulnerable": true,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [
+            {
+              "file": "t_0157.py",
+              "line": 3,
+              "column": 20,
+              "role": "QUERY_CONSTRUCTION",
+              "function": "invoices_for",
+              "evidence": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+            }
+          ],
+          "sink_lines": [
+            {
+              "file": "t_0157.py",
+              "line": 3,
+              "column": 8,
+              "role": "SINK",
+              "function": "invoices_for",
+              "evidence": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0157.py",
+              "line": 3,
+              "role": "QUERY_CONSTRUCTION",
+              "function": "invoices_for",
+              "description": "Unsafe SQL constructed using .format() interpolation.",
+              "code": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+            },
+            {
+              "step": 2,
+              "file": "t_0157.py",
+              "line": 3,
+              "role": "SINK",
+              "function": "invoices_for",
+              "description": "Query is executed via 'cur.execute'.",
+              "code": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 3,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'cur.execute' invoked.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        },
+        {
+          "vulnerability_type": "STATIC_OR_SAFE_SQL",
+          "is_vulnerable": false,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [],
+          "sink_lines": [
+            {
+              "file": "t_0157.py",
+              "line": 4,
+              "column": 15,
+              "role": "SINK",
+              "function": "invoices_for",
+              "evidence": "return cur.fetchall()"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0157.py",
+              "line": 4,
+              "role": "SINK",
+              "function": "invoices_for",
+              "description": "Query is executed via 'cur.fetchall'.",
+              "code": "return cur.fetchall()"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 4,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'cur.fetchall' invoked.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "t_0075",
+    "ground_truth": "SAFE",
+    "neural_probe": {
+      "prediction": "SAFE",
+      "vulnerable_prob": 0.0001614484644960612,
+      "safe_prob": 0.9998385515355039,
+      "confidence": 0.9998385515355039,
+      "threshold": 0.36,
+      "correct": true,
+      "error_type": "NONE"
+    },
+    "static_dataflow_analysis": {
+      "prediction": "SAFE",
+      "confidence": 0.9,
+      "vulnerability_type": [],
+      "sink_location": [
+        {
+          "function": "db.extra",
+          "file": "t_0075.py",
+          "line": 2,
+          "column": 11
+        }
+      ],
+      "vulnerable_lines": [],
+      "evidence": [
+        {
+          "line": 2,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'db.extra' invoked with parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 2,
+          "category": "SAFE_PARAMETERIZATION",
+          "description": "SQL statement passes parameters as a separate argument to execution sink.",
+          "support": "AST"
+        }
+      ]
+    },
+    "source_code": "def posts_since(year):\n    return Post.objects.extra(where=[\"year >= %s\"], params=[year])",
+    "full_report": {
+      "analysis_status": "PARTIAL",
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ],
+      "prediction": "SAFE",
+      "confidence": 0.9,
+      "probabilities": {
+        "vulnerable": 0.1,
+        "safe": 0.9
+      },
+      "vulnerability_type": [],
+      "sink_location": [
+        {
+          "function": "db.extra",
+          "file": "t_0075.py",
+          "line": 2,
+          "column": 11
+        }
+      ],
+      "vulnerable_lines": [],
+      "evidence": [
+        {
+          "line": 2,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'db.extra' invoked with parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 2,
+          "category": "SAFE_PARAMETERIZATION",
+          "description": "SQL statement passes parameters as a separate argument to execution sink.",
+          "support": "AST"
+        }
+      ],
+      "interprocedural_analysis": {
+        "analysis_status": "COMPLETE",
+        "findings": [
+          {
+            "vulnerability_type": "SAFE_PARAMETERIZATION",
+            "is_vulnerable": false,
+            "source_lines": [],
+            "propagation_lines": [],
+            "vulnerable_lines": [],
+            "sink_lines": [
+              {
+                "file": "t_0075.py",
+                "line": 2,
+                "column": 11,
+                "role": "SINK",
+                "function": "posts_since",
+                "evidence": "return Post.objects.extra(where=[\"year >= %s\"], params=[year])"
+              }
+            ],
+            "dataflow_path": [
+              {
+                "step": 1,
+                "file": "t_0075.py",
+                "line": 2,
+                "role": "SINK",
+                "function": "posts_since",
+                "description": "Query is executed via 'db.extra'.",
+                "code": "return Post.objects.extra(where=[\"year >= %s\"], params=[year])"
+              }
+            ],
+            "evidence": [
+              {
+                "line": 2,
+                "category": "SQL_EXECUTION",
+                "description": "SQL execution call 'db.extra' invoked.",
+                "support": "AST"
+              },
+              {
+                "line": 2,
+                "category": "SAFE_PARAMETERIZATION",
+                "description": "Query passes parameters via separate argument.",
+                "support": "AST"
+              }
+            ],
+            "resolution_status": "RESOLVED",
+            "confidence_note": ""
+          }
+        ],
+        "functions_analyzed": 1,
+        "call_edges_resolved": 0,
+        "call_edges_unresolved": 1,
+        "maximum_depth_reached": 1,
+        "messages": []
+      },
+      "findings": [
+        {
+          "vulnerability_type": "SAFE_PARAMETERIZATION",
+          "is_vulnerable": false,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [],
+          "sink_lines": [
+            {
+              "file": "t_0075.py",
+              "line": 2,
+              "column": 11,
+              "role": "SINK",
+              "function": "posts_since",
+              "evidence": "return Post.objects.extra(where=[\"year >= %s\"], params=[year])"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0075.py",
+              "line": 2,
+              "role": "SINK",
+              "function": "posts_since",
+              "description": "Query is executed via 'db.extra'.",
+              "code": "return Post.objects.extra(where=[\"year >= %s\"], params=[year])"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 2,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'db.extra' invoked.",
+              "support": "AST"
+            },
+            {
+              "line": 2,
+              "category": "SAFE_PARAMETERIZATION",
+              "description": "Query passes parameters via separate argument.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "t_0358",
+    "ground_truth": "SAFE",
+    "neural_probe": {
+      "prediction": "VULNERABLE",
+      "vulnerable_prob": 0.8441027402877808,
+      "safe_prob": 0.15589725971221924,
+      "confidence": 0.8441027402877808,
+      "threshold": 0.36,
+      "correct": false,
+      "error_type": "FALSE_POSITIVE"
+    },
+    "static_dataflow_analysis": {
+      "prediction": "SAFE",
+      "confidence": 0.9,
+      "vulnerability_type": [],
+      "sink_location": [
+        {
+          "function": "cur.execute",
+          "file": "t_0358.py",
+          "line": 3,
+          "column": 4
+        }
+      ],
+      "vulnerable_lines": [],
+      "evidence": [
+        {
+          "line": 3,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cur.execute' invoked with parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 3,
+          "category": "SAFE_PARAMETERIZATION",
+          "description": "SQL statement passes parameters as a separate argument to execution sink.",
+          "support": "AST"
+        }
+      ]
+    },
+    "source_code": "def cancel(self, reservation_id, user_id):\n    cur = self.cnx.cursor()\n    cur.execute(\"UPDATE reservations SET status = 'cancelled' WHERE id = %s AND user_id = %s AND status = 'active'\", (reservation_id, user_id))\n    self.cnx.commit()\n    return cur.rowcount == 1",
+    "full_report": {
+      "analysis_status": "PARTIAL",
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ],
+      "prediction": "SAFE",
+      "confidence": 0.9,
+      "probabilities": {
+        "vulnerable": 0.1,
+        "safe": 0.9
+      },
+      "vulnerability_type": [],
+      "sink_location": [
+        {
+          "function": "cur.execute",
+          "file": "t_0358.py",
+          "line": 3,
+          "column": 4
+        }
+      ],
+      "vulnerable_lines": [],
+      "evidence": [
+        {
+          "line": 3,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cur.execute' invoked with parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 3,
+          "category": "SAFE_PARAMETERIZATION",
+          "description": "SQL statement passes parameters as a separate argument to execution sink.",
+          "support": "AST"
+        }
+      ],
+      "interprocedural_analysis": {
+        "analysis_status": "COMPLETE",
+        "findings": [
+          {
+            "vulnerability_type": "SAFE_PARAMETERIZATION",
+            "is_vulnerable": false,
+            "source_lines": [],
+            "propagation_lines": [],
+            "vulnerable_lines": [],
+            "sink_lines": [
+              {
+                "file": "t_0358.py",
+                "line": 3,
+                "column": 4,
+                "role": "SINK",
+                "function": "cancel",
+                "evidence": "cur.execute(\"UPDATE reservations SET status = 'cancelled' WHERE id = %s AND user_id = %s AND status = 'active'\", (reservation_id, user_id))"
+              }
+            ],
+            "dataflow_path": [
+              {
+                "step": 1,
+                "file": "t_0358.py",
+                "line": 3,
+                "role": "SINK",
+                "function": "cancel",
+                "description": "Query is executed via 'cur.execute'.",
+                "code": "cur.execute(\"UPDATE reservations SET status = 'cancelled' WHERE id = %s AND user_id = %s AND status = 'active'\", (reservation_id, user_id))"
+              }
+            ],
+            "evidence": [
+              {
+                "line": 3,
+                "category": "SQL_EXECUTION",
+                "description": "SQL execution call 'cur.execute' invoked.",
+                "support": "AST"
+              },
+              {
+                "line": 3,
+                "category": "SAFE_PARAMETERIZATION",
+                "description": "Query passes parameters via separate argument.",
+                "support": "AST"
+              }
+            ],
+            "resolution_status": "RESOLVED",
+            "confidence_note": ""
+          }
+        ],
+        "functions_analyzed": 1,
+        "call_edges_resolved": 0,
+        "call_edges_unresolved": 3,
+        "maximum_depth_reached": 1,
+        "messages": []
+      },
+      "findings": [
+        {
+          "vulnerability_type": "SAFE_PARAMETERIZATION",
+          "is_vulnerable": false,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [],
+          "sink_lines": [
+            {
+              "file": "t_0358.py",
+              "line": 3,
+              "column": 4,
+              "role": "SINK",
+              "function": "cancel",
+              "evidence": "cur.execute(\"UPDATE reservations SET status = 'cancelled' WHERE id = %s AND user_id = %s AND status = 'active'\", (reservation_id, user_id))"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0358.py",
+              "line": 3,
+              "role": "SINK",
+              "function": "cancel",
+              "description": "Query is executed via 'cur.execute'.",
+              "code": "cur.execute(\"UPDATE reservations SET status = 'cancelled' WHERE id = %s AND user_id = %s AND status = 'active'\", (reservation_id, user_id))"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 3,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'cur.execute' invoked.",
+              "support": "AST"
+            },
+            {
+              "line": 3,
+              "category": "SAFE_PARAMETERIZATION",
+              "description": "Query passes parameters via separate argument.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "t_0843",
+    "ground_truth": "VULNERABLE",
+    "neural_probe": {
+      "prediction": "SAFE",
+      "vulnerable_prob": 0.04632683843374252,
+      "safe_prob": 0.9536731615662575,
+      "confidence": 0.9536731615662575,
+      "threshold": 0.36,
+      "correct": false,
+      "error_type": "FALSE_NEGATIVE"
+    },
+    "static_dataflow_analysis": {
+      "prediction": "VULNERABLE",
+      "confidence": 0.9,
+      "vulnerability_type": [
+        "DIRECT_STRING_CONCATENATION"
+      ],
+      "sink_location": [
+        {
+          "function": "conn.execute",
+          "file": "t_0843.py",
+          "line": 7,
+          "column": 10
+        }
+      ],
+      "vulnerable_lines": [
+        {
+          "line": 7,
+          "role": "QUERY_CONSTRUCTION",
+          "reason": "Inline SQL statement constructed dynamically with variables or formatting."
+        }
+      ],
+      "evidence": [
+        {
+          "line": 7,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'conn.execute' invoked without parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 7,
+          "category": "DIRECT_STRING_CONCATENATION",
+          "description": "Query string constructed via direct binary string concatenation (+).",
+          "support": "AST"
+        },
+        {
+          "line": 7,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "Inline SQL statement constructed dynamically with variables or formatting.",
+          "support": "DATAFLOW"
+        }
+      ]
+    },
+    "source_code": "def count_matching_bids(conn, filters):\n    clauses = []\n    for column, value in filters.items():\n        if column in (\"bidder\", \"lot\", \"status\"):\n            clauses.append(column + \" = '\" + str(value) + \"'\")\n    where = \" AND \".join(clauses) if clauses else \"1 = 1\"\n    row = conn.execute(\"SELECT COUNT(*), COALESCE(SUM(amount), 0) FROM bids WHERE \" + where).fetchone()\n    log.info(\"bids matching %s: %s\", filters, row[0])\n    return {\"count\": row[0], \"total\": row[1]}",
+    "full_report": {
+      "analysis_status": "PARTIAL",
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ],
+      "prediction": "VULNERABLE",
+      "confidence": 0.9,
+      "probabilities": {
+        "vulnerable": 0.9,
+        "safe": 0.1
+      },
+      "vulnerability_type": [
+        "DIRECT_STRING_CONCATENATION"
+      ],
+      "sink_location": [
+        {
+          "function": "conn.execute",
+          "file": "t_0843.py",
+          "line": 7,
+          "column": 10
+        }
+      ],
+      "vulnerable_lines": [
+        {
+          "line": 7,
+          "role": "QUERY_CONSTRUCTION",
+          "reason": "Inline SQL statement constructed dynamically with variables or formatting."
+        }
+      ],
+      "evidence": [
+        {
+          "line": 7,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'conn.execute' invoked without parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 7,
+          "category": "DIRECT_STRING_CONCATENATION",
+          "description": "Query string constructed via direct binary string concatenation (+).",
+          "support": "AST"
+        },
+        {
+          "line": 7,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "Inline SQL statement constructed dynamically with variables or formatting.",
+          "support": "DATAFLOW"
+        }
+      ],
+      "interprocedural_analysis": {
+        "analysis_status": "COMPLETE",
+        "findings": [
+          {
+            "vulnerability_type": "DIRECT_STRING_CONCATENATION",
+            "is_vulnerable": true,
+            "source_lines": [],
+            "propagation_lines": [],
+            "vulnerable_lines": [
+              {
+                "file": "t_0843.py",
+                "line": 7,
+                "column": 23,
+                "role": "QUERY_CONSTRUCTION",
+                "function": "count_matching_bids",
+                "evidence": "row = conn.execute(\"SELECT COUNT(*), COALESCE(SUM(amount), 0) FROM bids WHERE \" + where).fetchone()"
+              }
+            ],
+            "sink_lines": [
+              {
+                "file": "t_0843.py",
+                "line": 7,
+                "column": 10,
+                "role": "SINK",
+                "function": "count_matching_bids",
+                "evidence": "row = conn.execute(\"SELECT COUNT(*), COALESCE(SUM(amount), 0) FROM bids WHERE \" + where).fetchone()"
+              }
+            ],
+            "dataflow_path": [
+              {
+                "step": 1,
+                "file": "t_0843.py",
+                "line": 7,
+                "role": "QUERY_CONSTRUCTION",
+                "function": "count_matching_bids",
+                "description": "Unsafe SQL constructed via direct string concatenation (+) (WHERE).",
+                "code": "row = conn.execute(\"SELECT COUNT(*), COALESCE(SUM(amount), 0) FROM bids WHERE \" + where).fetchone()"
+              },
+              {
+                "step": 2,
+                "file": "t_0843.py",
+                "line": 7,
+                "role": "SINK",
+                "function": "count_matching_bids",
+                "description": "Query is executed via 'conn.execute'.",
+                "code": "row = conn.execute(\"SELECT COUNT(*), COALESCE(SUM(amount), 0) FROM bids WHERE \" + where).fetchone()"
+              }
+            ],
+            "evidence": [
+              {
+                "line": 7,
+                "category": "SQL_EXECUTION",
+                "description": "SQL execution call 'conn.execute' invoked.",
+                "support": "AST"
+              },
+              {
+                "line": 7,
+                "category": "DIRECT_STRING_CONCATENATION",
+                "description": "Direct string concatenation builds SQL statement.",
+                "support": "AST"
+              }
+            ],
+            "resolution_status": "RESOLVED",
+            "confidence_note": ""
+          }
+        ],
+        "functions_analyzed": 1,
+        "call_edges_resolved": 0,
+        "call_edges_unresolved": 7,
+        "maximum_depth_reached": 3,
+        "messages": []
+      },
+      "findings": [
+        {
+          "vulnerability_type": "DIRECT_STRING_CONCATENATION",
+          "is_vulnerable": true,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [
+            {
+              "file": "t_0843.py",
+              "line": 7,
+              "column": 23,
+              "role": "QUERY_CONSTRUCTION",
+              "function": "count_matching_bids",
+              "evidence": "row = conn.execute(\"SELECT COUNT(*), COALESCE(SUM(amount), 0) FROM bids WHERE \" + where).fetchone()"
+            }
+          ],
+          "sink_lines": [
+            {
+              "file": "t_0843.py",
+              "line": 7,
+              "column": 10,
+              "role": "SINK",
+              "function": "count_matching_bids",
+              "evidence": "row = conn.execute(\"SELECT COUNT(*), COALESCE(SUM(amount), 0) FROM bids WHERE \" + where).fetchone()"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0843.py",
+              "line": 7,
+              "role": "QUERY_CONSTRUCTION",
+              "function": "count_matching_bids",
+              "description": "Unsafe SQL constructed via direct string concatenation (+) (WHERE).",
+              "code": "row = conn.execute(\"SELECT COUNT(*), COALESCE(SUM(amount), 0) FROM bids WHERE \" + where).fetchone()"
+            },
+            {
+              "step": 2,
+              "file": "t_0843.py",
+              "line": 7,
+              "role": "SINK",
+              "function": "count_matching_bids",
+              "description": "Query is executed via 'conn.execute'.",
+              "code": "row = conn.execute(\"SELECT COUNT(*), COALESCE(SUM(amount), 0) FROM bids WHERE \" + where).fetchone()"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 7,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'conn.execute' invoked.",
+              "support": "AST"
+            },
+            {
+              "line": 7,
+              "category": "DIRECT_STRING_CONCATENATION",
+              "description": "Direct string concatenation builds SQL statement.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "t_0867",
+    "ground_truth": "VULNERABLE",
+    "neural_probe": {
+      "prediction": "SAFE",
+      "vulnerable_prob": 0.19135220348834991,
+      "safe_prob": 0.8086477965116501,
+      "confidence": 0.8086477965116501,
+      "threshold": 0.36,
+      "correct": false,
+      "error_type": "FALSE_NEGATIVE"
+    },
+    "static_dataflow_analysis": {
+      "prediction": "VULNERABLE",
+      "confidence": 0.9,
+      "vulnerability_type": [
+        "F_STRING_INTERPOLATION",
+        "HYBRID_QUERY_CONSTRUCTION"
+      ],
+      "sink_location": [
+        {
+          "function": "db.execute",
+          "file": "t_0867.py",
+          "line": 5,
+          "column": 10
+        },
+        {
+          "function": "db.execute",
+          "file": "t_0867.py",
+          "line": 9,
+          "column": 10
+        }
+      ],
+      "vulnerable_lines": [
+        {
+          "line": 5,
+          "role": "QUERY_CONSTRUCTION",
+          "reason": "Inline SQL statement constructed dynamically with variables or formatting."
+        },
+        {
+          "line": 9,
+          "role": "SINK",
+          "reason": "SQL query reaches execution method 'db.execute'."
+        }
+      ],
+      "evidence": [
+        {
+          "line": 5,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'db.execute' invoked with parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 5,
+          "category": "SAFE_PARAMETERIZATION",
+          "description": "SQL statement passes parameters as a separate argument to execution sink.",
+          "support": "AST"
+        },
+        {
+          "line": 5,
+          "category": "F_STRING_INTERPOLATION",
+          "description": "Query string constructed via f-string expression with interpolated variables.",
+          "support": "AST"
+        },
+        {
+          "line": 5,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "Inline SQL statement constructed dynamically with variables or formatting.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 9,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'db.execute' invoked with parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 9,
+          "category": "SAFE_PARAMETERIZATION",
+          "description": "SQL statement passes parameters as a separate argument to execution sink.",
+          "support": "AST"
+        }
+      ]
+    },
+    "source_code": "@router.put(\"/lanes/{lane_id}/status\")\ndef set_lane_status(lane_id: int, status: str, note: str = \"\"):\n    if not note.strip():\n        note = \"none\"\n    cur = db.execute(f\"UPDATE lanes SET status = '{status}', note = ? WHERE id = ?\", (note, lane_id))\n    db.commit()\n    if cur.rowcount == 0:\n        raise HTTPException(status_code=404, detail=\"lane not found\")\n    row = db.execute(\"SELECT id, status, note FROM lanes WHERE id = ?\", (lane_id,)).fetchone()\n    log.info(\"lane %s is now %s\", lane_id, status)\n    return {\"id\": row[0], \"status\": row[1], \"note\": row[2]}",
+    "full_report": {
+      "analysis_status": "PARTIAL",
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ],
+      "prediction": "VULNERABLE",
+      "confidence": 0.9,
+      "probabilities": {
+        "vulnerable": 0.9,
+        "safe": 0.1
+      },
+      "vulnerability_type": [
+        "F_STRING_INTERPOLATION",
+        "HYBRID_QUERY_CONSTRUCTION"
+      ],
+      "sink_location": [
+        {
+          "function": "db.execute",
+          "file": "t_0867.py",
+          "line": 5,
+          "column": 10
+        },
+        {
+          "function": "db.execute",
+          "file": "t_0867.py",
+          "line": 9,
+          "column": 10
+        }
+      ],
+      "vulnerable_lines": [
+        {
+          "line": 5,
+          "role": "QUERY_CONSTRUCTION",
+          "reason": "Inline SQL statement constructed dynamically with variables or formatting."
+        },
+        {
+          "line": 9,
+          "role": "SINK",
+          "reason": "SQL query reaches execution method 'db.execute'."
+        }
+      ],
+      "evidence": [
+        {
+          "line": 5,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'db.execute' invoked with parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 5,
+          "category": "SAFE_PARAMETERIZATION",
+          "description": "SQL statement passes parameters as a separate argument to execution sink.",
+          "support": "AST"
+        },
+        {
+          "line": 5,
+          "category": "F_STRING_INTERPOLATION",
+          "description": "Query string constructed via f-string expression with interpolated variables.",
+          "support": "AST"
+        },
+        {
+          "line": 5,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "Inline SQL statement constructed dynamically with variables or formatting.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 9,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'db.execute' invoked with parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 9,
+          "category": "SAFE_PARAMETERIZATION",
+          "description": "SQL statement passes parameters as a separate argument to execution sink.",
+          "support": "AST"
+        }
+      ],
+      "interprocedural_analysis": {
+        "analysis_status": "COMPLETE",
+        "findings": [
+          {
+            "vulnerability_type": "HYBRID_QUERY_CONSTRUCTION",
+            "is_vulnerable": true,
+            "source_lines": [],
+            "propagation_lines": [
+              {
+                "file": "t_0867.py",
+                "line": 2,
+                "column": 0,
+                "role": "PROPAGATION",
+                "function": "set_lane_status",
+                "evidence": "def set_lane_status(..., status, ...)"
+              }
+            ],
+            "vulnerable_lines": [
+              {
+                "file": "t_0867.py",
+                "line": 5,
+                "column": 21,
+                "role": "QUERY_CONSTRUCTION",
+                "function": "set_lane_status",
+                "evidence": "cur = db.execute(f\"UPDATE lanes SET status = '{status}', note = ? WHERE id = ?\", (note, lane_id))"
+              }
+            ],
+            "sink_lines": [
+              {
+                "file": "t_0867.py",
+                "line": 5,
+                "column": 10,
+                "role": "SINK",
+                "function": "set_lane_status",
+                "evidence": "cur = db.execute(f\"UPDATE lanes SET status = '{status}', note = ? WHERE id = ?\", (note, lane_id))"
+              }
+            ],
+            "dataflow_path": [
+              {
+                "step": 1,
+                "file": "t_0867.py",
+                "line": 2,
+                "role": "PROPAGATION",
+                "function": "set_lane_status",
+                "description": "Value propagated into parameter 'status' of 'set_lane_status'.",
+                "code": "def set_lane_status(lane_id: int, status: str, note: str = \"\"):"
+              },
+              {
+                "step": 2,
+                "file": "t_0867.py",
+                "line": 5,
+                "role": "QUERY_CONSTRUCTION",
+                "function": "set_lane_status",
+                "description": "Unsafe SQL constructed using f-string interpolation (WHERE).",
+                "code": "cur = db.execute(f\"UPDATE lanes SET status = '{status}', note = ? WHERE id = ?\", (note, lane_id))"
+              },
+              {
+                "step": 3,
+                "file": "t_0867.py",
+                "line": 5,
+                "role": "SINK",
+                "function": "set_lane_status",
+                "description": "Query is executed via 'db.execute'.",
+                "code": "cur = db.execute(f\"UPDATE lanes SET status = '{status}', note = ? WHERE id = ?\", (note, lane_id))"
+              }
+            ],
+            "evidence": [
+              {
+                "line": 5,
+                "category": "SQL_EXECUTION",
+                "description": "SQL execution call 'db.execute' invoked.",
+                "support": "AST"
+              },
+              {
+                "line": 5,
+                "category": "SAFE_PARAMETERIZATION",
+                "description": "Query passes parameters via separate argument.",
+                "support": "AST"
+              },
+              {
+                "line": 5,
+                "category": "F_STRING_INTERPOLATION",
+                "description": "F-string incorporates unescaped variable into SQL query string.",
+                "support": "AST"
+              }
+            ],
+            "resolution_status": "RESOLVED",
+            "confidence_note": ""
+          },
+          {
+            "vulnerability_type": "SAFE_PARAMETERIZATION",
+            "is_vulnerable": false,
+            "source_lines": [],
+            "propagation_lines": [],
+            "vulnerable_lines": [],
+            "sink_lines": [
+              {
+                "file": "t_0867.py",
+                "line": 9,
+                "column": 10,
+                "role": "SINK",
+                "function": "set_lane_status",
+                "evidence": "row = db.execute(\"SELECT id, status, note FROM lanes WHERE id = ?\", (lane_id,)).fetchone()"
+              }
+            ],
+            "dataflow_path": [
+              {
+                "step": 1,
+                "file": "t_0867.py",
+                "line": 9,
+                "role": "SINK",
+                "function": "set_lane_status",
+                "description": "Query is executed via 'db.execute'.",
+                "code": "row = db.execute(\"SELECT id, status, note FROM lanes WHERE id = ?\", (lane_id,)).fetchone()"
+              }
+            ],
+            "evidence": [
+              {
+                "line": 9,
+                "category": "SQL_EXECUTION",
+                "description": "SQL execution call 'db.execute' invoked.",
+                "support": "AST"
+              },
+              {
+                "line": 9,
+                "category": "SAFE_PARAMETERIZATION",
+                "description": "Query passes parameters via separate argument.",
+                "support": "AST"
+              }
+            ],
+            "resolution_status": "RESOLVED",
+            "confidence_note": ""
+          }
+        ],
+        "functions_analyzed": 1,
+        "call_edges_resolved": 0,
+        "call_edges_unresolved": 8,
+        "maximum_depth_reached": 2,
+        "messages": []
+      },
+      "findings": [
+        {
+          "vulnerability_type": "HYBRID_QUERY_CONSTRUCTION",
+          "is_vulnerable": true,
+          "source_lines": [],
+          "propagation_lines": [
+            {
+              "file": "t_0867.py",
+              "line": 2,
+              "column": 0,
+              "role": "PROPAGATION",
+              "function": "set_lane_status",
+              "evidence": "def set_lane_status(..., status, ...)"
+            }
+          ],
+          "vulnerable_lines": [
+            {
+              "file": "t_0867.py",
+              "line": 5,
+              "column": 21,
+              "role": "QUERY_CONSTRUCTION",
+              "function": "set_lane_status",
+              "evidence": "cur = db.execute(f\"UPDATE lanes SET status = '{status}', note = ? WHERE id = ?\", (note, lane_id))"
+            }
+          ],
+          "sink_lines": [
+            {
+              "file": "t_0867.py",
+              "line": 5,
+              "column": 10,
+              "role": "SINK",
+              "function": "set_lane_status",
+              "evidence": "cur = db.execute(f\"UPDATE lanes SET status = '{status}', note = ? WHERE id = ?\", (note, lane_id))"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0867.py",
+              "line": 2,
+              "role": "PROPAGATION",
+              "function": "set_lane_status",
+              "description": "Value propagated into parameter 'status' of 'set_lane_status'.",
+              "code": "def set_lane_status(lane_id: int, status: str, note: str = \"\"):"
+            },
+            {
+              "step": 2,
+              "file": "t_0867.py",
+              "line": 5,
+              "role": "QUERY_CONSTRUCTION",
+              "function": "set_lane_status",
+              "description": "Unsafe SQL constructed using f-string interpolation (WHERE).",
+              "code": "cur = db.execute(f\"UPDATE lanes SET status = '{status}', note = ? WHERE id = ?\", (note, lane_id))"
+            },
+            {
+              "step": 3,
+              "file": "t_0867.py",
+              "line": 5,
+              "role": "SINK",
+              "function": "set_lane_status",
+              "description": "Query is executed via 'db.execute'.",
+              "code": "cur = db.execute(f\"UPDATE lanes SET status = '{status}', note = ? WHERE id = ?\", (note, lane_id))"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 5,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'db.execute' invoked.",
+              "support": "AST"
+            },
+            {
+              "line": 5,
+              "category": "SAFE_PARAMETERIZATION",
+              "description": "Query passes parameters via separate argument.",
+              "support": "AST"
+            },
+            {
+              "line": 5,
+              "category": "F_STRING_INTERPOLATION",
+              "description": "F-string incorporates unescaped variable into SQL query string.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        },
+        {
+          "vulnerability_type": "SAFE_PARAMETERIZATION",
+          "is_vulnerable": false,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [],
+          "sink_lines": [
+            {
+              "file": "t_0867.py",
+              "line": 9,
+              "column": 10,
+              "role": "SINK",
+              "function": "set_lane_status",
+              "evidence": "row = db.execute(\"SELECT id, status, note FROM lanes WHERE id = ?\", (lane_id,)).fetchone()"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0867.py",
+              "line": 9,
+              "role": "SINK",
+              "function": "set_lane_status",
+              "description": "Query is executed via 'db.execute'.",
+              "code": "row = db.execute(\"SELECT id, status, note FROM lanes WHERE id = ?\", (lane_id,)).fetchone()"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 9,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'db.execute' invoked.",
+              "support": "AST"
+            },
+            {
+              "line": 9,
+              "category": "SAFE_PARAMETERIZATION",
+              "description": "Query passes parameters via separate argument.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "t_0543",
+    "ground_truth": "SAFE",
+    "neural_probe": {
+      "prediction": "VULNERABLE",
+      "vulnerable_prob": 0.5406437516212463,
+      "safe_prob": 0.45935624837875366,
+      "confidence": 0.5406437516212463,
+      "threshold": 0.36,
+      "correct": false,
+      "error_type": "FALSE_POSITIVE"
+    },
+    "static_dataflow_analysis": {
+      "prediction": "VULNERABLE",
+      "confidence": 0.9,
+      "vulnerability_type": [
+        "DYNAMIC_IDENTIFIER",
+        "DYNAMIC_ORDER_BY",
+        "F_STRING_INTERPOLATION"
+      ],
+      "sink_location": [
+        {
+          "function": "cur.execute",
+          "file": "t_0543.py",
+          "line": 5,
+          "column": 4
+        },
+        {
+          "function": "cur.fetchall",
+          "file": "t_0543.py",
+          "line": 6,
+          "column": 66
+        }
+      ],
+      "vulnerable_lines": [
+        {
+          "line": 5,
+          "role": "QUERY_CONSTRUCTION",
+          "reason": "Inline SQL statement constructed dynamically with variables or formatting."
+        },
+        {
+          "line": 6,
+          "role": "SINK",
+          "reason": "SQL query reaches execution method 'cur.fetchall'."
+        }
+      ],
+      "evidence": [
+        {
+          "line": 5,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cur.execute' invoked without parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 5,
+          "category": "F_STRING_INTERPOLATION",
+          "description": "Query string constructed via f-string expression with interpolated variables.",
+          "support": "AST"
+        },
+        {
+          "line": 5,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "Inline SQL statement constructed dynamically with variables or formatting.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 6,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cur.fetchall' invoked without parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 3,
+          "category": "SANITIZATION",
+          "description": "Sanitization via 'int' removes SQL injection risk.",
+          "support": "AST"
+        },
+        {
+          "line": 5,
+          "category": "DYNAMIC_ORDER_BY",
+          "description": "F-string incorporates unescaped variable into SQL query string.",
+          "support": "AST"
+        }
+      ]
+    },
+    "source_code": "def get_threads(conn, forum_id, sort=\"recent\"):\n    order = {\"recent\": \"last_post DESC\", \"popular\": \"replies DESC\", \"oldest\": \"created ASC\"}[sort]\n    forum_id = int(forum_id)\n    cur = conn.cursor()\n    cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")\n    return [{\"id\": r[0], \"title\": r[1], \"replies\": r[2]} for r in cur.fetchall()]",
+    "full_report": {
+      "analysis_status": "PARTIAL",
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ],
+      "prediction": "VULNERABLE",
+      "confidence": 0.9,
+      "probabilities": {
+        "vulnerable": 0.9,
+        "safe": 0.1
+      },
+      "vulnerability_type": [
+        "DYNAMIC_IDENTIFIER",
+        "DYNAMIC_ORDER_BY",
+        "F_STRING_INTERPOLATION"
+      ],
+      "sink_location": [
+        {
+          "function": "cur.execute",
+          "file": "t_0543.py",
+          "line": 5,
+          "column": 4
+        },
+        {
+          "function": "cur.fetchall",
+          "file": "t_0543.py",
+          "line": 6,
+          "column": 66
+        }
+      ],
+      "vulnerable_lines": [
+        {
+          "line": 5,
+          "role": "QUERY_CONSTRUCTION",
+          "reason": "Inline SQL statement constructed dynamically with variables or formatting."
+        },
+        {
+          "line": 6,
+          "role": "SINK",
+          "reason": "SQL query reaches execution method 'cur.fetchall'."
+        }
+      ],
+      "evidence": [
+        {
+          "line": 5,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cur.execute' invoked without parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 5,
+          "category": "F_STRING_INTERPOLATION",
+          "description": "Query string constructed via f-string expression with interpolated variables.",
+          "support": "AST"
+        },
+        {
+          "line": 5,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "Inline SQL statement constructed dynamically with variables or formatting.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 6,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cur.fetchall' invoked without parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 3,
+          "category": "SANITIZATION",
+          "description": "Sanitization via 'int' removes SQL injection risk.",
+          "support": "AST"
+        },
+        {
+          "line": 5,
+          "category": "DYNAMIC_ORDER_BY",
+          "description": "F-string incorporates unescaped variable into SQL query string.",
+          "support": "AST"
+        }
+      ],
+      "interprocedural_analysis": {
+        "analysis_status": "COMPLETE",
+        "findings": [
+          {
+            "vulnerability_type": "DYNAMIC_ORDER_BY",
+            "is_vulnerable": true,
+            "source_lines": [],
+            "propagation_lines": [],
+            "vulnerable_lines": [
+              {
+                "file": "t_0543.py",
+                "line": 5,
+                "column": 16,
+                "role": "QUERY_CONSTRUCTION",
+                "function": "get_threads",
+                "evidence": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+              }
+            ],
+            "sink_lines": [
+              {
+                "file": "t_0543.py",
+                "line": 5,
+                "column": 4,
+                "role": "SINK",
+                "function": "get_threads",
+                "evidence": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+              }
+            ],
+            "dataflow_path": [
+              {
+                "step": 1,
+                "file": "t_0543.py",
+                "line": 3,
+                "role": "SANITIZATION",
+                "function": "get_threads",
+                "description": "Input is sanitized or safely converted via 'int()'.",
+                "code": "forum_id = int(forum_id)"
+              },
+              {
+                "step": 2,
+                "file": "t_0543.py",
+                "line": 5,
+                "role": "QUERY_CONSTRUCTION",
+                "function": "get_threads",
+                "description": "Unsafe SQL constructed using f-string interpolation (ORDER_BY).",
+                "code": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+              },
+              {
+                "step": 3,
+                "file": "t_0543.py",
+                "line": 5,
+                "role": "SINK",
+                "function": "get_threads",
+                "description": "Query is executed via 'cur.execute'.",
+                "code": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+              }
+            ],
+            "evidence": [
+              {
+                "line": 5,
+                "category": "SQL_EXECUTION",
+                "description": "SQL execution call 'cur.execute' invoked.",
+                "support": "AST"
+              },
+              {
+                "line": 3,
+                "category": "SANITIZATION",
+                "description": "Sanitization via 'int' removes SQL injection risk.",
+                "support": "AST"
+              },
+              {
+                "line": 5,
+                "category": "DYNAMIC_ORDER_BY",
+                "description": "F-string incorporates unescaped variable into SQL query string.",
+                "support": "AST"
+              }
+            ],
+            "resolution_status": "RESOLVED",
+            "confidence_note": ""
+          },
+          {
+            "vulnerability_type": "STATIC_OR_SAFE_SQL",
+            "is_vulnerable": false,
+            "source_lines": [],
+            "propagation_lines": [],
+            "vulnerable_lines": [],
+            "sink_lines": [
+              {
+                "file": "t_0543.py",
+                "line": 6,
+                "column": 66,
+                "role": "SINK",
+                "function": "get_threads",
+                "evidence": "return [{\"id\": r[0], \"title\": r[1], \"replies\": r[2]} for r in cur.fetchall()]"
+              }
+            ],
+            "dataflow_path": [
+              {
+                "step": 1,
+                "file": "t_0543.py",
+                "line": 6,
+                "role": "SINK",
+                "function": "get_threads",
+                "description": "Query is executed via 'cur.fetchall'.",
+                "code": "return [{\"id\": r[0], \"title\": r[1], \"replies\": r[2]} for r in cur.fetchall()]"
+              }
+            ],
+            "evidence": [
+              {
+                "line": 6,
+                "category": "SQL_EXECUTION",
+                "description": "SQL execution call 'cur.fetchall' invoked.",
+                "support": "AST"
+              }
+            ],
+            "resolution_status": "RESOLVED",
+            "confidence_note": ""
+          }
+        ],
+        "functions_analyzed": 1,
+        "call_edges_resolved": 0,
+        "call_edges_unresolved": 4,
+        "maximum_depth_reached": 3,
+        "messages": []
+      },
+      "findings": [
+        {
+          "vulnerability_type": "DYNAMIC_ORDER_BY",
+          "is_vulnerable": true,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [
+            {
+              "file": "t_0543.py",
+              "line": 5,
+              "column": 16,
+              "role": "QUERY_CONSTRUCTION",
+              "function": "get_threads",
+              "evidence": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+            }
+          ],
+          "sink_lines": [
+            {
+              "file": "t_0543.py",
+              "line": 5,
+              "column": 4,
+              "role": "SINK",
+              "function": "get_threads",
+              "evidence": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0543.py",
+              "line": 3,
+              "role": "SANITIZATION",
+              "function": "get_threads",
+              "description": "Input is sanitized or safely converted via 'int()'.",
+              "code": "forum_id = int(forum_id)"
+            },
+            {
+              "step": 2,
+              "file": "t_0543.py",
+              "line": 5,
+              "role": "QUERY_CONSTRUCTION",
+              "function": "get_threads",
+              "description": "Unsafe SQL constructed using f-string interpolation (ORDER_BY).",
+              "code": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+            },
+            {
+              "step": 3,
+              "file": "t_0543.py",
+              "line": 5,
+              "role": "SINK",
+              "function": "get_threads",
+              "description": "Query is executed via 'cur.execute'.",
+              "code": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 5,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'cur.execute' invoked.",
+              "support": "AST"
+            },
+            {
+              "line": 3,
+              "category": "SANITIZATION",
+              "description": "Sanitization via 'int' removes SQL injection risk.",
+              "support": "AST"
+            },
+            {
+              "line": 5,
+              "category": "DYNAMIC_ORDER_BY",
+              "description": "F-string incorporates unescaped variable into SQL query string.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        },
+        {
+          "vulnerability_type": "STATIC_OR_SAFE_SQL",
+          "is_vulnerable": false,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [],
+          "sink_lines": [
+            {
+              "file": "t_0543.py",
+              "line": 6,
+              "column": 66,
+              "role": "SINK",
+              "function": "get_threads",
+              "evidence": "return [{\"id\": r[0], \"title\": r[1], \"replies\": r[2]} for r in cur.fetchall()]"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0543.py",
+              "line": 6,
+              "role": "SINK",
+              "function": "get_threads",
+              "description": "Query is executed via 'cur.fetchall'.",
+              "code": "return [{\"id\": r[0], \"title\": r[1], \"replies\": r[2]} for r in cur.fetchall()]"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 6,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'cur.fetchall' invoked.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        }
+      ]
+    }
+  }
+]

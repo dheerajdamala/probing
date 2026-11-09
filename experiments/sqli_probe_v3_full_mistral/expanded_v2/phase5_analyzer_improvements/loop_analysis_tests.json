@@ -1,0 +1,93 @@
+{
+  "suite": "loop_analysis_tests",
+  "total_tests": 5,
+  "passed_tests": 5,
+  "failed_tests": 0,
+  "pass_rate": 1.0,
+  "results": [
+    {
+      "test_id": "LAT_01",
+      "name": "For loop dictionary items query mutation",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "vulnerable_lines": [
+        {
+          "line": 5,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'query' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 6,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'cursor.execute'."
+        }
+      ]
+    },
+    {
+      "test_id": "LAT_02",
+      "name": "For loop list iteration with f-string mutation",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "vulnerable_lines": [
+        {
+          "line": 4,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'sql' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 5,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'db.execute'."
+        }
+      ]
+    },
+    {
+      "test_id": "LAT_03",
+      "name": "While loop condition-based query construction",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "vulnerable_lines": [
+        {
+          "line": 5,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'stmt' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 7,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'cursor.execute'."
+        }
+      ]
+    },
+    {
+      "test_id": "LAT_04",
+      "name": "Branch merging taint: conditional branch taints query at merge",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "vulnerable_lines": [
+        {
+          "line": 4,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'q' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 5,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'cursor.execute'."
+        }
+      ]
+    },
+    {
+      "test_id": "LAT_05",
+      "name": "Loop-carried safe parameterized batch execution",
+      "passed": true,
+      "errors": [],
+      "prediction": "SAFE",
+      "vulnerable_lines": []
+    }
+  ]
+}

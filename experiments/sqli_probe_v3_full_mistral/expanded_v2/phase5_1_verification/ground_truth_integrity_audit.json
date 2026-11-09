@@ -1,0 +1,21 @@
+{
+  "total_ground_truth_records": 100,
+  "vulnerable_records": 60,
+  "safe_records": 40,
+  "annotations_contain_analyzer_artifacts": false,
+  "safe_rationale_distribution": {
+    "Bound database parameters with separate parameter tuple.": 15,
+    "High-level ORM API without raw SQL execution.": 10,
+    "Identifier strictly mapped from static dictionary or validated as integer.": 10,
+    "No database sinks or SQL statements present in snippet.": 5
+  },
+  "vulnerability_types": {
+    "F_STRING_INTERPOLATION": 5,
+    "DIRECT_STRING_CONCATENATION": 5,
+    "PERCENT_FORMATTING": 5,
+    "FORMAT_METHOD": 5,
+    "INTERPROCEDURAL_TAINT": 15,
+    "CROSS_FILE_TAINT": 15,
+    "COMPLEX_LOOP_CONCATENATION": 10
+  }
+}

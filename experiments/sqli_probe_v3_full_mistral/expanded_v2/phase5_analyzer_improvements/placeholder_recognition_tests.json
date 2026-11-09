@@ -1,0 +1,226 @@
+{
+  "suite": "placeholder_recognition_tests",
+  "total_tests": 5,
+  "passed_tests": 5,
+  "failed_tests": 0,
+  "pass_rate": 1.0,
+  "results": [
+    {
+      "test_id": "PRT_01",
+      "name": "Generator expression dynamic placeholders with parameter bindings",
+      "passed": true,
+      "errors": [],
+      "prediction": "SAFE",
+      "vulnerability_type": [],
+      "evidence": [
+        {
+          "line": 2,
+          "category": "DYNAMIC_PLACEHOLDERS",
+          "description": "Parameter placeholders dynamically generated in query string (safe pattern).",
+          "support": "AST"
+        },
+        {
+          "line": 2,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "SQL string assigned/mutated into 'placeholders' constructed using dynamic formatting or concatenation.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 3,
+          "category": "DYNAMIC_PLACEHOLDERS",
+          "description": "Parameter placeholders dynamically generated in query string (safe pattern).",
+          "support": "AST"
+        },
+        {
+          "line": 3,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "SQL string assigned/mutated into 'query' constructed using dynamic formatting or concatenation.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 4,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cursor.execute' invoked with parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 4,
+          "category": "SAFE_PARAMETERIZATION",
+          "description": "SQL statement passes parameters as a separate argument to execution sink.",
+          "support": "AST"
+        }
+      ]
+    },
+    {
+      "test_id": "PRT_02",
+      "name": "List multiplication %s placeholders with modulo format and binding",
+      "passed": true,
+      "errors": [],
+      "prediction": "SAFE",
+      "vulnerability_type": [],
+      "evidence": [
+        {
+          "line": 2,
+          "category": "DYNAMIC_PLACEHOLDERS",
+          "description": "Parameter placeholders dynamically generated in query string (safe pattern).",
+          "support": "AST"
+        },
+        {
+          "line": 2,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "SQL string assigned/mutated into 'marks' constructed using dynamic formatting or concatenation.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 3,
+          "category": "DYNAMIC_PLACEHOLDERS",
+          "description": "Parameter placeholders dynamically generated in query string (safe pattern).",
+          "support": "AST"
+        },
+        {
+          "line": 3,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "SQL string assigned/mutated into 'query' constructed using dynamic formatting or concatenation.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 4,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cursor.execute' invoked with parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 4,
+          "category": "SAFE_PARAMETERIZATION",
+          "description": "SQL statement passes parameters as a separate argument to execution sink.",
+          "support": "AST"
+        }
+      ]
+    },
+    {
+      "test_id": "PRT_03",
+      "name": "Dynamic placeholders without parameter bindings flags unbound parameter risk",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "vulnerability_type": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "evidence": [
+        {
+          "line": 2,
+          "category": "DYNAMIC_PLACEHOLDERS",
+          "description": "Parameter placeholders dynamically generated in query string (safe pattern).",
+          "support": "AST"
+        },
+        {
+          "line": 2,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "SQL string assigned/mutated into 'placeholders' constructed using dynamic formatting or concatenation.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 3,
+          "category": "DYNAMIC_PLACEHOLDERS",
+          "description": "Parameter placeholders dynamically generated in query string (safe pattern).",
+          "support": "AST"
+        },
+        {
+          "line": 3,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "SQL string assigned/mutated into 'query' constructed using dynamic formatting or concatenation.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 4,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cursor.execute' invoked without parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 3,
+          "category": "F_STRING_INTERPOLATION",
+          "description": "F-string incorporates unescaped variable into SQL query string.",
+          "support": "AST"
+        }
+      ]
+    },
+    {
+      "test_id": "PRT_04",
+      "name": "Dynamic placeholders mixed with untrusted variable interpolation",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "vulnerability_type": [
+        "F_STRING_INTERPOLATION",
+        "HYBRID_QUERY_CONSTRUCTION"
+      ],
+      "evidence": [
+        {
+          "line": 2,
+          "category": "DYNAMIC_PLACEHOLDERS",
+          "description": "Parameter placeholders dynamically generated in query string (safe pattern).",
+          "support": "AST"
+        },
+        {
+          "line": 2,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "SQL string assigned/mutated into 'placeholders' constructed using dynamic formatting or concatenation.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 3,
+          "category": "F_STRING_INTERPOLATION",
+          "description": "Query string constructed via f-string expression with interpolated variables.",
+          "support": "AST"
+        },
+        {
+          "line": 3,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "SQL string assigned/mutated into 'query' constructed using dynamic formatting or concatenation.",
+          "support": "DATAFLOW"
+        },
+        {
+          "line": 4,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cursor.execute' invoked with parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 4,
+          "category": "SAFE_PARAMETERIZATION",
+          "description": "SQL statement passes parameters as a separate argument to execution sink.",
+          "support": "AST"
+        }
+      ]
+    },
+    {
+      "test_id": "PRT_05",
+      "name": "Allowlisted dynamic column identifier with dictionary mapping",
+      "passed": true,
+      "errors": [],
+      "prediction": "SAFE",
+      "vulnerability_type": [],
+      "evidence": [
+        {
+          "line": 4,
+          "category": "SQL_EXECUTION",
+          "description": "SQL execution sink 'cursor.execute' invoked without parameter bindings.",
+          "support": "AST"
+        },
+        {
+          "line": 4,
+          "category": "F_STRING_INTERPOLATION",
+          "description": "Query string constructed via f-string expression with interpolated variables.",
+          "support": "AST"
+        },
+        {
+          "line": 4,
+          "category": "INTERMEDIATE_DATAFLOW",
+          "description": "Inline SQL statement constructed dynamically with variables or formatting.",
+          "support": "DATAFLOW"
+        }
+      ]
+    }
+  ]
+}

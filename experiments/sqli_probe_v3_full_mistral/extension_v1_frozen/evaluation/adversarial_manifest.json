@@ -1,0 +1,1339 @@
+[
+  {
+    "id": "ADV_001_NESTED_FSTRING",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c01_nested_fstring.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Unsafe f-string directly inside execute call parameter",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_002_BINOP_CONCAT_MULTILINE",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c02_binop_concat_multiline.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Multi-line parenthesized string concatenation with intermediate variable",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [
+      3
+    ],
+    "expected_subtype": "DIRECT_STRING_CONCATENATION"
+  },
+  {
+    "id": "ADV_003_PERCENT_TUPLE",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c03_percent_tuple.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Percent formatting tuple with constant and untrusted operand",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "PERCENT_FORMATTING"
+  },
+  {
+    "id": "ADV_004_FORMAT_KWARGS",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c04_format_kwargs.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Str.format with keyword arguments",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "FORMAT_METHOD"
+  },
+  {
+    "id": "ADV_005_FORMAT_MAP",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c05_format_map.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Str.format_map with dict input",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [
+      3
+    ],
+    "expected_subtype": "FORMAT_METHOD"
+  },
+  {
+    "id": "ADV_006_FSTRING_METHOD_CALL",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c06_fstring_method_call.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "F-string calling .strip() on tainted input",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_007_INDIRECT_VAR_CHAIN",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c07_indirect_var_chain.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Taint passed through a chain of 4 local variables",
+    "expected_sink_line": 6,
+    "expected_vuln_lines": [
+      5
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_008_ALIASED_CURSOR_CALL",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c08_aliased_cursor_call.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Cursor execute method aliased to local variable",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [
+      3
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_009_STRING_JOIN_CONSTRUCT",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c09_string_join_construct.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Join used to assemble query fragments with untrusted string",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "DIRECT_STRING_CONCATENATION"
+  },
+  {
+    "id": "ADV_010_TERNARY_CONDITIONAL",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c10_ternary_conditional.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Ternary expression selecting tainted input",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [
+      3
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_011_LIST_ITEM_INDEXING",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c11_list_item_indexing.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Taint stored in list and retrieved via index",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [
+      3
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_012_DICT_LOOKUP",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c12_dict_lookup.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Taint stored in dict and looked up via key",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [
+      3
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_013_UNPACKING_ASSIGNMENT",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c13_unpacking_assignment.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Tuple unpacking assigning taint to variable",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [
+      3
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_014_LOOP_CONCAT_ACCUMULATOR",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c14_loop_concat_accumulator.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Untrusted input concatenated into SQL inside a loop",
+    "expected_sink_line": 6,
+    "expected_vuln_lines": [
+      5
+    ],
+    "expected_subtype": "DIRECT_STRING_CONCATENATION"
+  },
+  {
+    "id": "ADV_015_TRY_EXCEPT_TAINT",
+    "category": "direct_and_indirect_sql_injection",
+    "is_project": false,
+    "filename": "vulnerable/c15_try_except_taint.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Tainted input read in try block and executed in sink",
+    "expected_sink_line": 6,
+    "expected_vuln_lines": [
+      5
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_016_FIVE_FUNCTION_CHAIN",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c16_five_function_chain.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Taint passed through 5 sequential helper functions",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_017_HELPER_RETURNS_INPUT",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c17_helper_returns_input.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Helper returns raw HTTP request argument",
+    "expected_sink_line": 6,
+    "expected_vuln_lines": [
+      5
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_018_HELPER_BUILDS_QUERY",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c18_helper_builds_query.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Helper builds unescaped query string and caller executes",
+    "expected_sink_line": 6,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_019_EXECUTOR_HELPER",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c19_executor_helper.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Caller builds query and passes to execution helper",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      5
+    ],
+    "expected_subtype": "DIRECT_STRING_CONCATENATION"
+  },
+  {
+    "id": "ADV_020_TWO_HELPERS_BUILD_RUN",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c20_two_helpers_build_run.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "One helper builds query, second helper executes it",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_021_MULTI_ARGS_ONE_TAINTED",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c21_multi_args_one_tainted.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Function receives constant table and untrusted filter",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_022_KWARGS_PROPAGATION",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c22_kwargs_propagation.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Untrusted parameter passed as named keyword argument",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_023_CLASS_METHOD_CHAIN",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c23_class_method_chain.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Self.build() passed to self.execute()",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      5
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_024_SUBCLASS_INHERITANCE",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c24_subclass_inheritance.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Subclass calls inherited execution method",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      6
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_025_STATIC_METHOD_FLOW",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c25_static_method_flow.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Static method query builder executed in caller",
+    "expected_sink_line": 7,
+    "expected_vuln_lines": [
+      4
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_026_INIT_STORES_TAINT",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c26_init_stores_taint.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Object initializer accepts taint, method executes",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [
+      5
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_027_GENERATOR_YIELD_TAINT",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c27_generator_yield_taint.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Generator yields untrusted parameter",
+    "expected_sink_line": 6,
+    "expected_vuln_lines": [
+      5
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_028_CLOSURE_CAPTURES_TAINT",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c28_closure_captures_taint.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Nested function captures parameter from enclosing function",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [
+      3
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_029_CALLBACK_INVOCATION",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c29_callback_invocation.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Callback receives tainted input and executes query",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_030_VARARGS_WRAPPER",
+    "category": "cross_function_propagation",
+    "is_project": false,
+    "filename": "vulnerable/c30_varargs_wrapper.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Variable args *args passed to executor",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      5
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_031_CROSS_FILE_BUILDER",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c31_cross_file_builder",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Query builder defined in separate helper module",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_032_CROSS_FILE_EXECUTOR",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c32_cross_file_executor",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Execution helper defined in db_driver module",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      4
+    ],
+    "expected_subtype": "DIRECT_STRING_CONCATENATION"
+  },
+  {
+    "id": "ADV_033_CROSS_FILE_3_TIERS",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c33_cross_file_3_tiers",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Taint traverses web -> service -> repository modules",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_034_CROSS_FILE_RELATIVE_IMPORT",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c34_cross_file_relative_import",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Relative import in package directory",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_035_CROSS_FILE_PARENT_IMPORT",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c35_cross_file_parent_import",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Relative import from parent package",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      4
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_036_CROSS_FILE_ALIAS",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c36_cross_file_alias",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Imported helper used via alias name",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_037_CROSS_FILE_STAR_IMPORT",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c37_cross_file_star_import",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Import * pulls in query execution helper",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      4
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_038_CROSS_FILE_MOD_ATTR",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c38_cross_file_mod_attr",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Module imported and function invoked as module.func()",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      4
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_039_CROSS_FILE_CLASS_IMPORT",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c39_cross_file_class_import",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Repository class imported from data layer module",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      5
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_040_CROSS_FILE_SAFE_TABLE",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c40_cross_file_safe_table",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Constants file supplies table name, main supplies untrusted where",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [
+      4
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_041_CROSS_FILE_3_HOPS",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c41_cross_file_3_hops",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Taint traverses step1.py -> step2.py -> step3.py",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_042_CROSS_FILE_INIT_REEXPORT",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c42_cross_file_init_reexport",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Function re-exported through package __init__.py",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      4
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_043_CROSS_FILE_MULTI_CONSUMERS",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c43_cross_file_multi_consumers",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Multiple callers in consumer.py invoke common query function",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_044_CROSS_FILE_DATACLASS",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c44_cross_file_dataclass",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Parameter transferred inside dataclass attribute across files",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      3
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_045_CROSS_FILE_REEXPORT_CHAIN",
+    "category": "cross_file_propagation",
+    "is_project": true,
+    "filename": "vulnerable/c45_cross_file_reexport_chain",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Helper re-exported through middle module",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      4
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_046_SAFE_QMARK",
+    "category": "safe_parameterized_queries",
+    "is_project": false,
+    "filename": "safe/c46_safe_qmark.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "DB-API qmark placeholder binds parameter securely",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_047_SAFE_PYFORMAT_DICT",
+    "category": "safe_parameterized_queries",
+    "is_project": false,
+    "filename": "safe/c47_safe_pyformat_dict.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "PyFormat %(key)s placeholder with dict argument",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_048_SAFE_NUMERIC",
+    "category": "safe_parameterized_queries",
+    "is_project": false,
+    "filename": "safe/c48_safe_numeric.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Numeric placeholder :1 binds argument safely",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_049_SAFE_MULTI_PARAMS",
+    "category": "safe_parameterized_queries",
+    "is_project": false,
+    "filename": "safe/c49_safe_multi_params.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Multiple parameters securely passed via tuple",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_050_SAFE_EXECUTEMANY",
+    "category": "safe_parameterized_queries",
+    "is_project": false,
+    "filename": "safe/c50_safe_executemany.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Executemany securely binds batch of tuples",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_051_SAFE_PARAM_HELPER",
+    "category": "safe_parameterized_queries",
+    "is_project": false,
+    "filename": "safe/c51_safe_param_helper.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Helper function encapsulates parameterized execution",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_052_SAFE_DYNAMIC_IN_CLAUSE",
+    "category": "safe_parameterized_queries",
+    "is_project": false,
+    "filename": "safe/c52_safe_dynamic_in_clause.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Placeholders string generated safely, parameters passed separately",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_053_SAFE_CLASS_REPO",
+    "category": "safe_parameterized_queries",
+    "is_project": false,
+    "filename": "safe/c53_safe_class_repo.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Repository class encapsulates parameterized queries",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_054_SAFE_KWARGS_DICT",
+    "category": "safe_parameterized_queries",
+    "is_project": false,
+    "filename": "safe/c54_safe_kwargs_dict.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Dictionary parameters passed directly to cursor.execute",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_055_SAFE_ACROSS_FILES",
+    "category": "safe_parameterized_queries",
+    "is_project": true,
+    "filename": "safe/c55_safe_across_files",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Cross-file helper safely executes parameterized query",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_056_SANITIZED_INT_CAST",
+    "category": "sanitization_and_validation",
+    "is_project": false,
+    "filename": "safe/c56_sanitized_int_cast.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Builtin int() cast guarantees value cannot inject SQL syntax",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_057_SANITIZED_FLOAT_CAST",
+    "category": "sanitization_and_validation",
+    "is_project": false,
+    "filename": "safe/c57_sanitized_float_cast.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Builtin float() cast ensures numerical value only",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_058_SANITIZED_BOOL_CAST",
+    "category": "sanitization_and_validation",
+    "is_project": false,
+    "filename": "safe/c58_sanitized_bool_cast.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Builtin bool() cast produces True or False literal",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_059_SANITIZED_UUID_CAST",
+    "category": "sanitization_and_validation",
+    "is_project": false,
+    "filename": "safe/c59_sanitized_uuid_cast.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "UUID cast validates strict 36-char hexadecimal format",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_060_CUSTOM_INT_HELPER",
+    "category": "sanitization_and_validation",
+    "is_project": false,
+    "filename": "safe/c60_custom_int_helper.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Helper parse_id validates and converts input to integer",
+    "expected_sink_line": 6,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_061_WHITELIST_IN_LIST",
+    "category": "sanitization_and_validation",
+    "is_project": false,
+    "filename": "safe/c61_whitelist_in_list.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Input must be member of static ALLOWED list before execution",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_062_WHITELIST_EQUALITY",
+    "category": "sanitization_and_validation",
+    "is_project": false,
+    "filename": "safe/c62_whitelist_equality.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Direction must equal 'asc' or 'desc' literal",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_063_WHITELIST_DICT_MAP",
+    "category": "sanitization_and_validation",
+    "is_project": false,
+    "filename": "safe/c63_whitelist_dict_map.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Dictionary mapping translates user input to hardcoded column",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_064_REGEX_DIGITS_CHECK",
+    "category": "sanitization_and_validation",
+    "is_project": false,
+    "filename": "safe/c64_regex_digits_check.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Regex guard ensures parameter contains strictly digits",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_065_EARLY_RETURN_GUARD",
+    "category": "sanitization_and_validation",
+    "is_project": false,
+    "filename": "safe/c65_early_return_guard.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Early return when input is not in whitelist",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_066_DYNAMIC_TABLE_FSTRING",
+    "category": "dynamic_sql_identifiers",
+    "is_project": false,
+    "filename": "vulnerable/c66_dynamic_table_fstring.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Unescaped table name in FROM clause",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "DYNAMIC_TABLE_NAME"
+  },
+  {
+    "id": "ADV_067_DYNAMIC_TABLE_CONCAT",
+    "category": "dynamic_sql_identifiers",
+    "is_project": false,
+    "filename": "vulnerable/c67_dynamic_table_concat.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Direct concatenation after FROM clause",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "DYNAMIC_TABLE_NAME"
+  },
+  {
+    "id": "ADV_068_DYNAMIC_COLUMN_SELECT",
+    "category": "dynamic_sql_identifiers",
+    "is_project": false,
+    "filename": "vulnerable/c68_dynamic_column_select.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Unescaped column identifier in SELECT clause",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_069_DYNAMIC_ORDER_BY",
+    "category": "dynamic_sql_identifiers",
+    "is_project": false,
+    "filename": "vulnerable/c69_dynamic_order_by.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Untrusted column in ORDER BY clause",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "DYNAMIC_ORDER_BY"
+  },
+  {
+    "id": "ADV_070_DYNAMIC_ORDER_DIR",
+    "category": "dynamic_sql_identifiers",
+    "is_project": false,
+    "filename": "vulnerable/c70_dynamic_order_dir.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Untrusted ordering direction (ASC/DESC/injection)",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "DYNAMIC_ORDER_BY"
+  },
+  {
+    "id": "ADV_071_DYNAMIC_LIMIT_CLAUSE",
+    "category": "dynamic_sql_identifiers",
+    "is_project": false,
+    "filename": "vulnerable/c71_dynamic_limit_clause.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Untrusted limit parameter interpolated without cast",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_072_DYNAMIC_JOIN_TABLE",
+    "category": "dynamic_sql_identifiers",
+    "is_project": false,
+    "filename": "vulnerable/c72_dynamic_join_table.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Untrusted joined table name in JOIN clause",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "DYNAMIC_TABLE_NAME"
+  },
+  {
+    "id": "ADV_073_SAFE_TABLE_WHITELISTED",
+    "category": "dynamic_sql_identifiers",
+    "is_project": false,
+    "filename": "safe/c73_safe_table_whitelisted.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Table name verified against ALLOWED_TABLES before FROM clause",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_074_SAFE_ORDER_WHITELISTED",
+    "category": "dynamic_sql_identifiers",
+    "is_project": false,
+    "filename": "safe/c74_safe_order_whitelisted.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Sort column verified against ALLOWED_COLUMNS before ORDER BY",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_075_DYNAMIC_TABLE_HELPER_UNSAFE",
+    "category": "dynamic_sql_identifiers",
+    "is_project": false,
+    "filename": "vulnerable/c75_dynamic_table_helper_unsafe.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Helper accepts table name argument without validation",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "DYNAMIC_TABLE_NAME"
+  },
+  {
+    "id": "ADV_076_OVERWRITE_WITH_CONSTANT",
+    "category": "control_flow_and_reassignment",
+    "is_project": false,
+    "filename": "safe/c76_overwrite_with_constant.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Tainted variable is completely reassigned to safe constant literal",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_077_OVERWRITE_SAFE_WITH_TAINT",
+    "category": "control_flow_and_reassignment",
+    "is_project": false,
+    "filename": "vulnerable/c77_overwrite_safe_with_taint.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Initial constant query overwritten with tainted f-string",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [
+      4
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_078_BOTH_BRANCHES_TAINTED",
+    "category": "control_flow_and_reassignment",
+    "is_project": false,
+    "filename": "vulnerable/c78_both_branches_tainted.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Both conditional branches construct unsafe queries",
+    "expected_sink_line": 6,
+    "expected_vuln_lines": [
+      3,
+      5
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_079_ONE_BRANCH_TAINTED",
+    "category": "control_flow_and_reassignment",
+    "is_project": false,
+    "filename": "vulnerable/c79_one_branch_tainted.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "One execution branch executes tainted query string",
+    "expected_sink_line": 6,
+    "expected_vuln_lines": [
+      3
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_080_LOOP_REASSIGNMENT",
+    "category": "control_flow_and_reassignment",
+    "is_project": false,
+    "filename": "vulnerable/c80_loop_reassignment.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Loop iteration variable holds tainted input for query construction",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [
+      3
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_081_TRY_BLOCK_REASSIGN",
+    "category": "control_flow_and_reassignment",
+    "is_project": false,
+    "filename": "vulnerable/c81_try_block_reassign.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Query string constructed inside try block and executed in main block",
+    "expected_sink_line": 6,
+    "expected_vuln_lines": [
+      3
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_082_SANITIZATION_BYPASSED",
+    "category": "control_flow_and_reassignment",
+    "is_project": false,
+    "filename": "vulnerable/c82_sanitization_bypassed.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Sanitizing int() branch is bypassed when condition is false",
+    "expected_sink_line": 6,
+    "expected_vuln_lines": [
+      5
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_083_BOOLEAN_CONSTANT_SAFE",
+    "category": "control_flow_and_reassignment",
+    "is_project": false,
+    "filename": "safe/c83_boolean_constant_safe.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Variable is assigned boolean True constant",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_084_REASSIGNED_TO_INT_SAFE",
+    "category": "control_flow_and_reassignment",
+    "is_project": false,
+    "filename": "safe/c84_reassigned_to_int_safe.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Tainted variable overwritten with constant int 42",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_085_FALLBACK_EXPRESSION",
+    "category": "control_flow_and_reassignment",
+    "is_project": false,
+    "filename": "vulnerable/c85_fallback_expression.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Logical OR fallback retains taint when request param is provided",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [
+      3
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_086_DIRECT_RECURSION",
+    "category": "recursion_and_unresolved",
+    "is_project": false,
+    "filename": "vulnerable/c86_direct_recursion.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Recursive function terminates traversal and reaches unsafe sink",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [
+      4
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_087_MUTUAL_RECURSION",
+    "category": "recursion_and_unresolved",
+    "is_project": false,
+    "filename": "vulnerable/c87_mutual_recursion.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Ping-pong mutual recursion cycle detected without crash",
+    "expected_sink_line": 5,
+    "expected_vuln_lines": [
+      5
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_088_DEPTH_EXCEEDS_MAX",
+    "category": "recursion_and_unresolved",
+    "is_project": false,
+    "filename": "partial/c88_depth_exceeds_max.py",
+    "expected_label": "UNCERTAIN",
+    "expected_status": "PARTIAL",
+    "security_mechanism": "Call chain 12 functions deep triggers depth cutoff",
+    "expected_sink_line": 13,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_089_UNRESOLVED_EXTERNAL_IMPORT",
+    "category": "recursion_and_unresolved",
+    "is_project": false,
+    "filename": "partial/c89_unresolved_external_import.py",
+    "expected_label": "UNCERTAIN",
+    "expected_status": "PARTIAL",
+    "security_mechanism": "External library helper cannot be inspected via local AST",
+    "expected_sink_line": 4,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_090_MISSING_IMPORTED_FILE",
+    "category": "recursion_and_unresolved",
+    "is_project": true,
+    "filename": "partial/c90_missing_imported_file",
+    "expected_label": "SAFE",
+    "expected_status": "PARTIAL",
+    "security_mechanism": "Missing file recorded as unresolved import in partial report",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_091_SQLALCHEMY_TEXT_UNSAFE",
+    "category": "orm_variations",
+    "is_project": false,
+    "filename": "vulnerable/c91_sqlalchemy_text_unsafe.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "SQLAlchemy session.execute with unescaped text f-string",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_092_DJANGO_RAW_UNSAFE",
+    "category": "orm_variations",
+    "is_project": false,
+    "filename": "vulnerable/c92_django_raw_unsafe.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Django Model.objects.raw with interpolated f-string",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_093_DJANGO_EXTRA_UNSAFE",
+    "category": "orm_variations",
+    "is_project": false,
+    "filename": "vulnerable/c93_django_extra_unsafe.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Django QuerySet.extra where clause concatenation",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "DIRECT_STRING_CONCATENATION"
+  },
+  {
+    "id": "ADV_094_PEEWEE_RAW_UNSAFE",
+    "category": "orm_variations",
+    "is_project": false,
+    "filename": "vulnerable/c94_peewee_raw_unsafe.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Peewee database.execute_sql with f-string interpolation",
+    "expected_sink_line": 2,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_095_SAFE_SQLALCHEMY_PARAMS",
+    "category": "orm_variations",
+    "is_project": false,
+    "filename": "safe/c95_safe_sqlalchemy_params.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "SQLAlchemy text binds :id parameter securely via dict",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_096_SYNTAX_ERROR_IN_PROJECT",
+    "category": "syntax_and_unsupported",
+    "is_project": true,
+    "filename": "edge_cases/c96_syntax_error_in_project",
+    "expected_label": "VULNERABLE",
+    "expected_status": "PARTIAL",
+    "security_mechanism": "Broken file gracefully skipped while valid file is analyzed",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  },
+  {
+    "id": "ADV_097_EMPTY_FILE",
+    "category": "syntax_and_unsupported",
+    "is_project": false,
+    "filename": "edge_cases/c97_empty_file.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Empty file contains zero database sinks",
+    "expected_sink_line": null,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_098_COMMENTS_ONLY",
+    "category": "syntax_and_unsupported",
+    "is_project": false,
+    "filename": "edge_cases/c98_comments_only.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Docstring-only file contains no executable statements",
+    "expected_sink_line": null,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_099_EXEC_META_CALL",
+    "category": "syntax_and_unsupported",
+    "is_project": false,
+    "filename": "edge_cases/c99_exec_meta_call.py",
+    "expected_label": "SAFE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Dynamic exec() call without direct recognized database sink",
+    "expected_sink_line": null,
+    "expected_vuln_lines": [],
+    "expected_subtype": null
+  },
+  {
+    "id": "ADV_100_ASYNC_AWAIT_CALL",
+    "category": "syntax_and_unsupported",
+    "is_project": false,
+    "filename": "edge_cases/c100_async_await_call.py",
+    "expected_label": "VULNERABLE",
+    "expected_status": "COMPLETE",
+    "security_mechanism": "Asynchronous await db.execute sink with f-string interpolation",
+    "expected_sink_line": 3,
+    "expected_vuln_lines": [
+      2
+    ],
+    "expected_subtype": "F_STRING_INTERPOLATION"
+  }
+]

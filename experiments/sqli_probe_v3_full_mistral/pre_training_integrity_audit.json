@@ -1,0 +1,89 @@
+{
+  "layer_indexing_audit": {
+    "layer_4": {
+      "candidate_layer": 4,
+      "hf_hidden_states_index": 4,
+      "origin_block": "model.layers[3] (Transformer Decoder Block 4)",
+      "norm_status": "Pre-final RMSNorm residual stream"
+    },
+    "layer_8": {
+      "candidate_layer": 8,
+      "hf_hidden_states_index": 8,
+      "origin_block": "model.layers[7] (Transformer Decoder Block 8)",
+      "norm_status": "Pre-final RMSNorm residual stream"
+    },
+    "layer_12": {
+      "candidate_layer": 12,
+      "hf_hidden_states_index": 12,
+      "origin_block": "model.layers[11] (Transformer Decoder Block 12)",
+      "norm_status": "Pre-final RMSNorm residual stream"
+    },
+    "layer_16": {
+      "candidate_layer": 16,
+      "hf_hidden_states_index": 16,
+      "origin_block": "model.layers[15] (Transformer Decoder Block 16)",
+      "norm_status": "Pre-final RMSNorm residual stream"
+    },
+    "layer_20": {
+      "candidate_layer": 20,
+      "hf_hidden_states_index": 20,
+      "origin_block": "model.layers[19] (Transformer Decoder Block 20)",
+      "norm_status": "Pre-final RMSNorm residual stream"
+    },
+    "layer_24": {
+      "candidate_layer": 24,
+      "hf_hidden_states_index": 24,
+      "origin_block": "model.layers[23] (Transformer Decoder Block 24)",
+      "norm_status": "Pre-final RMSNorm residual stream"
+    },
+    "layer_28": {
+      "candidate_layer": 28,
+      "hf_hidden_states_index": 28,
+      "origin_block": "model.layers[27] (Transformer Decoder Block 28)",
+      "norm_status": "Pre-final RMSNorm residual stream"
+    },
+    "layer_32": {
+      "candidate_layer": 32,
+      "hf_hidden_states_index": 32,
+      "origin_block": "model.layers[31] (Transformer Decoder Block 32)",
+      "norm_status": "Pre-final RMSNorm residual stream"
+    }
+  },
+  "layer_32_norm_investigation": {
+    "observed_train_mean_l2_norm": 165.84,
+    "observed_train_sink_l2_norm": 181.93,
+    "root_cause": "In Mistral and Llama pre-LN architectures, residual additions accumulate across all 32 transformer blocks without intermediate normalization on the trunk. HuggingFace outputs.hidden_states[32] stores the final layer output BEFORE the final model.norm (RMSNorm). This causes the vector magnitude to naturally scale to ~160-180. Embeddings are kept unnormalized in cache to preserve fidelity."
+  },
+  "array_element_reconciliation": {
+    "train_elements": 45875200,
+    "val_elements": 9764864,
+    "test_elements": 9895936,
+    "total_floating_point_elements_checked": 65536000,
+    "reconciliation_explanation": "The previous 4,096,000 count represented 1,000 samples * 4,096 dimensions for a single array slice. Across all 48 embedding arrays (16 per split * 3 splits), there are exactly 65,536,000 individual float32 values (16 * 1,000 * 4,096 = 65,536,000). Every single value has been checked.",
+    "total_nans": 0,
+    "total_infs": 0
+  },
+  "sample_id_label_alignment": {
+    "train": {
+      "sample_count": 700,
+      "vuln_count": 385,
+      "safe_count": 315,
+      "ids_match_original": true,
+      "labels_match_original": true
+    },
+    "val": {
+      "sample_count": 149,
+      "vuln_count": 82,
+      "safe_count": 67,
+      "ids_match_original": true,
+      "labels_match_original": true
+    },
+    "test": {
+      "sample_count": 151,
+      "vuln_count": 83,
+      "safe_count": 68,
+      "ids_match_original": true,
+      "labels_match_original": true
+    }
+  }
+}

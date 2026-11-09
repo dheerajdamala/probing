@@ -1,0 +1,275 @@
+{
+  "evaluation_name": "Probe V3 Interprocedural Dataflow Analysis Evaluation",
+  "benchmark_sample_count": 12,
+  "total_elapsed_ms": 14.76,
+  "mean_latency_per_sample_ms": 1.23,
+  "classification_metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "confusion_matrix": {
+      "tp": 8,
+      "fp": 0,
+      "tn": 4,
+      "fn": 0
+    }
+  },
+  "localization_metrics": {
+    "sink_localization_precision": 1.0,
+    "vulnerable_line_precision": 0.6154,
+    "vulnerable_line_recall": 1.0,
+    "vulnerable_line_f1": 0.7619
+  },
+  "dataflow_metrics": {
+    "path_completeness_rate": 0.75,
+    "cross_file_resolution_rate": 1.0
+  },
+  "results": [
+    {
+      "case_id": "CASE_01_DIRECT_PARAM_PROPAGATION",
+      "description": "Caller reads input and passes directly to helper SQL sink",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "confidence": 0.9,
+      "vulnerability_type": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "sinks_found": [
+        2
+      ],
+      "vulnerable_lines_found": [
+        2
+      ],
+      "expected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 1.22,
+      "status": "PARTIAL"
+    },
+    {
+      "case_id": "CASE_02_HELPER_RETURN_QUERY",
+      "description": "Helper constructs query string, caller executes it",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "confidence": 0.9,
+      "vulnerability_type": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "sinks_found": [
+        6
+      ],
+      "vulnerable_lines_found": [
+        2,
+        4,
+        6
+      ],
+      "expected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 1.02,
+      "status": "PARTIAL"
+    },
+    {
+      "case_id": "CASE_03_HELPER_RETURN_INPUT",
+      "description": "Helper retrieves input source, caller constructs and executes query",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "confidence": 0.9,
+      "vulnerability_type": [
+        "DIRECT_STRING_CONCATENATION"
+      ],
+      "sinks_found": [
+        6
+      ],
+      "vulnerable_lines_found": [
+        5,
+        6
+      ],
+      "expected_vuln_lines": [
+        5
+      ],
+      "latency_ms": 1.0,
+      "status": "PARTIAL"
+    },
+    {
+      "case_id": "CASE_04_THREE_FUNCTION_CHAIN",
+      "description": "3-stage dataflow chain from input to execution",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "confidence": 0.9,
+      "vulnerability_type": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "sinks_found": [
+        2
+      ],
+      "vulnerable_lines_found": [
+        2,
+        4
+      ],
+      "expected_vuln_lines": [
+        4
+      ],
+      "latency_ms": 0.0,
+      "status": "PARTIAL"
+    },
+    {
+      "case_id": "CASE_05_SAFE_PARAM_HELPER",
+      "description": "Helper safely binds parameter in execute sink",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "confidence": 0.9,
+      "vulnerability_type": [],
+      "sinks_found": [
+        2
+      ],
+      "vulnerable_lines_found": [],
+      "expected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "status": "PARTIAL"
+    },
+    {
+      "case_id": "CASE_06_SANITIZED_INT_HELPER",
+      "description": "Helper casts untrusted input to int before query construction",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "confidence": 0.9,
+      "vulnerability_type": [],
+      "sinks_found": [
+        6
+      ],
+      "vulnerable_lines_found": [],
+      "expected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "status": "PARTIAL"
+    },
+    {
+      "case_id": "CASE_07_WHITELIST_VALIDATION",
+      "description": "Variable validated against an allowed whitelist in caller",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "confidence": 0.9,
+      "vulnerability_type": [],
+      "sinks_found": [
+        4
+      ],
+      "vulnerable_lines_found": [],
+      "expected_vuln_lines": [],
+      "latency_ms": 0.98,
+      "status": "PARTIAL"
+    },
+    {
+      "case_id": "CASE_08_BOOLEAN_CONSTANT",
+      "description": "Interpolated variable is a boolean constant",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "confidence": 0.9,
+      "vulnerability_type": [],
+      "sinks_found": [
+        3
+      ],
+      "vulnerable_lines_found": [],
+      "expected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "status": "PARTIAL"
+    },
+    {
+      "case_id": "CASE_09_CLASS_METHOD_FLOW",
+      "description": "Object-oriented service method query execution",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "confidence": 0.9,
+      "vulnerability_type": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "sinks_found": [
+        3
+      ],
+      "vulnerable_lines_found": [
+        3,
+        5
+      ],
+      "expected_vuln_lines": [
+        5
+      ],
+      "latency_ms": 1.0,
+      "status": "PARTIAL"
+    },
+    {
+      "case_id": "CASE_10_DICT_PROPAGATION",
+      "description": "Untrusted parameter passed inside dictionary payload",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "confidence": 0.9,
+      "vulnerability_type": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "sinks_found": [
+        2
+      ],
+      "vulnerable_lines_found": [
+        2
+      ],
+      "expected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 0.0,
+      "status": "PARTIAL"
+    },
+    {
+      "case_id": "CASE_11_CROSS_FILE_BUILDER",
+      "description": "Query built in external helper file and executed in main",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "confidence": 0.9,
+      "vulnerability_type": [
+        "DYNAMIC_TABLE_NAME"
+      ],
+      "sinks_found": [
+        5
+      ],
+      "vulnerable_lines_found": [
+        2
+      ],
+      "expected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 5.53,
+      "status": "COMPLETE"
+    },
+    {
+      "case_id": "CASE_12_CROSS_FILE_EXECUTOR",
+      "description": "Query constructed in main and passed to external db executor",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "confidence": 0.9,
+      "vulnerability_type": [
+        "DIRECT_STRING_CONCATENATION"
+      ],
+      "sinks_found": [
+        2
+      ],
+      "vulnerable_lines_found": [
+        4
+      ],
+      "expected_vuln_lines": [
+        4
+      ],
+      "latency_ms": 3.0,
+      "status": "COMPLETE"
+    }
+  ]
+}

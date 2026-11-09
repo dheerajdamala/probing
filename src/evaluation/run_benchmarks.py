@@ -21,28 +21,151 @@ logger = logging.getLogger(__name__)
 
 
 def extract_clean_code_completion(prompt: str, raw_completion: str) -> str:
-    """Extract and sanitize code completion from model generation."""
+    """Robustly extract and clean code completion from model generation.
+    
+    Preserves relative indentation, strips markdown fences, conversational text,
+    and handles both full function re-declarations and indented body completions.
+    """
     code = raw_completion
-
-    # 1. Strip markdown fences if generated
+    
+    # 1. Extract from markdown fences if present
     if "```python" in code:
         code = code.split("```python", 1)[1].split("```", 1)[0]
     elif "```" in code:
         code = code.split("```", 1)[1].split("```", 1)[0]
-
-    # 2. Truncate at subsequent top-level function or class declarations
+        
+    # Strip only leading/trailing blank lines, preserving column 0 indentation of lines
+    code = code.strip("\r\n")
+    if not code.strip():
+        return ""
+        
     lines = code.splitlines()
     cleaned_lines = []
+    seen_first_def = False
+    
     for line in lines:
-        if cleaned_lines and line and not line.startswith(" ") and not line.startswith("\t"):
-            if line.startswith("def ") or line.startswith("class ") or line.startswith("if __name__"):
+        stripped = line.strip()
+        # Truncate at subsequent functions, classes, or main blocks
+        if line and not line.startswith(" ") and not line.startswith("\t"):
+            if stripped.startswith("if __name__"):
                 break
+            if stripped.startswith("def "):
+                if seen_first_def:
+                    break
+                seen_first_def = True
+            elif stripped.startswith("class "):
+                if seen_first_def or cleaned_lines:
+                    break
+        elif stripped.startswith("def ") and not seen_first_def:
+            seen_first_def = True
+            
         cleaned_lines.append(line)
-
-    cleaned = "\n".join(cleaned_lines)
-    if cleaned and not cleaned.endswith("\n"):
-        cleaned += "\n"
+        
+    cleaned = "\n".join(cleaned_lines).rstrip() + "\n"
     return cleaned
+
+
+def assemble_full_code(prompt: str, completion: str) -> str:
+    """Assemble executable full code from prompt and extracted completion."""
+    comp = completion.strip()
+    if not comp:
+        return prompt.strip() + "\n"
+        
+    # If the completion already defines the function (starts with def or imports then def),
+    # use the completion directly so we don't duplicate function headers
+    if comp.startswith("def ") or ("\ndef " in comp and not comp.startswith("    ")):
+        return comp + "\n"
+        
+    # If completion does not start with indentation, indent each non-empty line by 4 spaces
+    lines = completion.splitlines()
+    first_non_empty = next((l for l in lines if l.strip()), "")
+    if first_non_empty and not first_non_empty.startswith(" ") and not first_non_empty.startswith("\t"):
+        indented_lines = ["    " + l if l.strip() else l for l in lines]
+        return prompt.rstrip() + "\n" + "\n".join(indented_lines) + "\n"
+        
+    # If completion already starts with indentation, append directly to prompt
+    return prompt.rstrip() + "\n" + completion.lstrip("\r\n")
+
+
+def resolve_evaluation_status(
+    prompt: str,
+    raw_comp: str,
+    clean_comp: str,
+    syn_valid: bool,
+    syn_err: Optional[str],
+    fn_eval: Dict[str, Any],
+    sec_eval: Dict[str, Any],
+    skipped: bool = False,
+) -> Dict[str, Any]:
+    """Resolve explicit evaluation status: PASS, FAIL, NOT_EVALUATED, EXECUTION_ERROR, MISSING_COMPLETION."""
+    if skipped:
+        return {
+            "evaluation_status": "NOT_EVALUATED",
+            "functional_passed": False,
+            "is_secure": None,
+            "is_vulnerable": None,
+            "joint_passed": False,
+            "error_reason": "Skipped or pending evaluation",
+        }
+
+    if not raw_comp or not raw_comp.strip() or not clean_comp or not clean_comp.strip():
+        return {
+            "evaluation_status": "MISSING_COMPLETION",
+            "functional_passed": False,
+            "is_secure": None,
+            "is_vulnerable": None,
+            "joint_passed": False,
+            "error_reason": "Model produced empty or whitespace-only completion",
+        }
+
+    if not syn_valid:
+        return {
+            "evaluation_status": "EXECUTION_ERROR",
+            "functional_passed": False,
+            "is_secure": None,
+            "is_vulnerable": None,
+            "joint_passed": False,
+            "error_reason": f"SyntaxError: {syn_err}",
+        }
+
+    fn_err = fn_eval.get("error")
+    if fn_err and ("Exec error" in str(fn_err) or "ImportError" in str(fn_err)):
+        return {
+            "evaluation_status": "EXECUTION_ERROR",
+            "functional_passed": False,
+            "is_secure": None,
+            "is_vulnerable": None,
+            "joint_passed": False,
+            "error_reason": fn_err,
+        }
+
+    fn_pass = fn_eval.get("functional_passed", False)
+    is_sec = sec_eval.get("is_secure", False)
+    is_vuln = sec_eval.get("is_vulnerable", False)
+
+    if fn_pass and is_sec:
+        return {
+            "evaluation_status": "PASS",
+            "functional_passed": True,
+            "is_secure": True,
+            "is_vulnerable": False,
+            "joint_passed": True,
+            "error_reason": None,
+        }
+    else:
+        reasons = []
+        if not fn_pass:
+            reasons.append(fn_err or "Functional tests failed")
+        if not is_sec:
+            reasons.append("Vulnerable code pattern matched" if is_vuln else "Missing security guard")
+        return {
+            "evaluation_status": "FAIL",
+            "functional_passed": fn_pass,
+            "is_secure": is_sec,
+            "is_vulnerable": is_vuln,
+            "joint_passed": False,
+            "error_reason": "; ".join(reasons),
+        }
 
 
 def run_condition_benchmark(

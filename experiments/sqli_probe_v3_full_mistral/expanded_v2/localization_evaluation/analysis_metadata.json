@@ -1,0 +1,9 @@
+{
+  "workstream": "Workstream B: Phase 4B Vulnerability Localization & Evidence Validation",
+  "timestamp_utc": "2026-11-09T14:52:41Z",
+  "git_commit": "24b7d6eecaac8daa0759309c4caeec3602811da3",
+  "sample_count": 100,
+  "vulnerable_count": 60,
+  "safe_count": 40,
+  "output_directory": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation"
+}

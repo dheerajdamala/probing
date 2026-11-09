@@ -1,0 +1,410 @@
+{
+  "sample_id": "t_0543",
+  "ground_truth": "SAFE",
+  "neural_probe": {
+    "prediction": "VULNERABLE",
+    "vulnerable_prob": 0.5406437516212463,
+    "safe_prob": 0.45935624837875366,
+    "confidence": 0.5406437516212463,
+    "threshold": 0.36,
+    "correct": false,
+    "error_type": "FALSE_POSITIVE"
+  },
+  "static_dataflow_analysis": {
+    "prediction": "VULNERABLE",
+    "confidence": 0.9,
+    "vulnerability_type": [
+      "DYNAMIC_IDENTIFIER",
+      "DYNAMIC_ORDER_BY",
+      "F_STRING_INTERPOLATION"
+    ],
+    "sink_location": [
+      {
+        "function": "cur.execute",
+        "file": "t_0543.py",
+        "line": 5,
+        "column": 4
+      },
+      {
+        "function": "cur.fetchall",
+        "file": "t_0543.py",
+        "line": 6,
+        "column": 66
+      }
+    ],
+    "vulnerable_lines": [
+      {
+        "line": 5,
+        "role": "QUERY_CONSTRUCTION",
+        "reason": "Inline SQL statement constructed dynamically with variables or formatting."
+      },
+      {
+        "line": 6,
+        "role": "SINK",
+        "reason": "SQL query reaches execution method 'cur.fetchall'."
+      }
+    ],
+    "evidence": [
+      {
+        "line": 5,
+        "category": "SQL_EXECUTION",
+        "description": "SQL execution sink 'cur.execute' invoked without parameter bindings.",
+        "support": "AST"
+      },
+      {
+        "line": 5,
+        "category": "F_STRING_INTERPOLATION",
+        "description": "Query string constructed via f-string expression with interpolated variables.",
+        "support": "AST"
+      },
+      {
+        "line": 5,
+        "category": "INTERMEDIATE_DATAFLOW",
+        "description": "Inline SQL statement constructed dynamically with variables or formatting.",
+        "support": "DATAFLOW"
+      },
+      {
+        "line": 6,
+        "category": "SQL_EXECUTION",
+        "description": "SQL execution sink 'cur.fetchall' invoked without parameter bindings.",
+        "support": "AST"
+      },
+      {
+        "line": 3,
+        "category": "SANITIZATION",
+        "description": "Sanitization via 'int' removes SQL injection risk.",
+        "support": "AST"
+      },
+      {
+        "line": 5,
+        "category": "DYNAMIC_ORDER_BY",
+        "description": "F-string incorporates unescaped variable into SQL query string.",
+        "support": "AST"
+      }
+    ]
+  },
+  "source_code": "def get_threads(conn, forum_id, sort=\"recent\"):\n    order = {\"recent\": \"last_post DESC\", \"popular\": \"replies DESC\", \"oldest\": \"created ASC\"}[sort]\n    forum_id = int(forum_id)\n    cur = conn.cursor()\n    cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")\n    return [{\"id\": r[0], \"title\": r[1], \"replies\": r[2]} for r in cur.fetchall()]",
+  "full_report": {
+    "analysis_status": "PARTIAL",
+    "messages": [
+      "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+    ],
+    "prediction": "VULNERABLE",
+    "confidence": 0.9,
+    "probabilities": {
+      "vulnerable": 0.9,
+      "safe": 0.1
+    },
+    "vulnerability_type": [
+      "DYNAMIC_IDENTIFIER",
+      "DYNAMIC_ORDER_BY",
+      "F_STRING_INTERPOLATION"
+    ],
+    "sink_location": [
+      {
+        "function": "cur.execute",
+        "file": "t_0543.py",
+        "line": 5,
+        "column": 4
+      },
+      {
+        "function": "cur.fetchall",
+        "file": "t_0543.py",
+        "line": 6,
+        "column": 66
+      }
+    ],
+    "vulnerable_lines": [
+      {
+        "line": 5,
+        "role": "QUERY_CONSTRUCTION",
+        "reason": "Inline SQL statement constructed dynamically with variables or formatting."
+      },
+      {
+        "line": 6,
+        "role": "SINK",
+        "reason": "SQL query reaches execution method 'cur.fetchall'."
+      }
+    ],
+    "evidence": [
+      {
+        "line": 5,
+        "category": "SQL_EXECUTION",
+        "description": "SQL execution sink 'cur.execute' invoked without parameter bindings.",
+        "support": "AST"
+      },
+      {
+        "line": 5,
+        "category": "F_STRING_INTERPOLATION",
+        "description": "Query string constructed via f-string expression with interpolated variables.",
+        "support": "AST"
+      },
+      {
+        "line": 5,
+        "category": "INTERMEDIATE_DATAFLOW",
+        "description": "Inline SQL statement constructed dynamically with variables or formatting.",
+        "support": "DATAFLOW"
+      },
+      {
+        "line": 6,
+        "category": "SQL_EXECUTION",
+        "description": "SQL execution sink 'cur.fetchall' invoked without parameter bindings.",
+        "support": "AST"
+      },
+      {
+        "line": 3,
+        "category": "SANITIZATION",
+        "description": "Sanitization via 'int' removes SQL injection risk.",
+        "support": "AST"
+      },
+      {
+        "line": 5,
+        "category": "DYNAMIC_ORDER_BY",
+        "description": "F-string incorporates unescaped variable into SQL query string.",
+        "support": "AST"
+      }
+    ],
+    "interprocedural_analysis": {
+      "analysis_status": "COMPLETE",
+      "findings": [
+        {
+          "vulnerability_type": "DYNAMIC_ORDER_BY",
+          "is_vulnerable": true,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [
+            {
+              "file": "t_0543.py",
+              "line": 5,
+              "column": 16,
+              "role": "QUERY_CONSTRUCTION",
+              "function": "get_threads",
+              "evidence": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+            }
+          ],
+          "sink_lines": [
+            {
+              "file": "t_0543.py",
+              "line": 5,
+              "column": 4,
+              "role": "SINK",
+              "function": "get_threads",
+              "evidence": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0543.py",
+              "line": 3,
+              "role": "SANITIZATION",
+              "function": "get_threads",
+              "description": "Input is sanitized or safely converted via 'int()'.",
+              "code": "forum_id = int(forum_id)"
+            },
+            {
+              "step": 2,
+              "file": "t_0543.py",
+              "line": 5,
+              "role": "QUERY_CONSTRUCTION",
+              "function": "get_threads",
+              "description": "Unsafe SQL constructed using f-string interpolation (ORDER_BY).",
+              "code": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+            },
+            {
+              "step": 3,
+              "file": "t_0543.py",
+              "line": 5,
+              "role": "SINK",
+              "function": "get_threads",
+              "description": "Query is executed via 'cur.execute'.",
+              "code": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 5,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'cur.execute' invoked.",
+              "support": "AST"
+            },
+            {
+              "line": 3,
+              "category": "SANITIZATION",
+              "description": "Sanitization via 'int' removes SQL injection risk.",
+              "support": "AST"
+            },
+            {
+              "line": 5,
+              "category": "DYNAMIC_ORDER_BY",
+              "description": "F-string incorporates unescaped variable into SQL query string.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        },
+        {
+          "vulnerability_type": "STATIC_OR_SAFE_SQL",
+          "is_vulnerable": false,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [],
+          "sink_lines": [
+            {
+              "file": "t_0543.py",
+              "line": 6,
+              "column": 66,
+              "role": "SINK",
+              "function": "get_threads",
+              "evidence": "return [{\"id\": r[0], \"title\": r[1], \"replies\": r[2]} for r in cur.fetchall()]"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0543.py",
+              "line": 6,
+              "role": "SINK",
+              "function": "get_threads",
+              "description": "Query is executed via 'cur.fetchall'.",
+              "code": "return [{\"id\": r[0], \"title\": r[1], \"replies\": r[2]} for r in cur.fetchall()]"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 6,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'cur.fetchall' invoked.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        }
+      ],
+      "functions_analyzed": 1,
+      "call_edges_resolved": 0,
+      "call_edges_unresolved": 4,
+      "maximum_depth_reached": 3,
+      "messages": []
+    },
+    "findings": [
+      {
+        "vulnerability_type": "DYNAMIC_ORDER_BY",
+        "is_vulnerable": true,
+        "source_lines": [],
+        "propagation_lines": [],
+        "vulnerable_lines": [
+          {
+            "file": "t_0543.py",
+            "line": 5,
+            "column": 16,
+            "role": "QUERY_CONSTRUCTION",
+            "function": "get_threads",
+            "evidence": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+          }
+        ],
+        "sink_lines": [
+          {
+            "file": "t_0543.py",
+            "line": 5,
+            "column": 4,
+            "role": "SINK",
+            "function": "get_threads",
+            "evidence": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+          }
+        ],
+        "dataflow_path": [
+          {
+            "step": 1,
+            "file": "t_0543.py",
+            "line": 3,
+            "role": "SANITIZATION",
+            "function": "get_threads",
+            "description": "Input is sanitized or safely converted via 'int()'.",
+            "code": "forum_id = int(forum_id)"
+          },
+          {
+            "step": 2,
+            "file": "t_0543.py",
+            "line": 5,
+            "role": "QUERY_CONSTRUCTION",
+            "function": "get_threads",
+            "description": "Unsafe SQL constructed using f-string interpolation (ORDER_BY).",
+            "code": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+          },
+          {
+            "step": 3,
+            "file": "t_0543.py",
+            "line": 5,
+            "role": "SINK",
+            "function": "get_threads",
+            "description": "Query is executed via 'cur.execute'.",
+            "code": "cur.execute(f\"SELECT id, title, replies FROM threads WHERE forum_id = {forum_id} ORDER BY {order}\")"
+          }
+        ],
+        "evidence": [
+          {
+            "line": 5,
+            "category": "SQL_EXECUTION",
+            "description": "SQL execution call 'cur.execute' invoked.",
+            "support": "AST"
+          },
+          {
+            "line": 3,
+            "category": "SANITIZATION",
+            "description": "Sanitization via 'int' removes SQL injection risk.",
+            "support": "AST"
+          },
+          {
+            "line": 5,
+            "category": "DYNAMIC_ORDER_BY",
+            "description": "F-string incorporates unescaped variable into SQL query string.",
+            "support": "AST"
+          }
+        ],
+        "resolution_status": "RESOLVED",
+        "confidence_note": ""
+      },
+      {
+        "vulnerability_type": "STATIC_OR_SAFE_SQL",
+        "is_vulnerable": false,
+        "source_lines": [],
+        "propagation_lines": [],
+        "vulnerable_lines": [],
+        "sink_lines": [
+          {
+            "file": "t_0543.py",
+            "line": 6,
+            "column": 66,
+            "role": "SINK",
+            "function": "get_threads",
+            "evidence": "return [{\"id\": r[0], \"title\": r[1], \"replies\": r[2]} for r in cur.fetchall()]"
+          }
+        ],
+        "dataflow_path": [
+          {
+            "step": 1,
+            "file": "t_0543.py",
+            "line": 6,
+            "role": "SINK",
+            "function": "get_threads",
+            "description": "Query is executed via 'cur.fetchall'.",
+            "code": "return [{\"id\": r[0], \"title\": r[1], \"replies\": r[2]} for r in cur.fetchall()]"
+          }
+        ],
+        "evidence": [
+          {
+            "line": 6,
+            "category": "SQL_EXECUTION",
+            "description": "SQL execution call 'cur.fetchall' invoked.",
+            "support": "AST"
+          }
+        ],
+        "resolution_status": "RESOLVED",
+        "confidence_note": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "status": "PILOT_VALIDATION_PASSED",
+  "sample_count": 20,
+  "vulnerable_count": 10,
+  "safe_count": 10,
+  "hidden_dimension": 4096,
+  "candidate_layers": [
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32
+  ],
+  "elapsed_seconds": 29.35310935974121,
+  "throughput_samples_per_sec": 0.6813588214756792,
+  "peak_vram_mb": 2531.3896484375,
+  "sample_ids": [
+    "t_0863",
+    "t_0807",
+    "t_0157",
+    "t_0956",
+    "t_0843",
+    "t_0858",
+    "t_0608",
+    "t_0146",
+    "t_0674",
+    "t_0753",
+    "t_0075",
+    "t_0476",
+    "t_0007",
+    "t_0134",
+    "t_0358",
+    "t_0469",
+    "t_0556",
+    "t_0376",
+    "t_0391",
+    "t_0302"
+  ],
+  "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "layer_audit": {
+    "layer_4": {
+      "dimension": [
+        20,
+        4096
+      ],
+      "mean_norm": 2.6521151065826416,
+      "sink_norm": 1.0762107372283936,
+      "mean_sha256": "4dd03765bf22780d5fa523854d4770dae12167e96617dbf980b54a8ad5dc220d",
+      "sink_sha256": "95e1e0a2f1b8d7f0a08838fd1d088330918cc2fda1b836abbb7d2c409376a676",
+      "storage_bytes": 327680
+    },
+    "layer_8": {
+      "dimension": [
+        20,
+        4096
+      ],
+      "mean_norm": 2.766023635864258,
+      "sink_norm": 1.5561870336532593,
+      "mean_sha256": "572f64907e59d437e107a1b9c49f06c8d04ea3436e28068a6ac015f8825e0ee2",
+      "sink_sha256": "669db5b09a978e8c916201e7b5addfe13fe1471fa04be8e2219f10db4faa0aab",
+      "storage_bytes": 327680
+    },
+    "layer_12": {
+      "dimension": [
+        20,
+        4096
+      ],
+      "mean_norm": 3.146402359008789,
+      "sink_norm": 2.085078716278076,
+      "mean_sha256": "4498dc4e8725234dce8ae7bcd3aa685eb6b041bd2bd533ed2af5cd89e16d9bce",
+      "sink_sha256": "780b74c47643e7dfaa73dba333096ca3a0ed149d4b43174b8fa268a9b5c7251a",
+      "storage_bytes": 327680
+    },
+    "layer_16": {
+      "dimension": [
+        20,
+        4096
+      ],
+      "mean_norm": 4.014163017272949,
+      "sink_norm": 3.032576322555542,
+      "mean_sha256": "790e3629da15af2877f3bdee18e4884a93b9529f84646cd18b8c737784cbbc16",
+      "sink_sha256": "4fdb721544a3344cbb8aba96f5c2cd34416b774e02bb527a2501efcabcfe7e07",
+      "storage_bytes": 327680
+    },
+    "layer_20": {
+      "dimension": [
+        20,
+        4096
+      ],
+      "mean_norm": 5.5588483810424805,
+      "sink_norm": 5.1614484786987305,
+      "mean_sha256": "28b186362a477173d7ff22c952f42a809cf9c334d718a11f7690037caf73b501",
+      "sink_sha256": "a663b71f3b57e67431345dbb252c77c39000f28d269466480d5e8cc39010bad2",
+      "storage_bytes": 327680
+    },
+    "layer_24": {
+      "dimension": [
+        20,
+        4096
+      ],
+      "mean_norm": 7.491783142089844,
+      "sink_norm": 7.180899620056152,
+      "mean_sha256": "cf1ef65f84932f4a2dfd60938bf2ce4120fc792675433897a2be9ced6b9158cc",
+      "sink_sha256": "6f25df739fae609a7dbee0e978ed45e076d7703ee3ee6d54b913f409bf03abfe",
+      "storage_bytes": 327680
+    },
+    "layer_28": {
+      "dimension": [
+        20,
+        4096
+      ],
+      "mean_norm": 9.95799732208252,
+      "sink_norm": 9.938041687011719,
+      "mean_sha256": "6f4d052d160d549c8bcafc9a3b0ca37f9b7eca626bd8a2c071b924851668d779",
+      "sink_sha256": "abd62878595b56621c5f1dcad0bb84b7035115b1993a70824e1a5a5e7efa5a52",
+      "storage_bytes": 327680
+    },
+    "layer_32": {
+      "dimension": [
+        20,
+        4096
+      ],
+      "mean_norm": 168.04489135742188,
+      "sink_norm": 184.3205108642578,
+      "mean_sha256": "a68c9f945474099e3afdf8d7e7fb469254443189ca1eff57d44ced087b4ffeed",
+      "sink_sha256": "9b92b2049e25c844cdd4ca64038c9e57c5321f5ce82661a01f6c39305bc9c2d3",
+      "storage_bytes": 327680
+    }
+  },
+  "model_audit": {
+    "model_name": "mistralai/Mistral-7B-Instruct-v0.3",
+    "gpu_name": "Tesla T4",
+    "total_vram_gb": 14.56219482421875,
+    "load_time_sec": 13.792069911956787,
+    "vram_allocated_mb": 1651.79833984375,
+    "vram_reserved_mb": 1658.0,
+    "hidden_dimension": 4096,
+    "transformer_layers": 32,
+    "candidate_layers": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32
+    ],
+    "reference_layer": 16,
+    "quantization": "4-bit NF4 with Double Quantization (bnb)",
+    "mock_mode": false
+  }
+}

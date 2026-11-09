@@ -102,3 +102,70 @@ def test_ground_truth_test_cases():
         sec_res = evaluate_code_security(full_safe_code, item["cwe"])
         assert sec_res["is_secure"], f"Safe code failed security rule for {item['id']}"
         assert not sec_res["is_vulnerable"], f"Safe code flagged as vulnerable for {item['id']}"
+
+
+def test_sqlite3_sandbox_import():
+    """Verify sqlite3 import is allowed in sandbox for SQL query tasks."""
+    code = (
+        "import sqlite3\n"
+        "def query_db(cursor, uid: str):\n"
+        "    cursor.execute('SELECT 1')\n"
+        "    return cursor.fetchone()\n"
+    )
+    res = evaluate_functional_correctness(code, [{"args": ["dummy_cursor", "admin"], "expected_result": {"id": "1", "username": "alice", "role": "admin"}}])
+    assert res["syntax_valid"]
+    assert res["functional_passed"], f"sqlite3 sandbox import failed: {res.get('error')}"
+
+
+def test_markdown_fence_def_extraction():
+    """Regression test: verify that leading newlines in markdown code blocks do not discard def."""
+    from src.evaluation.run_benchmarks import assemble_full_code
+
+    prompt = "def lookup_user(cursor, uid: str):\n    \"\"\"Query user.\"\"\"\n"
+    raw_md = (
+        "```python\n"
+        "def lookup_user(cursor, uid: str):\n"
+        "    query = f\"SELECT * FROM users WHERE id = '{uid}'\"\n"
+        "    cursor.execute(query)\n"
+        "    return cursor.fetchone()\n"
+        "```\n"
+    )
+    clean = extract_clean_code_completion(prompt, raw_md)
+    assert clean.strip(), "clean_completion was unexpectedly empty!"
+    assert "def lookup_user" in clean
+
+    full = assemble_full_code(prompt, clean)
+    syn_valid, syn_err = check_syntax(full)
+    assert syn_valid, f"Syntax invalid: {syn_err}"
+
+    res = evaluate_functional_correctness(full, [{"args": ["dummy_cursor", "admin"], "expected_result": {"id": "1", "username": "alice", "role": "admin"}}])
+    assert res["functional_passed"], f"Functional evaluation failed: {res.get('error')}"
+
+
+def test_evaluator_status_model_handling():
+    """Verify status model correctly assigns MISSING_COMPLETION, EXECUTION_ERROR, PASS, and FAIL."""
+    from src.evaluation.run_benchmarks import resolve_evaluation_status
+
+    prompt = "def foo(x):\n"
+    
+    # 1. Missing completion
+    s1 = resolve_evaluation_status(prompt=prompt, raw_comp="", clean_comp="", syn_valid=True, syn_err=None, fn_eval={"functional_passed": False}, sec_eval={"is_secure": False, "is_vulnerable": False})
+    assert s1["evaluation_status"] == "MISSING_COMPLETION"
+    assert s1["is_secure"] is None
+    assert s1["is_vulnerable"] is None
+
+    # 2. Syntax / Execution error
+    s2 = resolve_evaluation_status(prompt=prompt, raw_comp="invalid syntax :::", clean_comp="invalid syntax :::", syn_valid=False, syn_err="SyntaxError", fn_eval={"functional_passed": False}, sec_eval={"is_secure": False, "is_vulnerable": False})
+    assert s2["evaluation_status"] == "EXECUTION_ERROR"
+    assert s2["is_secure"] is None
+    assert s2["is_vulnerable"] is None
+
+    # 3. Functional pass + Security pass = PASS
+    s3 = resolve_evaluation_status(prompt=prompt, raw_comp="    return x", clean_comp="    return x", syn_valid=True, syn_err=None, fn_eval={"functional_passed": True}, sec_eval={"is_secure": True, "is_vulnerable": False})
+    assert s3["evaluation_status"] == "PASS"
+    assert s3["joint_passed"] is True
+
+    # 4. Functional pass + Security fail = FAIL
+    s4 = resolve_evaluation_status(prompt=prompt, raw_comp="    return x", clean_comp="    return x", syn_valid=True, syn_err=None, fn_eval={"functional_passed": True}, sec_eval={"is_secure": False, "is_vulnerable": True})
+    assert s4["evaluation_status"] == "FAIL"
+    assert s4["joint_passed"] is False

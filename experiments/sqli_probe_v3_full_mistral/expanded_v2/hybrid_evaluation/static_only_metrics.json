@@ -1,0 +1,42 @@
+{
+  "conservative_evaluation": {
+    "view": "Conservative (Resolved Subet Only)",
+    "total_samples": 695,
+    "resolved_samples": 653,
+    "uncertain_samples": 42,
+    "resolved_fraction": 0.939568345323741,
+    "tp": 185,
+    "fp": 113,
+    "tn": 347,
+    "fn": 8,
+    "precision": 0.6208053691275168,
+    "recall": 0.9585492227979274,
+    "specificity": 0.7543478260869565,
+    "f1": 0.7535641547861507,
+    "accuracy": 0.8147013782542113,
+    "balanced_accuracy": 0.856448524442442
+  },
+  "operational_evaluation": {
+    "view": "Operational Pipeline Classifier",
+    "total_samples": 695,
+    "output_distribution": {
+      "SAFE": 386,
+      "VULNERABLE": 293,
+      "UNCERTAIN": 16
+    },
+    "tp": 184,
+    "fp": 109,
+    "tn": 378,
+    "fn": 8,
+    "precision": 0.6279863481228669,
+    "recall": 0.9583333333333334,
+    "specificity": 0.7761806981519507,
+    "f1": 0.7587628865979381,
+    "balanced_accuracy": 0.867257015742642
+  },
+  "completeness_summary": {
+    "complete": 651,
+    "partial": 44,
+    "failed": 0
+  }
+}

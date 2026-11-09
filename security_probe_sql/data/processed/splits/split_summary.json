@@ -1,0 +1,41 @@
+{
+  "random_seed": 42,
+  "total_records": 3032,
+  "split_ratios_target": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "leakage_checks": {
+    "exact_hash_leakage_detected": false,
+    "pair_leakage_detected": false,
+    "cross_split_hash_intersections": 0,
+    "cross_split_pair_intersections": 0
+  },
+  "partitions": {
+    "train": {
+      "total_samples": 2122,
+      "vulnerable_count": 404,
+      "non_vulnerable_count": 1718,
+      "vulnerability_rate": 0.1904,
+      "span_annotated_count": 99,
+      "file_path": "C:\\Users\\dheer\\Desktop\\isae\\security_probe_sql\\data\\processed\\splits\\train.jsonl"
+    },
+    "val": {
+      "total_samples": 454,
+      "vulnerable_count": 96,
+      "non_vulnerable_count": 358,
+      "vulnerability_rate": 0.2115,
+      "span_annotated_count": 15,
+      "file_path": "C:\\Users\\dheer\\Desktop\\isae\\security_probe_sql\\data\\processed\\splits\\val.jsonl"
+    },
+    "test": {
+      "total_samples": 456,
+      "vulnerable_count": 91,
+      "non_vulnerable_count": 365,
+      "vulnerability_rate": 0.1996,
+      "span_annotated_count": 2,
+      "file_path": "C:\\Users\\dheer\\Desktop\\isae\\security_probe_sql\\data\\processed\\splits\\test.jsonl"
+    }
+  }
+}

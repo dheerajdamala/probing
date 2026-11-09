@@ -1,0 +1,79 @@
+{
+  "phase": "Phase 4A: Frozen False-Positive Audit and Static Analyzer Evaluation",
+  "project": "Python SQL Injection Detection (CWE-89)",
+  "git_commit": "24b7d6eecaac8daa0759309c4caeec3602811da3",
+  "timestamp_utc": "2026-11-09T06:33:43Z",
+  "sample_count": 695,
+  "input_artifact_hashes": {
+    "test_dataset_jsonl": {
+      "path": "experiments/sqli_probe_v3_full_mistral/data/e2_expanded/splits/test.jsonl",
+      "sha256": "2f7834e98b2e8784f936b1476d15bcbb88364e0487c921553ff1912a9f0135a1"
+    },
+    "expanded_checkpoint_pt": {
+      "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/models/MLP_sink_layer_12_expanded.pt",
+      "sha256": "177b26c85a83007d4e975198c39cb6b866e02167d436b1400e004bd0e994b4d7"
+    },
+    "expanded_scaler_joblib": {
+      "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/models/MLP_sink_layer_12_scaler_expanded.joblib",
+      "sha256": "5085c6bd5a73a3df418fd74449b0d5f8432c3cef04441d6e7794f5a94e3ced24"
+    },
+    "test_predictions_json": {
+      "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/evaluation/test_predictions.json",
+      "sha256": "e70b892a7be8fc24400ee48eb4088702c4d561bb307039c458dd2b7137b5ca2b"
+    },
+    "test_metrics_json": {
+      "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/evaluation/test_metrics.json",
+      "sha256": "14fce3b137689112c5ead1af452bbf31179b273c0abae77f41e9c5962e91854c"
+    },
+    "test_error_analysis_csv": {
+      "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/evaluation/test_error_analysis.csv",
+      "sha256": "f6051ba3b56feea113897528abce1d2ef4e64b89c3f242511660a540f805d80d"
+    },
+    "extension_input_handler": {
+      "path": "C:\\Users\\dheer\\Desktop\\isae\\experiments\\sqli_probe_v3_full_mistral\\extension\\input_handler.py",
+      "sha256": "1218e00abdc3a559b93843d002a7e841d31b957ccec3ddf2caff9af3c7699401"
+    },
+    "extension_ast_analyzer": {
+      "path": "C:\\Users\\dheer\\Desktop\\isae\\experiments\\sqli_probe_v3_full_mistral\\extension\\ast_analyzer.py",
+      "sha256": "f31ab939c1a0caa804b28998b673902fa99ee57b8b327f2712a0c351fb3f6c62"
+    },
+    "extension_query_dataflow": {
+      "path": "C:\\Users\\dheer\\Desktop\\isae\\experiments\\sqli_probe_v3_full_mistral\\extension\\query_dataflow.py",
+      "sha256": "6b93fa0bc0b9a03ade5e43ab85104fdd322ec42af0ce3c0bbeabd94b351e23be"
+    },
+    "extension_project_ast_graph": {
+      "path": "C:\\Users\\dheer\\Desktop\\isae\\experiments\\sqli_probe_v3_full_mistral\\extension\\project_ast_graph.py",
+      "sha256": "4085cb851d126cc464076e4899b85cd69406dcb52c16d74f753c855773cb3f21"
+    },
+    "extension_interprocedural_analyzer": {
+      "path": "C:\\Users\\dheer\\Desktop\\isae\\experiments\\sqli_probe_v3_full_mistral\\extension\\interprocedural_analyzer.py",
+      "sha256": "8e6b708046b9f07908ec53edf171962a689e6b53269fced1f4b7e383a1166b6c"
+    },
+    "extension_evidence_builder": {
+      "path": "C:\\Users\\dheer\\Desktop\\isae\\experiments\\sqli_probe_v3_full_mistral\\extension\\evidence_builder.py",
+      "sha256": "29ef39a483246fc8cafbb50469f9cc1a334a765ca2206fce8aa9db89639bfb35"
+    },
+    "extension_vulnerability_classifier": {
+      "path": "C:\\Users\\dheer\\Desktop\\isae\\experiments\\sqli_probe_v3_full_mistral\\extension\\vulnerability_classifier.py",
+      "sha256": "f3e09ce6a47e751f2dfb95210ecc1c2b90b33afd09ab769a2bffc54b767f2edb"
+    },
+    "extension_pipeline": {
+      "path": "C:\\Users\\dheer\\Desktop\\isae\\experiments\\sqli_probe_v3_full_mistral\\extension\\pipeline.py",
+      "sha256": "2a8d60dfa939bac01fd09528b115ad57335d76c3875b06575af8e95346e62f08"
+    },
+    "extension_report_generator": {
+      "path": "C:\\Users\\dheer\\Desktop\\isae\\experiments\\sqli_probe_v3_full_mistral\\extension\\report_generator.py",
+      "sha256": "5551675997ebed059487f2cfdf206204f64dba10b3642254fdf92cff7a6a22c8"
+    }
+  },
+  "neural_baseline_verified": true,
+  "neural_confusion_matrix": {
+    "tp": 195,
+    "fp": 244,
+    "tn": 248,
+    "fn": 8
+  },
+  "neural_threshold": 0.66,
+  "static_analyzer_version": "extension_v1_interprocedural",
+  "failures_encountered": 0
+}

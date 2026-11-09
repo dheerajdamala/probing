@@ -1,0 +1,182 @@
+{
+  "dataset_summary": {
+    "total_benchmark_samples": 100,
+    "vulnerable_samples": 60,
+    "safe_samples": 40
+  },
+  "phase4b_reported_original_v1": {
+    "sink_exact_accuracy": {
+      "numerator": 45,
+      "denominator": 60,
+      "percentage": 75.0
+    },
+    "construction_line_accuracy": {
+      "numerator": 50,
+      "denominator": 60,
+      "percentage": 83.33
+    },
+    "source_to_sink_path_accuracy": {
+      "numerator": 35,
+      "denominator": 60,
+      "percentage": 58.33
+    },
+    "vulnerable_line_top1_accuracy": {
+      "numerator": 50,
+      "denominator": 60,
+      "percentage": 83.33
+    },
+    "vulnerable_line_top3_accuracy": {
+      "numerator": 50,
+      "denominator": 60,
+      "percentage": 83.33
+    },
+    "source_identification_accuracy": {
+      "numerator": 0,
+      "denominator": 60,
+      "percentage": 0.0
+    },
+    "safe_sample_false_positive_count": 5,
+    "safe_sample_false_positive_rate": 0.125
+  },
+  "v1_recomputed_p4b_buggy_script": {
+    "sink_exact_accuracy": {
+      "numerator": 45,
+      "denominator": 60,
+      "percentage": 75.0
+    },
+    "construction_line_accuracy": {
+      "numerator": 50,
+      "denominator": 60,
+      "percentage": 83.33
+    },
+    "source_to_sink_path_accuracy": {
+      "numerator": 35,
+      "denominator": 60,
+      "percentage": 58.33
+    },
+    "vulnerable_line_top1_accuracy": {
+      "numerator": 50,
+      "denominator": 60,
+      "percentage": 83.33
+    },
+    "vulnerable_line_top3_accuracy": {
+      "numerator": 50,
+      "denominator": 60,
+      "percentage": 83.33
+    }
+  },
+  "v1_recomputed_corrected_strict": {
+    "sink_exact_accuracy": {
+      "numerator": 60,
+      "denominator": 60,
+      "percentage": 100.0
+    },
+    "construction_line_accuracy": {
+      "numerator": 50,
+      "denominator": 60,
+      "percentage": 83.33
+    },
+    "source_to_sink_path_accuracy": {
+      "numerator": 50,
+      "denominator": 60,
+      "percentage": 83.33
+    },
+    "vulnerable_line_top1_accuracy": {
+      "numerator": 50,
+      "denominator": 60,
+      "percentage": 83.33
+    }
+  },
+  "v1_recomputed_phase5_evidence_fallback": {
+    "sink_exact_accuracy": {
+      "numerator": 60,
+      "denominator": 60,
+      "percentage": 100.0
+    },
+    "construction_line_accuracy": {
+      "numerator": 60,
+      "denominator": 60,
+      "percentage": 100.0
+    },
+    "source_to_sink_path_accuracy": {
+      "numerator": 60,
+      "denominator": 60,
+      "percentage": 100.0
+    },
+    "vulnerable_line_top1_accuracy": {
+      "numerator": 50,
+      "denominator": 60,
+      "percentage": 83.33
+    }
+  },
+  "v2_recomputed_strict": {
+    "sink_exact_accuracy": {
+      "numerator": 60,
+      "denominator": 60,
+      "percentage": 100.0
+    },
+    "construction_line_accuracy": {
+      "numerator": 60,
+      "denominator": 60,
+      "percentage": 100.0
+    },
+    "source_to_sink_path_accuracy": {
+      "numerator": 60,
+      "denominator": 60,
+      "percentage": 100.0
+    },
+    "vulnerable_line_top1_accuracy": {
+      "numerator": 60,
+      "denominator": 60,
+      "percentage": 100.0
+    },
+    "vulnerable_line_top3_accuracy": {
+      "numerator": 60,
+      "denominator": 60,
+      "percentage": 100.0
+    },
+    "source_identification_accuracy": {
+      "numerator": 0,
+      "denominator": 60,
+      "percentage": 0.0
+    },
+    "formal_parameter_accuracy": {
+      "numerator": 40,
+      "denominator": 60,
+      "percentage": 66.67
+    },
+    "line_overlap_mean_f1": 0.85,
+    "safe_sample_false_positive_count": 0,
+    "safe_sample_false_positive_rate": 0.0,
+    "safe_sample_fpr_wilson_95ci": [
+      0.0,
+      0.0876
+    ]
+  },
+  "classification_metrics": {
+    "v1": {
+      "tp": 50,
+      "fp": 5,
+      "tn": 35,
+      "fn": 10,
+      "precision": 0.9091,
+      "recall": 0.8333,
+      "specificity": 0.875,
+      "f1": 0.8696,
+      "accuracy": 0.85,
+      "balanced_accuracy": 0.8542
+    },
+    "v2": {
+      "tp": 60,
+      "fp": 0,
+      "tn": 40,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "specificity": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0
+    }
+  }
+}

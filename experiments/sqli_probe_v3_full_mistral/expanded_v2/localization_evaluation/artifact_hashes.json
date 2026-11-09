@@ -1,0 +1,30 @@
+{
+  "benchmark_manifest_json": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark_manifest.json",
+    "sha256": "bfe5c25e37089184b79b503052e1ea25d28751a794ca5a7ec2e52c9b7a02481f"
+  },
+  "ground_truth_annotations_json": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\ground_truth_annotations.json",
+    "sha256": "7c9f66f54f1a12b9ca1334aa51ef6ce35df6c3ad55efc4f106c4696167824bcb"
+  },
+  "per_sample_results_csv": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\per_sample_localization_results.csv",
+    "sha256": "0a7658a8e61111d7fb1268dffa5a8665a8d53b2ebef0129132f28fd517f8b2f4"
+  },
+  "classification_metrics_json": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\classification_metrics.json",
+    "sha256": "d0ea0e5b6d20f2ba15f740894f2991952380bed3eb7bf4a88d948301ea0509c9"
+  },
+  "localization_metrics_json": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\localization_metrics.json",
+    "sha256": "b95bc41973281421c8c4ddd9a0323f3419e6fdca608338562c841271225d1f21"
+  },
+  "failure_analysis_csv": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\failure_analysis.csv",
+    "sha256": "99b36a10c0244f0289b72135413731eae74d62952c41a111a44533141b1fbaab"
+  },
+  "report_md": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\LOCALIZATION_EVALUATION_REPORT.md",
+    "sha256": "6c58be2431bbd4767b5917522e4712b0f3e86d2cf54ecba7522f32c891795f09"
+  }
+}

@@ -1,0 +1,52 @@
+# SQL Injection Probe V2 Configuration
+project:
+  name: "sqli_probe_v2"
+  version: "2.0.0"
+  target_cwe: "CWE-89"
+  date: "2026-10-31"
+
+model:
+  target_model: "mistralai/Mistral-7B-Instruct-v0.3"
+  architecture: "MistralForCausalLM"
+  num_layers: 32
+  hidden_dimension: 4096
+  vocab_size: 32768
+  precision: "bfloat16" # or 4-bit NF4 via bitsandbytes on T4
+  quantization_4bit: true # For 16GB T4 VRAM budget
+
+extraction:
+  candidate_layers: [4, 8, 12, 16, 20, 24, 28, 32]
+  reference_layer: 16
+  pooling_methods:
+    - "mean_pooling"
+    - "ast_sink_pooling"
+  max_sequence_length: 1024
+  batch_size: 8
+
+experiments:
+  e1_existing:
+    description: "Existing validated SQL injection corpus"
+    raw_path: "security_probe_sql/data/processed/validated_sql_dataset.jsonl"
+    sample_count: 3032
+  e2_excel:
+    description: "New 1,000-example reference Excel dataset"
+    raw_path: "sql_injection_train_1000.xlsx"
+    sample_count: 1000
+  e3_combined:
+    description: "Combined deduplicated corpus (E1 + E2)"
+    sample_count: 3973
+  e_ext_benchmark:
+    description: "Independent external benchmark (held-out evaluation only, never trained)"
+    raw_path: "data/processed/expanded_evaluation_3k.json"
+    sample_count: 700
+
+probes:
+  classifiers:
+    - "logistic_regression"
+    - "linear_svm"
+    - "mlp"
+  controls:
+    - "tfidf_logistic_regression"
+    - "shuffled_labels"
+    - "random_vectors"
+

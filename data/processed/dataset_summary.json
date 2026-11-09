@@ -1,0 +1,15 @@
+{
+  "total_pairs": 17,
+  "total_probe_samples": 34,
+  "train_pairs": 7,
+  "val_pairs": 5,
+  "test_pairs": 5,
+  "cwes": [
+    "CWE-119",
+    "CWE-22",
+    "CWE-78",
+    "CWE-79",
+    "CWE-89"
+  ],
+  "seed": 42
+}

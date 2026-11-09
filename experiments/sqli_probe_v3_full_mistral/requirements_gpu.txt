@@ -1,0 +1,22 @@
+# Probe V3 Full Pretrained Mistral-7B T4 GPU Requirements
+# Designed for Google Colab (T4 GPU) and Kaggle (T4 x 2)
+
+# Core LLM & Quantization stack
+transformers>=4.40.0,<4.47.0
+accelerate>=0.29.0
+bitsandbytes>=0.43.0
+safetensors>=0.4.2
+sentencepiece>=0.2.0
+
+# Scientific computing & machine learning
+scikit-learn>=1.4.0
+pandas>=2.0.0
+numpy>=1.24.0,<2.0.0
+
+# Hugging Face Hub integration
+huggingface_hub>=0.22.0
+
+# Diagnostics & system metrics
+psutil>=5.9.0
+tqdm>=4.66.0
+

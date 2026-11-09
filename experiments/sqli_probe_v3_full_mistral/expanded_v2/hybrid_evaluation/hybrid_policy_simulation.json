@@ -1,0 +1,51 @@
+{
+  "policy_a_neural_only": {
+    "policy": "Policy A: Neural-Only (tau=0.66)",
+    "confirmed_vulnerable": 439,
+    "likely_safe": 256,
+    "uncertain": 0,
+    "false_positives": 244,
+    "false_negatives": 8,
+    "precision": 0.44419134396355353,
+    "recall": 0.9605911330049262,
+    "f1": 0.6074766355140186,
+    "coverage": 1.0
+  },
+  "policy_b_static_only": {
+    "policy": "Policy B: Static-Only (Operational)",
+    "confirmed_vulnerable": 293,
+    "likely_safe": 386,
+    "uncertain": 16,
+    "false_positives": 109,
+    "false_negatives": 8,
+    "precision": 0.6279863481228669,
+    "recall": 0.9064039408866995,
+    "f1": 0.7587628865979381,
+    "coverage": 0.9769784172661871
+  },
+  "policy_c_evidence_confirmation": {
+    "policy": "Policy C: Evidence-Confirmation Policy (Strict Verification)",
+    "confirmed_vulnerable": 279,
+    "likely_safe": 214,
+    "uncertain": 202,
+    "false_positives": 98,
+    "false_negatives": 2,
+    "precision": 0.6487455197132617,
+    "recall": 0.8916256157635468,
+    "coverage": 0.7093525179856115,
+    "notes": "Guarantees highest precision by requiring dual neural + static confirmation."
+  },
+  "policy_d_high_recall_triage": {
+    "policy": "Policy D: High-Recall Hybrid Triage Policy",
+    "confirmed_vulnerable": 298,
+    "likely_safe": 378,
+    "uncertain": 19,
+    "false_positives": 113,
+    "false_negatives": 10,
+    "precision": 0.6208053691275168,
+    "recall_confirmed": 0.9113300492610837,
+    "vulnerabilities_in_uncertain_pool": 8,
+    "coverage": 0.9726618705035971,
+    "notes": "Eliminates false alarms from automated blocking while routing ambiguous cases to analyst review."
+  }
+}

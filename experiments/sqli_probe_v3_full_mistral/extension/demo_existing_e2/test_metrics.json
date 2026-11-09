@@ -1,0 +1,20 @@
+{
+  "dataset_name": "E2_test",
+  "sample_count": 151,
+  "vulnerable_count": 83,
+  "safe_count": 68,
+  "threshold": 0.36,
+  "confusion_matrix": {
+    "TP": 80,
+    "TN": 63,
+    "FP": 5,
+    "FN": 3
+  },
+  "accuracy": 0.9470198675496688,
+  "precision": 0.9411764705882353,
+  "recall": 0.963855421686747,
+  "specificity": 0.9264705882352942,
+  "f1": 0.9523809523809523,
+  "roc_auc": 0.9922041105598867,
+  "pr_auc": 0.9937017973101471
+}

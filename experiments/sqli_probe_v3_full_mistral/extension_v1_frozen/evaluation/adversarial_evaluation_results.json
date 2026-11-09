@@ -1,0 +1,3640 @@
+{
+  "evaluation_title": "Adversarial Evaluation of SQL Injection Probe V3 Interprocedural Engine",
+  "total_adversarial_cases": 100,
+  "total_elapsed_ms": 87.68,
+  "mean_latency_per_case_ms": 0.88,
+  "overall_classification_metrics": {
+    "accuracy": 0.87,
+    "precision": 0.9104,
+    "recall": 0.8971,
+    "f1_score": 0.9037,
+    "confusion_matrix": {
+      "tp": 61,
+      "fp": 6,
+      "tn": 26,
+      "fn": 7
+    }
+  },
+  "localization_metrics": {
+    "sink_detection_recall": 0.8557,
+    "vulnerable_line_precision": 0.5357,
+    "vulnerable_line_recall": 0.8696,
+    "vulnerable_line_f1": 0.663
+  },
+  "status_accuracy": 0.19,
+  "category_performance": {
+    "direct_and_indirect_sql_injection": {
+      "total_cases": 15,
+      "correct_predictions": 13,
+      "accuracy": 0.8667,
+      "tp": 13,
+      "fp": 0,
+      "tn": 0,
+      "fn": 2,
+      "mean_latency_ms": 0.8
+    },
+    "cross_function_propagation": {
+      "total_cases": 15,
+      "correct_predictions": 14,
+      "accuracy": 0.9333,
+      "tp": 14,
+      "fp": 0,
+      "tn": 0,
+      "fn": 1,
+      "mean_latency_ms": 0.94
+    },
+    "cross_file_propagation": {
+      "total_cases": 15,
+      "correct_predictions": 14,
+      "accuracy": 0.9333,
+      "tp": 14,
+      "fp": 0,
+      "tn": 0,
+      "fn": 1,
+      "mean_latency_ms": 1.47
+    },
+    "safe_parameterized_queries": {
+      "total_cases": 10,
+      "correct_predictions": 9,
+      "accuracy": 0.9,
+      "tp": 0,
+      "fp": 1,
+      "tn": 9,
+      "fn": 0,
+      "mean_latency_ms": 0.65
+    },
+    "sanitization_and_validation": {
+      "total_cases": 10,
+      "correct_predictions": 8,
+      "accuracy": 0.8,
+      "tp": 0,
+      "fp": 2,
+      "tn": 8,
+      "fn": 0,
+      "mean_latency_ms": 0.7
+    },
+    "dynamic_sql_identifiers": {
+      "total_cases": 10,
+      "correct_predictions": 10,
+      "accuracy": 1.0,
+      "tp": 8,
+      "fp": 0,
+      "tn": 2,
+      "fn": 0,
+      "mean_latency_ms": 0.7
+    },
+    "control_flow_and_reassignment": {
+      "total_cases": 10,
+      "correct_predictions": 6,
+      "accuracy": 0.6,
+      "tp": 5,
+      "fp": 2,
+      "tn": 1,
+      "fn": 2,
+      "mean_latency_ms": 0.7
+    },
+    "recursion_and_unresolved": {
+      "total_cases": 5,
+      "correct_predictions": 5,
+      "accuracy": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "tn": 3,
+      "fn": 0,
+      "mean_latency_ms": 1.42
+    },
+    "orm_variations": {
+      "total_cases": 5,
+      "correct_predictions": 3,
+      "accuracy": 0.6,
+      "tp": 3,
+      "fp": 1,
+      "tn": 0,
+      "fn": 1,
+      "mean_latency_ms": 0.6
+    },
+    "syntax_and_unsupported": {
+      "total_cases": 5,
+      "correct_predictions": 5,
+      "accuracy": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "tn": 3,
+      "fn": 0,
+      "mean_latency_ms": 0.4
+    }
+  },
+  "defects_count": 13,
+  "defects": [
+    {
+      "id": "ADV_008_ALIASED_CURSOR_CALL",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "SAFE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.95,
+      "vulnerability_types": [],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": false,
+      "expected_sink": 4,
+      "detected_sinks": [],
+      "sink_matched": false,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "findings_count": 0,
+      "messages": [
+        "No database execution sinks (e.g. execute, raw, query) detected in source code.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns.",
+        "No SQL execution sinks detected across analyzed functions."
+      ]
+    },
+    {
+      "id": "ADV_009_STRING_JOIN_CONSTRUCT",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "UNCERTAIN",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.5,
+      "vulnerability_types": [
+        "UNCONFIRMED"
+      ],
+      "expected_subtype": "DIRECT_STRING_CONCATENATION",
+      "subtype_matched": false,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'user_input' originates from caller parameter of function 'assemble_join'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns.",
+        "External or unresolvable call to 'join' at line 2."
+      ]
+    },
+    {
+      "id": "ADV_030_VARARGS_WRAPPER",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "SAFE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": false,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_045_CROSS_FILE_REEXPORT_CHAIN",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "SAFE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "STATIC_OR_SAFE_SQL"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": false,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        4
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 2.0,
+      "findings_count": 1,
+      "messages": [
+        "No call sites found for function 'raw_db.py:execute_direct'; parameter 'sql' is unconstrained."
+      ]
+    },
+    {
+      "id": "ADV_052_SAFE_DYNAMIC_IN_CLAUSE",
+      "category": "safe_parameterized_queries",
+      "expected_label": "SAFE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION",
+        "HYBRID_QUERY_CONSTRUCTION"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 5,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'id_list' originates from caller parameter of function 'query_in_clause'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Assignment to query variable 'len' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_063_WHITELIST_DICT_MAP",
+      "category": "sanitization_and_validation",
+      "expected_label": "SAFE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [
+        3,
+        4
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_064_REGEX_DIGITS_CHECK",
+      "category": "sanitization_and_validation",
+      "expected_label": "SAFE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 5,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [
+        4
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_076_OVERWRITE_WITH_CONSTANT",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "SAFE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 5,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [
+        2,
+        4
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_077_OVERWRITE_SAFE_WITH_TAINT",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "SAFE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": false,
+      "expected_sink": 5,
+      "detected_sinks": [
+        5
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        4
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_082_SANITIZATION_BYPASSED",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "SAFE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": false,
+      "expected_sink": 6,
+      "detected_sinks": [
+        6
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_084_REASSIGNED_TO_INT_SAFE",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "SAFE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 5,
+      "detected_sinks": [
+        5
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [
+        4,
+        5
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_091_SQLALCHEMY_TEXT_UNSAFE",
+      "category": "orm_variations",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "UNCERTAIN",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.5,
+      "vulnerability_types": [
+        "UNCONFIRMED"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": false,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'text' could not be traced intraprocedurally.",
+        "Variable 'uid' originates from caller parameter of function 'query_user'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns.",
+        "External or unresolvable call to 'text' at line 2."
+      ]
+    },
+    {
+      "id": "ADV_095_SAFE_SQLALCHEMY_PARAMS",
+      "category": "orm_variations",
+      "expected_label": "SAFE",
+      "predicted_label": "UNCERTAIN",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.5,
+      "vulnerability_types": [
+        "UNCONFIRMED"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'text' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns.",
+        "External or unresolvable call to 'text' at line 2."
+      ]
+    }
+  ],
+  "detailed_results": [
+    {
+      "id": "ADV_001_NESTED_FSTRING",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 2.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_002_BINOP_CONCAT_MULTILINE",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "DIRECT_STRING_CONCATENATION"
+      ],
+      "expected_subtype": "DIRECT_STRING_CONCATENATION",
+      "subtype_matched": true,
+      "expected_sink": 5,
+      "detected_sinks": [
+        5
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [
+        2,
+        3,
+        5
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'tag' originates from caller parameter of function 'query_products'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_003_PERCENT_TUPLE",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "PERCENT_FORMATTING"
+      ],
+      "expected_subtype": "PERCENT_FORMATTING",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2,
+        3
+      ],
+      "latency_ms": 2.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'user' originates from caller parameter of function 'auth'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Variable 'pwd' originates from caller parameter of function 'auth'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_004_FORMAT_KWARGS",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "FORMAT_METHOD"
+      ],
+      "expected_subtype": "FORMAT_METHOD",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2,
+        3
+      ],
+      "latency_ms": 0.99,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'val' originates from caller parameter of function 'search'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_005_FORMAT_MAP",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "FORMAT_METHOD"
+      ],
+      "expected_subtype": "FORMAT_METHOD",
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [
+        3,
+        4
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_006_FSTRING_METHOD_CALL",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2,
+        3
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'val' originates from caller parameter of function 'handle'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_007_INDIRECT_VAR_CHAIN",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 6,
+      "detected_sinks": [
+        6
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [
+        5,
+        6
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_008_ALIASED_CURSOR_CALL",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "SAFE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.95,
+      "vulnerability_types": [],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": false,
+      "expected_sink": 4,
+      "detected_sinks": [],
+      "sink_matched": false,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "findings_count": 0,
+      "messages": [
+        "No database execution sinks (e.g. execute, raw, query) detected in source code.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns.",
+        "No SQL execution sinks detected across analyzed functions."
+      ]
+    },
+    {
+      "id": "ADV_009_STRING_JOIN_CONSTRUCT",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "UNCERTAIN",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.5,
+      "vulnerability_types": [
+        "UNCONFIRMED"
+      ],
+      "expected_subtype": "DIRECT_STRING_CONCATENATION",
+      "subtype_matched": false,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'user_input' originates from caller parameter of function 'assemble_join'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns.",
+        "External or unresolvable call to 'join' at line 2."
+      ]
+    },
+    {
+      "id": "ADV_010_TERNARY_CONDITIONAL",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [
+        3,
+        4
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Variable 'flag' originates from caller parameter of function 'ternary_flow'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_011_LIST_ITEM_INDEXING",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [
+        3,
+        4
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_012_DICT_LOOKUP",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [
+        3,
+        4
+      ],
+      "latency_ms": 1.02,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_013_UNPACKING_ASSIGNMENT",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [
+        3,
+        4
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'raw_a' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_014_LOOP_CONCAT_ACCUMULATOR",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "DIRECT_STRING_CONCATENATION"
+      ],
+      "expected_subtype": "DIRECT_STRING_CONCATENATION",
+      "subtype_matched": true,
+      "expected_sink": 6,
+      "detected_sinks": [
+        5
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [
+        4,
+        5
+      ],
+      "latency_ms": 0.99,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'inp' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_015_TRY_EXCEPT_TAINT",
+      "category": "direct_and_indirect_sql_injection",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 6,
+      "detected_sinks": [
+        7
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [
+        6,
+        7
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_016_FIVE_FUNCTION_CHAIN",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 2.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_017_HELPER_RETURNS_INPUT",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 6,
+      "detected_sinks": [
+        6
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [
+        2,
+        5,
+        6
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'fetch_param' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_018_HELPER_BUILDS_QUERY",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 6,
+      "detected_sinks": [
+        6
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2,
+        6
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'build_user_query' could not be traced intraprocedurally.",
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_019_EXECUTOR_HELPER",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "DIRECT_STRING_CONCATENATION"
+      ],
+      "expected_subtype": "DIRECT_STRING_CONCATENATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [
+        2,
+        5
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'sql_str' originates from caller parameter of function 'run_raw_sql'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_020_TWO_HELPERS_BUILD_RUN",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2,
+        4
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'query' originates from caller parameter of function 'runner'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_021_MULTI_ARGS_ONE_TAINTED",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "DYNAMIC_IDENTIFIER",
+        "DYNAMIC_TABLE_NAME",
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 2.01,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_022_KWARGS_PROPAGATION",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_023_CLASS_METHOD_CHAIN",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [
+        3,
+        5
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'sql' originates from caller parameter of function 'exec_sql'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_024_SUBCLASS_INHERITANCE",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        6
+      ],
+      "detected_vuln_lines": [
+        3,
+        6
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'query' originates from caller parameter of function 'run_query'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_025_STATIC_METHOD_FLOW",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 7,
+      "detected_sinks": [
+        7
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        4
+      ],
+      "detected_vuln_lines": [
+        4,
+        7
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'QueryUtils' could not be traced intraprocedurally.",
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_026_INIT_STORES_TAINT",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 5,
+      "detected_sinks": [
+        5,
+        8
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [
+        5,
+        8
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 2,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_027_GENERATOR_YIELD_TAINT",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 6,
+      "detected_sinks": [
+        6
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [
+        5,
+        6
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'item' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_028_CLOSURE_CAPTURES_TAINT",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [
+        3,
+        4
+      ],
+      "latency_ms": 1.02,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'user_input' originates from caller parameter of function 'outer_handler'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_029_CALLBACK_INVOCATION",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_030_VARARGS_WRAPPER",
+      "category": "cross_function_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "SAFE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": false,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_031_CROSS_FILE_BUILDER",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 5,
+      "detected_sinks": [
+        5
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_032_CROSS_FILE_EXECUTOR",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "DIRECT_STRING_CONCATENATION"
+      ],
+      "expected_subtype": "DIRECT_STRING_CONCATENATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        4
+      ],
+      "detected_vuln_lines": [
+        4
+      ],
+      "latency_ms": 0.98,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_033_CROSS_FILE_3_TIERS",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 2.0,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_034_CROSS_FILE_RELATIVE_IMPORT",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 5,
+      "detected_sinks": [
+        5
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_035_CROSS_FILE_PARENT_IMPORT",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        4
+      ],
+      "detected_vuln_lines": [
+        4
+      ],
+      "latency_ms": 1.51,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_036_CROSS_FILE_ALIAS",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 5,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 1.54,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_037_CROSS_FILE_STAR_IMPORT",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        4
+      ],
+      "detected_vuln_lines": [
+        4
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_038_CROSS_FILE_MOD_ATTR",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        4
+      ],
+      "detected_vuln_lines": [
+        4
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_039_CROSS_FILE_CLASS_IMPORT",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3,
+        5
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [
+        5
+      ],
+      "latency_ms": 2.0,
+      "findings_count": 2,
+      "messages": []
+    },
+    {
+      "id": "ADV_040_CROSS_FILE_SAFE_TABLE",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "DYNAMIC_TABLE_NAME"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": false,
+      "expected_sink": 5,
+      "detected_sinks": [
+        5
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        4
+      ],
+      "detected_vuln_lines": [
+        4
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_041_CROSS_FILE_3_HOPS",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_042_CROSS_FILE_INIT_REEXPORT",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        4
+      ],
+      "detected_vuln_lines": [
+        4
+      ],
+      "latency_ms": 1.99,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_043_CROSS_FILE_MULTI_CONSUMERS",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 1.02,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_044_CROSS_FILE_DATACLASS",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 2.99,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_045_CROSS_FILE_REEXPORT_CHAIN",
+      "category": "cross_file_propagation",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "SAFE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "STATIC_OR_SAFE_SQL"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": false,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        4
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 2.0,
+      "findings_count": 1,
+      "messages": [
+        "No call sites found for function 'raw_db.py:execute_direct'; parameter 'sql' is unconstrained."
+      ]
+    },
+    {
+      "id": "ADV_046_SAFE_QMARK",
+      "category": "safe_parameterized_queries",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.51,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_047_SAFE_PYFORMAT_DICT",
+      "category": "safe_parameterized_queries",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.01,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_048_SAFE_NUMERIC",
+      "category": "safe_parameterized_queries",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_049_SAFE_MULTI_PARAMS",
+      "category": "safe_parameterized_queries",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_050_SAFE_EXECUTEMANY",
+      "category": "safe_parameterized_queries",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_051_SAFE_PARAM_HELPER",
+      "category": "safe_parameterized_queries",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_052_SAFE_DYNAMIC_IN_CLAUSE",
+      "category": "safe_parameterized_queries",
+      "expected_label": "SAFE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION",
+        "HYBRID_QUERY_CONSTRUCTION"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 5,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'id_list' originates from caller parameter of function 'query_in_clause'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Assignment to query variable 'len' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_053_SAFE_CLASS_REPO",
+      "category": "safe_parameterized_queries",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_054_SAFE_KWARGS_DICT",
+      "category": "safe_parameterized_queries",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.01,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_055_SAFE_ACROSS_FILES",
+      "category": "safe_parameterized_queries",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "SAFE_PARAMETERIZATION"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_056_SANITIZED_INT_CAST",
+      "category": "sanitization_and_validation",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'int' could not be traced intraprocedurally.",
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_057_SANITIZED_FLOAT_CAST",
+      "category": "sanitization_and_validation",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'float' could not be traced intraprocedurally.",
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_058_SANITIZED_BOOL_CAST",
+      "category": "sanitization_and_validation",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Assignment to query variable 'bool' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_059_SANITIZED_UUID_CAST",
+      "category": "sanitization_and_validation",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 5,
+      "detected_sinks": [
+        5
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'uuid' could not be traced intraprocedurally.",
+        "Assignment to query variable 'str' could not be traced intraprocedurally.",
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_060_CUSTOM_INT_HELPER",
+      "category": "sanitization_and_validation",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 6,
+      "detected_sinks": [
+        6
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Assignment to query variable 'clean_id' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_061_WHITELIST_IN_LIST",
+      "category": "sanitization_and_validation",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_062_WHITELIST_EQUALITY",
+      "category": "sanitization_and_validation",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_063_WHITELIST_DICT_MAP",
+      "category": "sanitization_and_validation",
+      "expected_label": "SAFE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [
+        3,
+        4
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_064_REGEX_DIGITS_CHECK",
+      "category": "sanitization_and_validation",
+      "expected_label": "SAFE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 5,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [
+        4
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_065_EARLY_RETURN_GUARD",
+      "category": "sanitization_and_validation",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 5,
+      "detected_sinks": [
+        5
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_066_DYNAMIC_TABLE_FSTRING",
+      "category": "dynamic_sql_identifiers",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "DYNAMIC_IDENTIFIER",
+        "DYNAMIC_TABLE_NAME",
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "DYNAMIC_TABLE_NAME",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2,
+        3
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'tbl' originates from caller parameter of function 'query_table'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_067_DYNAMIC_TABLE_CONCAT",
+      "category": "dynamic_sql_identifiers",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "DIRECT_STRING_CONCATENATION",
+        "DYNAMIC_IDENTIFIER",
+        "DYNAMIC_TABLE_NAME"
+      ],
+      "expected_subtype": "DYNAMIC_TABLE_NAME",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2,
+        3
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'tbl' originates from caller parameter of function 'fetch_from_table'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_068_DYNAMIC_COLUMN_SELECT",
+      "category": "dynamic_sql_identifiers",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2,
+        3
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'col_name' originates from caller parameter of function 'select_column'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_069_DYNAMIC_ORDER_BY",
+      "category": "dynamic_sql_identifiers",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "DYNAMIC_IDENTIFIER",
+        "DYNAMIC_ORDER_BY",
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "DYNAMIC_ORDER_BY",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2,
+        3
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'sort_col' originates from caller parameter of function 'order_items'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_070_DYNAMIC_ORDER_DIR",
+      "category": "dynamic_sql_identifiers",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "DYNAMIC_IDENTIFIER",
+        "DYNAMIC_ORDER_BY",
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "DYNAMIC_ORDER_BY",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2,
+        3
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'direction' originates from caller parameter of function 'sort_direction'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_071_DYNAMIC_LIMIT_CLAUSE",
+      "category": "dynamic_sql_identifiers",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2,
+        3
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'lim' originates from caller parameter of function 'query_limit'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_072_DYNAMIC_JOIN_TABLE",
+      "category": "dynamic_sql_identifiers",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "DYNAMIC_TABLE_NAME",
+      "subtype_matched": false,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2,
+        3
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'sec_tbl' originates from caller parameter of function 'join_table'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_073_SAFE_TABLE_WHITELISTED",
+      "category": "dynamic_sql_identifiers",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_074_SAFE_ORDER_WHITELISTED",
+      "category": "dynamic_sql_identifiers",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_075_DYNAMIC_TABLE_HELPER_UNSAFE",
+      "category": "dynamic_sql_identifiers",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "DYNAMIC_IDENTIFIER",
+        "DYNAMIC_TABLE_NAME",
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "DYNAMIC_TABLE_NAME",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_076_OVERWRITE_WITH_CONSTANT",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "SAFE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 5,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": false,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [
+        2,
+        4
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_077_OVERWRITE_SAFE_WITH_TAINT",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "SAFE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": false,
+      "expected_sink": 5,
+      "detected_sinks": [
+        5
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        4
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_078_BOTH_BRANCHES_TAINTED",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 6,
+      "detected_sinks": [
+        6
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        3,
+        5
+      ],
+      "detected_vuln_lines": [
+        3,
+        5,
+        6
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_079_ONE_BRANCH_TAINTED",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 6,
+      "detected_sinks": [
+        6
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [
+        3,
+        6
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_080_LOOP_REASSIGNMENT",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [
+        3,
+        4,
+        5
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'uid' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_081_TRY_BLOCK_REASSIGN",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 6,
+      "detected_sinks": [
+        6
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [
+        3,
+        6
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_082_SANITIZATION_BYPASSED",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "SAFE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": false,
+      "expected_sink": 6,
+      "detected_sinks": [
+        6
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_083_BOOLEAN_CONSTANT_SAFE",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_084_REASSIGNED_TO_INT_SAFE",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "SAFE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 5,
+      "detected_sinks": [
+        5
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [
+        4,
+        5
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_085_FALLBACK_EXPRESSION",
+      "category": "control_flow_and_reassignment",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        3
+      ],
+      "detected_vuln_lines": [
+        2,
+        3,
+        4
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_086_DIRECT_RECURSION",
+      "category": "recursion_and_unresolved",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        4
+      ],
+      "detected_vuln_lines": [
+        4
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_087_MUTUAL_RECURSION",
+      "category": "recursion_and_unresolved",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 5,
+      "detected_sinks": [
+        5
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        5
+      ],
+      "detected_vuln_lines": [
+        5
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_088_DEPTH_EXCEEDS_MAX",
+      "category": "recursion_and_unresolved",
+      "expected_label": "UNCERTAIN",
+      "predicted_label": "UNCERTAIN",
+      "prediction_correct": true,
+      "expected_status": "PARTIAL",
+      "actual_status": "PARTIAL",
+      "status_correct": true,
+      "confidence": 0.5,
+      "vulnerability_types": [
+        "UNCONFIRMED"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 13,
+      "detected_sinks": [
+        13
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 2.6,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns.",
+        "Maximum call depth (10) exceeded during tracing."
+      ]
+    },
+    {
+      "id": "ADV_089_UNRESOLVED_EXTERNAL_IMPORT",
+      "category": "recursion_and_unresolved",
+      "expected_label": "UNCERTAIN",
+      "predicted_label": "UNCERTAIN",
+      "prediction_correct": true,
+      "expected_status": "PARTIAL",
+      "actual_status": "PARTIAL",
+      "status_correct": true,
+      "confidence": 0.5,
+      "vulnerability_types": [
+        "UNCONFIRMED"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 4,
+      "detected_sinks": [
+        4
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.52,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'request' could not be traced intraprocedurally.",
+        "Assignment to query variable 'mystery_sanitizer' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns.",
+        "External or unresolvable call to 'mystery_sanitizer' at line 3."
+      ]
+    },
+    {
+      "id": "ADV_090_MISSING_IMPORTED_FILE",
+      "category": "recursion_and_unresolved",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "PARTIAL",
+      "actual_status": "COMPLETE",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "STATIC_OR_SAFE_SQL"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": []
+    },
+    {
+      "id": "ADV_091_SQLALCHEMY_TEXT_UNSAFE",
+      "category": "orm_variations",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "UNCERTAIN",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.5,
+      "vulnerability_types": [
+        "UNCONFIRMED"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": false,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'text' could not be traced intraprocedurally.",
+        "Variable 'uid' originates from caller parameter of function 'query_user'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns.",
+        "External or unresolvable call to 'text' at line 2."
+      ]
+    },
+    {
+      "id": "ADV_092_DJANGO_RAW_UNSAFE",
+      "category": "orm_variations",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_093_DJANGO_EXTRA_UNSAFE",
+      "category": "orm_variations",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "DIRECT_STRING_CONCATENATION"
+      ],
+      "expected_subtype": "DIRECT_STRING_CONCATENATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_094_PEEWEE_RAW_UNSAFE",
+      "category": "orm_variations",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 2,
+      "detected_sinks": [
+        2
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    },
+    {
+      "id": "ADV_095_SAFE_SQLALCHEMY_PARAMS",
+      "category": "orm_variations",
+      "expected_label": "SAFE",
+      "predicted_label": "UNCERTAIN",
+      "prediction_correct": false,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.5,
+      "vulnerability_types": [
+        "UNCONFIRMED"
+      ],
+      "expected_subtype": null,
+      "subtype_matched": false,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "Assignment to query variable 'text' could not be traced intraprocedurally.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns.",
+        "External or unresolvable call to 'text' at line 2."
+      ]
+    },
+    {
+      "id": "ADV_096_SYNTAX_ERROR_IN_PROJECT",
+      "category": "syntax_and_unsupported",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "PARTIAL",
+      "actual_status": "PARTIAL",
+      "status_correct": true,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2
+      ],
+      "latency_ms": 1.0,
+      "findings_count": 1,
+      "messages": [
+        "SyntaxError in C:\\Users\\dheer\\Desktop\\isae\\experiments\\sqli_probe_v3_full_mistral\\extension\\evaluation\\adversarial_cases\\edge_cases/c96_syntax_error_in_project\\broken.py: invalid syntax. Perhaps you forgot a comma? (broken.py, line 1)"
+      ]
+    },
+    {
+      "id": "ADV_097_EMPTY_FILE",
+      "category": "syntax_and_unsupported",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "COMPLETE",
+      "status_correct": true,
+      "confidence": 1.0,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": null,
+      "detected_sinks": [],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "findings_count": 0,
+      "messages": [
+        "Empty source code provided; no database operations detected."
+      ]
+    },
+    {
+      "id": "ADV_098_COMMENTS_ONLY",
+      "category": "syntax_and_unsupported",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.95,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": null,
+      "detected_sinks": [],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 0.0,
+      "findings_count": 0,
+      "messages": [
+        "No database execution sinks (e.g. execute, raw, query) detected in source code.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns.",
+        "No SQL execution sinks detected across analyzed functions."
+      ]
+    },
+    {
+      "id": "ADV_099_EXEC_META_CALL",
+      "category": "syntax_and_unsupported",
+      "expected_label": "SAFE",
+      "predicted_label": "SAFE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.95,
+      "vulnerability_types": [],
+      "expected_subtype": null,
+      "subtype_matched": true,
+      "expected_sink": null,
+      "detected_sinks": [],
+      "sink_matched": true,
+      "expected_vuln_lines": [],
+      "detected_vuln_lines": [],
+      "latency_ms": 1.0,
+      "findings_count": 0,
+      "messages": [
+        "No database execution sinks (e.g. execute, raw, query) detected in source code.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns.",
+        "No SQL execution sinks detected across analyzed functions."
+      ]
+    },
+    {
+      "id": "ADV_100_ASYNC_AWAIT_CALL",
+      "category": "syntax_and_unsupported",
+      "expected_label": "VULNERABLE",
+      "predicted_label": "VULNERABLE",
+      "prediction_correct": true,
+      "expected_status": "COMPLETE",
+      "actual_status": "PARTIAL",
+      "status_correct": false,
+      "confidence": 0.9,
+      "vulnerability_types": [
+        "F_STRING_INTERPOLATION"
+      ],
+      "expected_subtype": "F_STRING_INTERPOLATION",
+      "subtype_matched": true,
+      "expected_sink": 3,
+      "detected_sinks": [
+        3
+      ],
+      "sink_matched": true,
+      "expected_vuln_lines": [
+        2
+      ],
+      "detected_vuln_lines": [
+        2,
+        3
+      ],
+      "latency_ms": 0.0,
+      "findings_count": 1,
+      "messages": [
+        "Variable 'uid' originates from caller parameter of function 'async_query'; intraprocedural analysis cannot verify external caller dataflow.",
+        "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+      ]
+    }
+  ]
+}

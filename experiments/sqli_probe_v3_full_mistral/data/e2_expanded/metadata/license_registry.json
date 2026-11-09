@@ -1,0 +1,74 @@
+{
+  "dataset_name": "E2_expanded_4673",
+  "total_records": 4673,
+  "source_licenses": {
+    "sql_injection_train_1000.xlsx": {
+      "license": "Proprietary / Internal Research Benchmark",
+      "reference_url": "c:\\Users\\dheer\\Desktop\\isae\\sql_injection_train_1000.xlsx",
+      "description": "Curated Python SQL injection reference dataset with manual review."
+    },
+    "expanded_evaluation_3k": {
+      "license": "Apache-2.0",
+      "reference_url": "https://github.com/security-eval/cwe-benchmark",
+      "description": "Paired benchmark coding tasks pairing vulnerable string interpolations with safe remediations."
+    },
+    "S-AIR-L/PyCode-Vul": {
+      "license": "MIT",
+      "reference_url": "https://huggingface.co/datasets/S-AIR-L/PyCode-Vul",
+      "description": "Large-scale Python vulnerability benchmark dataset."
+    },
+    "Zenodo-5225651-Copilot-CWE": {
+      "license": "CC-BY-4.0",
+      "reference_url": "https://zenodo.org/record/5225651",
+      "description": "CWE-focused code generation security dataset."
+    },
+    "janhvi-ag/cvefixes_pyvul_merged": {
+      "license": "MIT",
+      "reference_url": "https://huggingface.co/datasets/janhvi-ag/cvefixes_pyvul_merged",
+      "description": "Merged Python vulnerability dataset based on CVEFixes."
+    },
+    "DetectVul/CVEFixes": {
+      "license": "Apache-2.0",
+      "reference_url": "https://github.com/DetectVul/CVEFixes",
+      "description": "Vulnerability fixing commit dataset."
+    },
+    "cmonplz/Python_Vulnerability_Remediation": {
+      "license": "MIT",
+      "reference_url": "https://huggingface.co/datasets/cmonplz/Python_Vulnerability_Remediation",
+      "description": "Python security vulnerability remediation corpus."
+    },
+    "s2e-lab/SecurityEval": {
+      "license": "MIT",
+      "reference_url": "https://github.com/s2e-lab/SecurityEval",
+      "description": "Evaluation dataset for code security evaluation."
+    },
+    "felixwangg/pyvul_curated_minus": {
+      "license": "MIT",
+      "reference_url": "https://huggingface.co/datasets/felixwangg/pyvul_curated_minus",
+      "description": "Curated Python vulnerability dataset."
+    },
+    "scthornton/securecode": {
+      "license": "Apache-2.0",
+      "reference_url": "https://github.com/scthornton/securecode",
+      "description": "Python secure coding examples and anti-patterns."
+    },
+    "Bandit-CodeQL-Reference": {
+      "license": "Apache-2.0 / MIT",
+      "reference_url": "https://github.com/PyCQA/bandit",
+      "description": "Reference static analysis benchmark patterns for SQL injection."
+    }
+  },
+  "records_per_source": {
+    "sql_injection_train_1000.xlsx": 1000,
+    "expanded_evaluation_3k": 700,
+    "S-AIR-L/PyCode-Vul": 2417,
+    "Zenodo-5225651-Copilot-CWE": 474,
+    "janhvi-ag/cvefixes_pyvul_merged": 12,
+    "DetectVul/CVEFixes": 6,
+    "cmonplz/Python_Vulnerability_Remediation": 22,
+    "s2e-lab/SecurityEval": 2,
+    "felixwangg/pyvul_curated_minus": 7,
+    "scthornton/securecode": 21,
+    "Bandit-CodeQL-Reference": 12
+  }
+}

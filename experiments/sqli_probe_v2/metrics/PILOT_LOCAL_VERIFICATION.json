@@ -1,0 +1,85 @@
+{
+  "sample_count": 20,
+  "candidate_layers_tested": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "hidden_dimension": 128,
+  "mean_pooling_metrics": {
+    "layer_0": {
+      "shape": [
+        20,
+        128
+      ],
+      "mean_norm": 0.12746448814868927,
+      "std": 0.011248558759689331
+    },
+    "layer_1": {
+      "shape": [
+        20,
+        128
+      ],
+      "mean_norm": 0.3365970551967621,
+      "std": 0.02983972802758217
+    },
+    "layer_2": {
+      "shape": [
+        20,
+        128
+      ],
+      "mean_norm": 0.5121256709098816,
+      "std": 0.04526640102267265
+    },
+    "layer_3": {
+      "shape": [
+        20,
+        128
+      ],
+      "mean_norm": 9.786672592163086,
+      "std": 0.8576104044914246
+    }
+  },
+  "ast_sink_pooling_metrics": {
+    "layer_0": {
+      "shape": [
+        20,
+        128
+      ],
+      "mean_norm": 0.13209694623947144,
+      "std": 0.01170317456126213
+    },
+    "layer_1": {
+      "shape": [
+        20,
+        128
+      ],
+      "mean_norm": 0.33273079991340637,
+      "std": 0.029581328853964806
+    },
+    "layer_2": {
+      "shape": [
+        20,
+        128
+      ],
+      "mean_norm": 0.4964800775051117,
+      "std": 0.04414305463433266
+    },
+    "layer_3": {
+      "shape": [
+        20,
+        128
+      ],
+      "mean_norm": 10.28404712677002,
+      "std": 0.9020224809646606
+    }
+  },
+  "ast_sink_coverage": {
+    "total_samples": 20,
+    "sinks_detected": 17,
+    "fallback_used": 3
+  },
+  "throughput_samples_per_sec": 55.4434326964322,
+  "total_elapsed_seconds": 0.36072802543640137
+}

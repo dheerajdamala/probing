@@ -1,0 +1,103 @@
+{
+  "suite": "mutation_tracking_tests",
+  "total_tests": 5,
+  "passed_tests": 5,
+  "failed_tests": 0,
+  "pass_rate": 1.0,
+  "results": [
+    {
+      "test_id": "MTT_01",
+      "name": "Augmented assignment (+ =) direct string concatenation",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "vulnerable_lines": [
+        {
+          "line": 4,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'query' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 5,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'cursor.execute'."
+        }
+      ]
+    },
+    {
+      "test_id": "MTT_02",
+      "name": "Augmented assignment with f-string interpolation",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "vulnerable_lines": [
+        {
+          "line": 4,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'sql' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 5,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'db.execute'."
+        }
+      ]
+    },
+    {
+      "test_id": "MTT_03",
+      "name": "Repeated assignments to query variable across sequential steps",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "vulnerable_lines": [
+        {
+          "line": 3,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'stmt' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 4,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'stmt' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 5,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'cursor.execute'."
+        }
+      ]
+    },
+    {
+      "test_id": "MTT_04",
+      "name": "Conditional assignment mutations with branch attribution",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "vulnerable_lines": [
+        {
+          "line": 4,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'query' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 6,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'query' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 7,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'cursor.execute'."
+        }
+      ]
+    },
+    {
+      "test_id": "MTT_05",
+      "name": "Static augmented assignment does not create unsafe construction",
+      "passed": true,
+      "errors": [],
+      "prediction": "SAFE",
+      "vulnerable_lines": []
+    }
+  ]
+}

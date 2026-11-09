@@ -1,0 +1,62 @@
+# Configuration for Python SQL Injection Security Probe (PySQLi-4k)
+
+project:
+  name: "security_probe_sql"
+  version: "1.0.0"
+  description: "Dedicated representation probe for Python SQL injection detection and exploratory localization"
+  seed: 42
+
+model:
+  base_model: "mistralai/Mistral-7B-Instruct-v0.3"
+  mock: true # Set true for CPU/local environment, false for Kaggle/Colab GPU
+  target_layer: 16 # Layer 16 primary layer for full 7B model
+  candidate_layers: [12, 14, 16, 18, 20]
+  mock_target_layer: 2 # Layer 2 for fast miniature fixture
+  mock_candidate_layers: [1, 2, 3]
+  pooling: "mean_prompt" # Options: mean_prompt, last_token
+  max_seq_len: 2048
+
+probe:
+  primary_architecture: "linear" # Logistic Regression
+  comparison_architecture: "mlp" # Multi-Layer Perceptron
+  linear:
+    c_regularization: 1.0
+    penalty: "l2"
+    solver: "lbfgs"
+    max_iter: 1000
+    class_weight: "balanced"
+  mlp:
+    hidden_dim: 128
+    num_layers: 2
+    dropout: 0.2
+    learning_rate: 0.001
+    epochs: 40
+    batch_size: 64
+    weight_decay: 0.01
+
+threshold:
+  strategy: "f1_optimal" # Selected strictly on validation set
+  default_threshold: 0.50
+  uncertainty_margin: 0.08 # Below (threshold - margin) -> safe, Above (threshold + margin) -> vuln, between -> uncertain
+
+localization:
+  mode: "exploratory_token_projection"
+  line_aggregation: "max" # max token score in line
+  window_context: 1
+  min_display_score: 0.35
+
+data:
+  raw_dir: "data/raw"
+  interim_dir: "data/interim"
+  processed_dir: "data/processed"
+  splits_dir: "data/processed/splits"
+  train_split: "data/processed/splits/train.jsonl"
+  val_split: "data/processed/splits/val.jsonl"
+  test_split: "data/processed/splits/test.jsonl"
+
+outputs:
+  models_dir: "models"
+  metrics_dir: "outputs/metrics"
+  graphs_dir: "outputs/graphs"
+  predictions_dir: "outputs/predictions"
+  reports_dir: "outputs/reports"

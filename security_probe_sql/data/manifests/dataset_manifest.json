@@ -1,0 +1,104 @@
+{
+  "dataset_name": "Python SQL Injection Representation Probe Dataset (PySQLi-4k)",
+  "version": "1.0.0",
+  "date_created": "2026-10-29",
+  "description": "Multi-source benchmark and training dataset for Python SQL injection detection and exploratory localization.",
+  "statistics": {
+    "total_raw_records": 5405,
+    "total_python_records": 5405,
+    "total_sql_related": 5405,
+    "total_after_exact_dedup": 3622,
+    "total_after_near_dedup_and_pairs": 3032,
+    "total_validated_vulnerable": 591,
+    "total_validated_non_vulnerable": 2441,
+    "total_with_ground_truth_spans": 116,
+    "exclusion_reasons": {
+      "empty_or_too_short": 0,
+      "syntax_error": 306,
+      "no_sql_content": 0,
+      "exact_duplicate": 1477,
+      "near_duplicate": 637
+    },
+    "total_excluded_records": 2373,
+    "source_contributions": {
+      "S-AIR-L/PyCode-Vul": 2417,
+      "Zenodo-5225651-Copilot-CWE": 474,
+      "janhvi-ag/cvefixes_pyvul_merged": 27,
+      "DetectVul/CVEFixes": 6,
+      "cmonplz/Python_Vulnerability_Remediation": 65,
+      "s2e-lab/SecurityEval": 2,
+      "felixwangg/pyvul_curated_minus": 8,
+      "scthornton/securecode": 21,
+      "Bandit-CodeQL-Reference": 12
+    },
+    "target_4000_met": false
+  },
+  "sources": [
+    {
+      "source": "S-AIR-L/PyCode-Vul",
+      "url": "https://huggingface.co/datasets/S-AIR-L/PyCode-Vul",
+      "license": "Apache-2.0",
+      "count": 2417
+    },
+    {
+      "source": "Zenodo-5225651-Copilot-CWE",
+      "url": "https://doi.org/10.5281/zenodo.5225651",
+      "license": "CC-BY-4.0",
+      "count": 474
+    },
+    {
+      "source": "janhvi-ag/cvefixes_pyvul_merged",
+      "url": "https://huggingface.co/datasets/janhvi-ag/cvefixes_pyvul_merged",
+      "license": "MIT",
+      "count": 27
+    },
+    {
+      "source": "cmonplz/Python_Vulnerability_Remediation",
+      "url": "https://huggingface.co/datasets/cmonplz/Python_Vulnerability_Remediation",
+      "license": "MIT",
+      "count": 65
+    },
+    {
+      "source": "maddyrucos/code_vulnerability_python",
+      "url": "https://huggingface.co/datasets/maddyrucos/code_vulnerability_python",
+      "license": "MIT",
+      "count": 0
+    },
+    {
+      "source": "DetectVul/CVEFixes",
+      "url": "https://huggingface.co/datasets/DetectVul/CVEFixes",
+      "license": "Apache-2.0",
+      "count": 6
+    },
+    {
+      "source": "purpcode/CyberSecEval-SCG",
+      "url": "https://huggingface.co/datasets/purpcode/CyberSecEval-SCG",
+      "license": "CC-BY-NC-4.0",
+      "count": 0
+    },
+    {
+      "source": "scthornton/securecode",
+      "url": "https://huggingface.co/datasets/scthornton/securecode",
+      "license": "Apache-2.0",
+      "count": 21
+    },
+    {
+      "source": "felixwangg/pyvul_curated_minus",
+      "url": "https://huggingface.co/datasets/felixwangg/pyvul_curated_minus",
+      "license": "MIT",
+      "count": 8
+    },
+    {
+      "source": "Bandit-CodeQL-Reference",
+      "url": "https://github.com/PyCQA/bandit/tree/main/examples/sql_injection.py",
+      "license": "Apache-2.0",
+      "count": 12
+    },
+    {
+      "source": "s2e-lab/SecurityEval",
+      "url": "https://huggingface.co/datasets/s2e-lab/SecurityEval",
+      "license": "Apache-2.0",
+      "count": 2
+    }
+  ]
+}

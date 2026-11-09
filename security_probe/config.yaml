@@ -1,0 +1,50 @@
+probe:
+  # Target semantic concept
+  target_property: "vulnerability_presence"
+  
+  # Base Model Settings (used as frozen feature extractor)
+  model_id: "mistralai/Mistral-7B-Instruct-v0.3"
+  torch_dtype: "bfloat16"
+  load_in_4bit: true
+  
+  # Layer Selection:
+  # Mid-layer representation (Layer 16 out of 32 in Mistral-7B contains rich semantic/syntactic features)
+  # For miniature test models (<= 4 layers), layer 2 is used automatically.
+  selected_layer: 16
+  fallback_layer_for_small_models: 2
+  
+  # Representation Pooling for Whole-Program Classification
+  # Options: "mean_prompt", "last_token"
+  pooling_strategy: "mean_prompt"
+  
+  # Probe Architecture
+  # Options: "linear" (regularized Logistic Regression), "mlp" (2-layer MLP)
+  architecture: "linear"
+  regularization_c: 1.0
+  max_iter: 1000
+  random_seed: 42
+  
+  # Threshold & Uncertainty Calibration
+  # decision_threshold: score >= threshold -> VULNERABLE; < threshold -> BENIGN
+  decision_threshold: 0.50
+  # uncertainty_margin: scores within [decision_threshold - margin, decision_threshold + margin] -> UNCERTAIN
+  uncertainty_margin: 0.08
+  
+  # Localization Settings (Exploratory Token-Representation Projection)
+  localization:
+    method: "token_projection"
+    # Minimum token score to consider a line/token as a candidate finding
+    finding_threshold: 0.60
+    # Aggregation of token scores to line score: "max" or "mean"
+    line_aggregation: "max"
+    # If no line/token exceeds finding_threshold, status becomes NO_FINDING
+    require_finding_for_vulnerable: false
+    # Clarification flag: Dataset has only whole-program labels; token localization is exploratory
+    ground_truth_spans_available: false
+
+paths:
+  train_data: "data/processed/train.json"
+  val_data: "data/processed/val.json"
+  test_data: "data/processed/test.json"
+  model_save_dir: "security_probe/models"
+  output_dir: "security_probe/outputs"

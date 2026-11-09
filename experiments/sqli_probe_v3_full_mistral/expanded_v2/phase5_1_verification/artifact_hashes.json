@@ -1,0 +1,10 @@
+{
+  "PHASE5_1_VERIFICATION_REPORT.md": "ae76bb9d9928eb4128487c75ebfbeb607d7fcccb19da2535789883fe92e76508",
+  "phase4b_phase5_discrepancy_analysis.md": "2377de502744597653d385f31ca4d3d7533c4c16c09fbdc278373759fc7e4662",
+  "v1_v2_recomputed_metrics.json": "ae920bd1134a3e7d7bdca7f3074b04c868e2e5e8b044285874f315073d706bcd",
+  "benchmark_integrity_audit.json": "c87dfb9a3105f420a1a89147435e369803f4c61ab778f5a4cf314d506ed7ba6b",
+  "ground_truth_integrity_audit.json": "efd87052432fea2d149c365766658ad7809314237170435393e7f9befd320639",
+  "regression_test_audit.json": "bc27435bac4b84b5fc0a60ef263b972ece0bef3d286b5f428d47086d8668b045",
+  "per_sample_metric_reconstruction.csv": "e274729812d51dcf894250f8f6bb8fe2a057beb4a13ca5d9e7031524fa16b42a",
+  "analysis_metadata.json": "c333bba1a8f40bc3ff60242ea1747afea1ae0b719e0deeaa2891644705e88181"
+}

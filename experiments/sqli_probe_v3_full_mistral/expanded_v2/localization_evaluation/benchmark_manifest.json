@@ -1,0 +1,802 @@
+[
+  {
+    "sample_id": "loc_direct_001",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_001.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_direct_002",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_002.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_direct_003",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_003.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_direct_004",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_004.py",
+    "file_type": "single_file",
+    "db_api": "mysql.connector"
+  },
+  {
+    "sample_id": "loc_direct_005",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_005.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_direct_006",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_006.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_direct_007",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_007.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_direct_008",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_008.py",
+    "file_type": "single_file",
+    "db_api": "mysql.connector"
+  },
+  {
+    "sample_id": "loc_direct_009",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_009.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_direct_010",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_010.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_direct_011",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_011.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_direct_012",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_012.py",
+    "file_type": "single_file",
+    "db_api": "mysql.connector"
+  },
+  {
+    "sample_id": "loc_direct_013",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_013.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_direct_014",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_014.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_direct_015",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_015.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_direct_016",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_016.py",
+    "file_type": "single_file",
+    "db_api": "mysql.connector"
+  },
+  {
+    "sample_id": "loc_direct_017",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_017.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_direct_018",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_018.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_direct_019",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_019.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_direct_020",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_direct_020.py",
+    "file_type": "single_file",
+    "db_api": "mysql.connector"
+  },
+  {
+    "sample_id": "loc_interproc_001",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_001.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_002",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_002.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_003",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_003.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_004",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_004.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_005",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_005.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_006",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_006.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_007",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_007.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_008",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_008.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_009",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_009.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_010",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_010.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_011",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_011.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_012",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_012.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_013",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_013.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_014",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_014.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_interproc_015",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_interproc_015.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_001",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_001",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_002",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_002",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_003",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_003",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_004",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_004",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_005",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_005",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_006",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_006",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_007",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_007",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_008",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_008",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_009",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_009",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_010",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_010",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_011",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_011",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_012",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_012",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_013",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_013",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_014",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_014",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_crossfile_015",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_crossfile_015",
+    "file_type": "multi_file_project",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_param_001",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_001.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_param_002",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_002.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_safe_param_003",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_003.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_param_004",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_004.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_safe_param_005",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_005.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_param_006",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_006.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_safe_param_007",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_007.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_param_008",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_008.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_safe_param_009",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_009.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_param_010",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_010.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_safe_param_011",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_011.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_param_012",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_012.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_safe_param_013",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_013.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_param_014",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_014.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_safe_param_015",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_param_015.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_orm_001",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_orm_001.py",
+    "file_type": "single_file",
+    "db_api": "django"
+  },
+  {
+    "sample_id": "loc_safe_orm_002",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_orm_002.py",
+    "file_type": "single_file",
+    "db_api": "sqlalchemy"
+  },
+  {
+    "sample_id": "loc_safe_orm_003",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_orm_003.py",
+    "file_type": "single_file",
+    "db_api": "django"
+  },
+  {
+    "sample_id": "loc_safe_orm_004",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_orm_004.py",
+    "file_type": "single_file",
+    "db_api": "sqlalchemy"
+  },
+  {
+    "sample_id": "loc_safe_orm_005",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_orm_005.py",
+    "file_type": "single_file",
+    "db_api": "django"
+  },
+  {
+    "sample_id": "loc_safe_orm_006",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_orm_006.py",
+    "file_type": "single_file",
+    "db_api": "sqlalchemy"
+  },
+  {
+    "sample_id": "loc_safe_orm_007",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_orm_007.py",
+    "file_type": "single_file",
+    "db_api": "django"
+  },
+  {
+    "sample_id": "loc_safe_orm_008",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_orm_008.py",
+    "file_type": "single_file",
+    "db_api": "sqlalchemy"
+  },
+  {
+    "sample_id": "loc_safe_orm_009",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_orm_009.py",
+    "file_type": "single_file",
+    "db_api": "django"
+  },
+  {
+    "sample_id": "loc_safe_orm_010",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_orm_010.py",
+    "file_type": "single_file",
+    "db_api": "sqlalchemy"
+  },
+  {
+    "sample_id": "loc_safe_val_001",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_val_001.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_val_002",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_val_002.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_val_003",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_val_003.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_val_004",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_val_004.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_val_005",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_val_005.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_val_006",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_val_006.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_val_007",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_val_007.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_val_008",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_val_008.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_val_009",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_val_009.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_safe_val_010",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_safe_val_010.py",
+    "file_type": "single_file",
+    "db_api": "sqlite3"
+  },
+  {
+    "sample_id": "loc_complex_001",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_complex_001.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_complex_002",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_complex_002.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_complex_003",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_complex_003.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_complex_004",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_complex_004.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_complex_005",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_complex_005.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_complex_006",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_complex_006.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_complex_007",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_complex_007.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_complex_008",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_complex_008.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_complex_009",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_complex_009.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_complex_010",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_complex_010.py",
+    "file_type": "single_file",
+    "db_api": "psycopg2"
+  },
+  {
+    "sample_id": "loc_nosink_001",
+    "category": "No SQL injection/no SQL sink",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_nosink_001.py",
+    "file_type": "single_file",
+    "db_api": "none"
+  },
+  {
+    "sample_id": "loc_nosink_002",
+    "category": "No SQL injection/no SQL sink",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_nosink_002.py",
+    "file_type": "single_file",
+    "db_api": "none"
+  },
+  {
+    "sample_id": "loc_nosink_003",
+    "category": "No SQL injection/no SQL sink",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_nosink_003.py",
+    "file_type": "single_file",
+    "db_api": "none"
+  },
+  {
+    "sample_id": "loc_nosink_004",
+    "category": "No SQL injection/no SQL sink",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_nosink_004.py",
+    "file_type": "single_file",
+    "db_api": "none"
+  },
+  {
+    "sample_id": "loc_nosink_005",
+    "category": "No SQL injection/no SQL sink",
+    "is_vulnerable": false,
+    "entry_path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/localization_evaluation\\benchmark\\loc_nosink_005.py",
+    "file_type": "single_file",
+    "db_api": "none"
+  }
+]

@@ -1,0 +1,6 @@
+neural_outcome,Confirmed safe,Confirmed vulnerable,Uncertain/partial/failed,All
+FN,2,4,2,8
+FP,135,98,11,244
+TN,212,15,21,248
+TP,6,181,8,195
+All,355,298,42,695

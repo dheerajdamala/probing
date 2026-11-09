@@ -1,0 +1,76 @@
+{
+  "created_at": "2026-11-06T15:55:00Z",
+  "source": "experiments/sqli_probe_v3_full_mistral/embeddings/full_e2",
+  "model": "mistralai/Mistral-7B-Instruct-v0.3",
+  "layer": 12,
+  "pooling": "ast_sink",
+  "dimension": 4096,
+  "splits": {
+    "train": {
+      "count": 700,
+      "sha256_original_npy": "174e05cb5a01f5c49100cfd370499f553f514b782b1a6e9ed96d27ce8f733139",
+      "sha256_original_ids": "6839b0c3373a1f01c0a7c2638f6ae885fd27dc367bf7c74ee512e4939e8ef1c3",
+      "sha256_exported_npz": "d4da6559dbb2c1f59803af537c9dfdcbf9c1fdf3af78c1388ccb17f3f2a1ceb2",
+      "first_5_ids": [
+        "t_0560",
+        "t_0642",
+        "t_0663",
+        "t_0804",
+        "t_0633"
+      ],
+      "last_5_ids": [
+        "t_0847",
+        "t_0506",
+        "t_0305",
+        "t_0117",
+        "t_0063"
+      ],
+      "min_norm": 1.264719843864441,
+      "max_norm": 14.776424407958984
+    },
+    "validation": {
+      "count": 149,
+      "sha256_original_npy": "77eff9374ff6774fa563cfd83253af0965bac67748e344c3df8fdde451ce9007",
+      "sha256_original_ids": "b58817e1ae48faeea4041365a0342bafd965222a3505b33164b8ed1e4d1c7070",
+      "sha256_exported_npz": "80c1d2f59072765abeb3c0f35fced92c318bf5c04970c97d84d53206390f6616",
+      "first_5_ids": [
+        "t_0112",
+        "t_0024",
+        "t_0414",
+        "t_0092",
+        "t_0677"
+      ],
+      "last_5_ids": [
+        "t_0809",
+        "t_0562",
+        "t_0798",
+        "t_0831",
+        "t_0794"
+      ],
+      "min_norm": 1.288095474243164,
+      "max_norm": 12.850422859191895
+    },
+    "test": {
+      "count": 151,
+      "sha256_original_npy": "5def3a12d0a86777e57930ed4a8dbec69a0f2d0e1805801f8e02490e51db25dc",
+      "sha256_original_ids": "52f80a4f473abf2eb4a3a00c4b78cd2ed115f16550be4ae9861c2ecbc0768363",
+      "sha256_exported_npz": "37309a38cf16d62b5702243b900ae1ebf255dcb7c8cb50ccc9404be48c07aac3",
+      "first_5_ids": [
+        "t_0075",
+        "t_0476",
+        "t_0863",
+        "t_0807",
+        "t_0157"
+      ],
+      "last_5_ids": [
+        "t_0501",
+        "t_0480",
+        "t_0499",
+        "t_0253",
+        "t_0131"
+      ],
+      "min_norm": 1.264922857284546,
+      "max_norm": 9.269569396972656
+    }
+  }
+}

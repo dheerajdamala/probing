@@ -1,0 +1,8 @@
+{
+  "workstream": "Workstream A: Phase 4A.1 Hybrid Evaluation Reconciliation",
+  "timestamp_utc": "2026-11-09T06:44:08Z",
+  "git_commit": "24b7d6eecaac8daa0759309c4caeec3602811da3",
+  "sample_count": 695,
+  "reproduction_status": "FULLY_REPRODUCED",
+  "output_directory": "experiments/sqli_probe_v3_full_mistral/expanded_v2/hybrid_verification"
+}

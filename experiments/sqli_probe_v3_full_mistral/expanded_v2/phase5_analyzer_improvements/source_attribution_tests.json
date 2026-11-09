@@ -1,0 +1,212 @@
+{
+  "suite": "source_attribution_tests",
+  "total_tests": 6,
+  "passed_tests": 6,
+  "failed_tests": 0,
+  "pass_rate": 1.0,
+  "results": [
+    {
+      "test_id": "SAT_01",
+      "name": "Framework HTTP GET parameter recognized as ORIGINAL_SOURCE",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "status": "PARTIAL",
+      "source_lines": [
+        {
+          "file": "snippet.py",
+          "line": 2,
+          "column": 4,
+          "role": "ORIGINAL_SOURCE",
+          "function": "view_user",
+          "evidence": "uid = request.args['id']"
+        }
+      ],
+      "formal_parameter_lines": [],
+      "vulnerable_lines": [
+        {
+          "line": 3,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'sql' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 4,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'cursor.execute'."
+        }
+      ]
+    },
+    {
+      "test_id": "SAT_02",
+      "name": "Framework HTTP form parameter recognized as ORIGINAL_SOURCE",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "status": "PARTIAL",
+      "source_lines": [
+        {
+          "file": "snippet.py",
+          "line": 2,
+          "column": 4,
+          "role": "ORIGINAL_SOURCE",
+          "function": "login",
+          "evidence": "user = request.form['username']"
+        }
+      ],
+      "formal_parameter_lines": [],
+      "vulnerable_lines": [
+        {
+          "line": 3,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'q' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 4,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'db.execute'."
+        }
+      ]
+    },
+    {
+      "test_id": "SAT_03",
+      "name": "Formal parameter with unconstrained caller context preserves uncertainty",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "status": "PARTIAL",
+      "source_lines": [],
+      "formal_parameter_lines": [
+        {
+          "file": "snippet.py",
+          "line": 1,
+          "column": 0,
+          "role": "FORMAL_PARAMETER",
+          "function": "build_query",
+          "evidence": "def build_query(..., user_id, ...)"
+        }
+      ],
+      "vulnerable_lines": [
+        {
+          "line": 2,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'query' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 3,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'conn.execute'."
+        }
+      ]
+    },
+    {
+      "test_id": "SAT_04",
+      "name": "Caller source passing to helper formal parameter",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "status": "PARTIAL",
+      "source_lines": [
+        {
+          "file": "snippet.py",
+          "line": 6,
+          "column": 4,
+          "role": "ORIGINAL_SOURCE",
+          "function": "caller",
+          "evidence": "raw = request.args.get('uid')"
+        }
+      ],
+      "formal_parameter_lines": [
+        {
+          "file": "snippet.py",
+          "line": 1,
+          "column": 0,
+          "role": "FORMAL_PARAMETER",
+          "function": "helper",
+          "evidence": "def helper(..., user_id, ...)"
+        }
+      ],
+      "vulnerable_lines": [
+        {
+          "line": 2,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'query' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 3,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'cursor.execute'."
+        }
+      ]
+    },
+    {
+      "test_id": "SAT_05",
+      "name": "Intermediate variable propagation distinguishes ORIGINAL_SOURCE and PROPAGATION",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "status": "PARTIAL",
+      "source_lines": [
+        {
+          "file": "snippet.py",
+          "line": 2,
+          "column": 4,
+          "role": "ORIGINAL_SOURCE",
+          "function": "process_input",
+          "evidence": "raw = request.args['q']"
+        }
+      ],
+      "formal_parameter_lines": [],
+      "vulnerable_lines": [
+        {
+          "line": 4,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'query' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 5,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'cursor.execute'."
+        }
+      ]
+    },
+    {
+      "test_id": "SAT_06",
+      "name": "Unresolved caller parameter preserves PARTIAL resolution status",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "status": "PARTIAL",
+      "source_lines": [],
+      "formal_parameter_lines": [
+        {
+          "file": "snippet.py",
+          "line": 1,
+          "column": 0,
+          "role": "FORMAL_PARAMETER",
+          "function": "run_custom_query",
+          "evidence": "def run_custom_query(..., col, ...)"
+        },
+        {
+          "file": "snippet.py",
+          "line": 1,
+          "column": 0,
+          "role": "FORMAL_PARAMETER",
+          "function": "run_custom_query",
+          "evidence": "def run_custom_query(..., tbl, ...)"
+        }
+      ],
+      "vulnerable_lines": [
+        {
+          "line": 2,
+          "role": "SQL_CONSTRUCTION",
+          "reason": "SQL string assigned/mutated into 'sql' constructed using dynamic formatting or concatenation."
+        },
+        {
+          "line": 3,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'cursor.execute'."
+        }
+      ]
+    }
+  ]
+}

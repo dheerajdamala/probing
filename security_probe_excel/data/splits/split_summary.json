@@ -1,0 +1,21 @@
+{
+  "train": {
+    "total": 3268,
+    "vulnerable": 1005,
+    "safe": 2263,
+    "prevalence": 0.3075275397796818
+  },
+  "val": {
+    "total": 699,
+    "vulnerable": 215,
+    "safe": 484,
+    "prevalence": 0.30758226037195996
+  },
+  "test": {
+    "total": 706,
+    "vulnerable": 218,
+    "safe": 488,
+    "prevalence": 0.3087818696883853
+  },
+  "total": 4673
+}

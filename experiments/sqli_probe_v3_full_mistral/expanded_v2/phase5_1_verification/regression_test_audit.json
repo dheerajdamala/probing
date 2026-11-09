@@ -1,0 +1,55 @@
+{
+  "regression_suite": {
+    "total_tests": 50,
+    "passed": 50,
+    "failed": 0,
+    "skipped": 0,
+    "pass_rate": 1.0
+  },
+  "focused_suites": {
+    "source_attribution": {
+      "total": 6,
+      "passed": 6
+    },
+    "mutation_tracking": {
+      "total": 5,
+      "passed": 5
+    },
+    "loop_analysis": {
+      "total": 5,
+      "passed": 5
+    },
+    "placeholder_recognition": {
+      "total": 5,
+      "passed": 5
+    },
+    "interprocedural": {
+      "total": 5,
+      "passed": 5
+    }
+  },
+  "combined_summary": {
+    "total_tests_executed": 76,
+    "total_tests_passed": 76,
+    "total_tests_failed": 0,
+    "total_tests_skipped": 0,
+    "overall_pass_rate": 1.0
+  },
+  "assertion_coverage_audit": {
+    "asserts_roles": true,
+    "asserts_exact_lines": true,
+    "asserts_caller_uncertainty": true,
+    "asserts_placeholder_binding_invariant": true,
+    "asserts_loop_variable_taint": true,
+    "asserts_multi_level_call_chains": true,
+    "overlapping_tests": [
+      {
+        "test_pair": [
+          "SAT_03",
+          "SAT_06"
+        ],
+        "note": "Both verify unconstrained caller parameter produces PARTIAL resolution status, exercising different function call geometries."
+      }
+    ]
+  }
+}

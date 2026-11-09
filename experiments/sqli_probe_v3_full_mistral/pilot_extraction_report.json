@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Probe V3 Pilot Extraction Report Schema",
+  "status": "TEMPLATE_PENDING_GPU_EXECUTION",
+  "sample_count": 20,
+  "vulnerable_count": 10,
+  "safe_count": 10,
+  "hidden_dimension": 4096,
+  "candidate_layers": [4, 8, 12, 16, 20, 24, 28, 32],
+  "reference_layer": 16,
+  "model_id": "mistralai/Mistral-7B-Instruct-v0.3",
+  "quantization": "4-bit NF4 with Double Quantization (bnb)",
+  "pooling_methods": ["attention_mask_mean", "ast_sink_region"],
+  "dual_pooling_single_forward_pass": true,
+  "sample_ids": [
+    "t_0863", "t_0807", "t_0157", "t_0956", "t_0843",
+    "t_0858", "t_0608", "t_0146", "t_0674", "t_0753",
+    "t_0075", "t_0476", "t_0007", "t_0134", "t_0358",
+    "t_0469", "t_0556", "t_0376", "t_0391", "t_0302"
+  ],
+  "layer_audit_spec": {
+    "dimensions_per_matrix": [20, 4096],
+    "precision": "float32",
+    "expected_storage_bytes_per_layer": 327680,
+    "nan_tolerance": 0,
+    "inf_tolerance": 0
+  }
+}
+

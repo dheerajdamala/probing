@@ -1,0 +1,2262 @@
+{
+  "loc_direct_001": {
+    "sample_id": "loc_direct_001",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "user_input",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        5
+      ],
+      "vulnerable_lines": [
+        3,
+        5
+      ],
+      "vuln_type": "F_STRING_INTERPOLATION",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_002": {
+    "sample_id": "loc_direct_002",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "account_id",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        5
+      ],
+      "vulnerable_lines": [
+        3,
+        5
+      ],
+      "vuln_type": "DIRECT_STRING_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_003": {
+    "sample_id": "loc_direct_003",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "cust_id",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [
+        3,
+        4
+      ],
+      "vuln_type": "PERCENT_FORMATTING",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_004": {
+    "sample_id": "loc_direct_004",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "category_name",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [
+        3,
+        4
+      ],
+      "vuln_type": "FORMAT_METHOD",
+      "db_api": "mysql.connector"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_005": {
+    "sample_id": "loc_direct_005",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "user_input",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        5
+      ],
+      "vulnerable_lines": [
+        3,
+        5
+      ],
+      "vuln_type": "F_STRING_INTERPOLATION",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_006": {
+    "sample_id": "loc_direct_006",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "account_id",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        5
+      ],
+      "vulnerable_lines": [
+        3,
+        5
+      ],
+      "vuln_type": "DIRECT_STRING_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_007": {
+    "sample_id": "loc_direct_007",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "cust_id",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [
+        3,
+        4
+      ],
+      "vuln_type": "PERCENT_FORMATTING",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_008": {
+    "sample_id": "loc_direct_008",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "category_name",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [
+        3,
+        4
+      ],
+      "vuln_type": "FORMAT_METHOD",
+      "db_api": "mysql.connector"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_009": {
+    "sample_id": "loc_direct_009",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "user_input",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        5
+      ],
+      "vulnerable_lines": [
+        3,
+        5
+      ],
+      "vuln_type": "F_STRING_INTERPOLATION",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_010": {
+    "sample_id": "loc_direct_010",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "account_id",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        5
+      ],
+      "vulnerable_lines": [
+        3,
+        5
+      ],
+      "vuln_type": "DIRECT_STRING_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_011": {
+    "sample_id": "loc_direct_011",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "cust_id",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [
+        3,
+        4
+      ],
+      "vuln_type": "PERCENT_FORMATTING",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_012": {
+    "sample_id": "loc_direct_012",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "category_name",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [
+        3,
+        4
+      ],
+      "vuln_type": "FORMAT_METHOD",
+      "db_api": "mysql.connector"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_013": {
+    "sample_id": "loc_direct_013",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "user_input",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        5
+      ],
+      "vulnerable_lines": [
+        3,
+        5
+      ],
+      "vuln_type": "F_STRING_INTERPOLATION",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_014": {
+    "sample_id": "loc_direct_014",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "account_id",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        5
+      ],
+      "vulnerable_lines": [
+        3,
+        5
+      ],
+      "vuln_type": "DIRECT_STRING_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_015": {
+    "sample_id": "loc_direct_015",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "cust_id",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [
+        3,
+        4
+      ],
+      "vuln_type": "PERCENT_FORMATTING",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_016": {
+    "sample_id": "loc_direct_016",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "category_name",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [
+        3,
+        4
+      ],
+      "vuln_type": "FORMAT_METHOD",
+      "db_api": "mysql.connector"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_017": {
+    "sample_id": "loc_direct_017",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "user_input",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        5
+      ],
+      "vulnerable_lines": [
+        3,
+        5
+      ],
+      "vuln_type": "F_STRING_INTERPOLATION",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_018": {
+    "sample_id": "loc_direct_018",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "account_id",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        5
+      ],
+      "vulnerable_lines": [
+        3,
+        5
+      ],
+      "vuln_type": "DIRECT_STRING_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_019": {
+    "sample_id": "loc_direct_019",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "cust_id",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [
+        3,
+        4
+      ],
+      "vuln_type": "PERCENT_FORMATTING",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_direct_020": {
+    "sample_id": "loc_direct_020",
+    "category": "Direct SQL injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "category_name",
+      "construction_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [
+        3,
+        4
+      ],
+      "vuln_type": "FORMAT_METHOD",
+      "db_api": "mysql.connector"
+    },
+    "explanation": "Untrusted input directly concatenated into SQL query string without parameterization."
+  },
+  "loc_interproc_001": {
+    "sample_id": "loc_interproc_001",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_002": {
+    "sample_id": "loc_interproc_002",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_003": {
+    "sample_id": "loc_interproc_003",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_004": {
+    "sample_id": "loc_interproc_004",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_005": {
+    "sample_id": "loc_interproc_005",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_006": {
+    "sample_id": "loc_interproc_006",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_007": {
+    "sample_id": "loc_interproc_007",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_008": {
+    "sample_id": "loc_interproc_008",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_009": {
+    "sample_id": "loc_interproc_009",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_010": {
+    "sample_id": "loc_interproc_010",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_011": {
+    "sample_id": "loc_interproc_011",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_012": {
+    "sample_id": "loc_interproc_012",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_013": {
+    "sample_id": "loc_interproc_013",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_014": {
+    "sample_id": "loc_interproc_014",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_interproc_015": {
+    "sample_id": "loc_interproc_015",
+    "category": "Helper-function/interprocedural injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        4
+      ],
+      "source_expr": "user_tag",
+      "propagation_lines": [
+        5
+      ],
+      "construction_lines": [
+        2
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        2,
+        6
+      ],
+      "vuln_type": "INTERPROCEDURAL_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted user_tag flows from run_search into build_query helper where unsafe f-string is constructed."
+  },
+  "loc_crossfile_001": {
+    "sample_id": "loc_crossfile_001",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_002": {
+    "sample_id": "loc_crossfile_002",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_003": {
+    "sample_id": "loc_crossfile_003",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_004": {
+    "sample_id": "loc_crossfile_004",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_005": {
+    "sample_id": "loc_crossfile_005",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_006": {
+    "sample_id": "loc_crossfile_006",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_007": {
+    "sample_id": "loc_crossfile_007",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_008": {
+    "sample_id": "loc_crossfile_008",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_009": {
+    "sample_id": "loc_crossfile_009",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_010": {
+    "sample_id": "loc_crossfile_010",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_011": {
+    "sample_id": "loc_crossfile_011",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_012": {
+    "sample_id": "loc_crossfile_012",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_013": {
+    "sample_id": "loc_crossfile_013",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_014": {
+    "sample_id": "loc_crossfile_014",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_crossfile_015": {
+    "sample_id": "loc_crossfile_015",
+    "category": "Cross-file injection",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "is_cross_file": true,
+      "source_file": "api.py",
+      "source_lines": [
+        3
+      ],
+      "source_expr": "payload.get('q')",
+      "propagation_file": "api.py",
+      "propagation_lines": [
+        4
+      ],
+      "construction_file": "db_ops.py",
+      "construction_lines": [
+        5
+      ],
+      "sink_file": "db_ops.py",
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "CROSS_FILE_TAINT",
+      "db_api": "sqlite3"
+    },
+    "explanation": "Untrusted payload keyword in api.py is passed to execute_custom in db_ops.py, which formats it directly into SQL."
+  },
+  "loc_safe_param_001": {
+    "sample_id": "loc_safe_param_001",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        4
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_002": {
+    "sample_id": "loc_safe_param_002",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        3
+      ],
+      "vulnerable_lines": [],
+      "db_api": "psycopg2"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_003": {
+    "sample_id": "loc_safe_param_003",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        4
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_004": {
+    "sample_id": "loc_safe_param_004",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        3
+      ],
+      "vulnerable_lines": [],
+      "db_api": "psycopg2"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_005": {
+    "sample_id": "loc_safe_param_005",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        4
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_006": {
+    "sample_id": "loc_safe_param_006",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        3
+      ],
+      "vulnerable_lines": [],
+      "db_api": "psycopg2"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_007": {
+    "sample_id": "loc_safe_param_007",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        4
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_008": {
+    "sample_id": "loc_safe_param_008",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        3
+      ],
+      "vulnerable_lines": [],
+      "db_api": "psycopg2"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_009": {
+    "sample_id": "loc_safe_param_009",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        4
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_010": {
+    "sample_id": "loc_safe_param_010",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        3
+      ],
+      "vulnerable_lines": [],
+      "db_api": "psycopg2"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_011": {
+    "sample_id": "loc_safe_param_011",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        4
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_012": {
+    "sample_id": "loc_safe_param_012",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        3
+      ],
+      "vulnerable_lines": [],
+      "db_api": "psycopg2"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_013": {
+    "sample_id": "loc_safe_param_013",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        4
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_014": {
+    "sample_id": "loc_safe_param_014",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        3
+      ],
+      "vulnerable_lines": [],
+      "db_api": "psycopg2"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_param_015": {
+    "sample_id": "loc_safe_param_015",
+    "category": "Safe parameterized SQL",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Bound database parameters with separate parameter tuple.",
+      "sink_lines": [
+        4
+      ],
+      "parameter_lines": [
+        4
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Safe parameterized query; parameters are bound safely by the database driver."
+  },
+  "loc_safe_orm_001": {
+    "sample_id": "loc_safe_orm_001",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "High-level ORM API without raw SQL execution.",
+      "sink_lines": [],
+      "parameter_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "django"
+    },
+    "explanation": "Safe ORM operation; no raw SQL execution or concatenation present."
+  },
+  "loc_safe_orm_002": {
+    "sample_id": "loc_safe_orm_002",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "High-level ORM API without raw SQL execution.",
+      "sink_lines": [],
+      "parameter_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "sqlalchemy"
+    },
+    "explanation": "Safe ORM operation; no raw SQL execution or concatenation present."
+  },
+  "loc_safe_orm_003": {
+    "sample_id": "loc_safe_orm_003",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "High-level ORM API without raw SQL execution.",
+      "sink_lines": [],
+      "parameter_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "django"
+    },
+    "explanation": "Safe ORM operation; no raw SQL execution or concatenation present."
+  },
+  "loc_safe_orm_004": {
+    "sample_id": "loc_safe_orm_004",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "High-level ORM API without raw SQL execution.",
+      "sink_lines": [],
+      "parameter_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "sqlalchemy"
+    },
+    "explanation": "Safe ORM operation; no raw SQL execution or concatenation present."
+  },
+  "loc_safe_orm_005": {
+    "sample_id": "loc_safe_orm_005",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "High-level ORM API without raw SQL execution.",
+      "sink_lines": [],
+      "parameter_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "django"
+    },
+    "explanation": "Safe ORM operation; no raw SQL execution or concatenation present."
+  },
+  "loc_safe_orm_006": {
+    "sample_id": "loc_safe_orm_006",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "High-level ORM API without raw SQL execution.",
+      "sink_lines": [],
+      "parameter_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "sqlalchemy"
+    },
+    "explanation": "Safe ORM operation; no raw SQL execution or concatenation present."
+  },
+  "loc_safe_orm_007": {
+    "sample_id": "loc_safe_orm_007",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "High-level ORM API without raw SQL execution.",
+      "sink_lines": [],
+      "parameter_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "django"
+    },
+    "explanation": "Safe ORM operation; no raw SQL execution or concatenation present."
+  },
+  "loc_safe_orm_008": {
+    "sample_id": "loc_safe_orm_008",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "High-level ORM API without raw SQL execution.",
+      "sink_lines": [],
+      "parameter_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "sqlalchemy"
+    },
+    "explanation": "Safe ORM operation; no raw SQL execution or concatenation present."
+  },
+  "loc_safe_orm_009": {
+    "sample_id": "loc_safe_orm_009",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "High-level ORM API without raw SQL execution.",
+      "sink_lines": [],
+      "parameter_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "django"
+    },
+    "explanation": "Safe ORM operation; no raw SQL execution or concatenation present."
+  },
+  "loc_safe_orm_010": {
+    "sample_id": "loc_safe_orm_010",
+    "category": "Safe ORM and query construction",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "High-level ORM API without raw SQL execution.",
+      "sink_lines": [],
+      "parameter_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "sqlalchemy"
+    },
+    "explanation": "Safe ORM operation; no raw SQL execution or concatenation present."
+  },
+  "loc_safe_val_001": {
+    "sample_id": "loc_safe_val_001",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Identifier strictly mapped from static dictionary or validated as integer.",
+      "validation_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Dynamic value is strictly constrained by an allowlist dictionary or cast to integer before SQL assembly."
+  },
+  "loc_safe_val_002": {
+    "sample_id": "loc_safe_val_002",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Identifier strictly mapped from static dictionary or validated as integer.",
+      "validation_lines": [
+        2
+      ],
+      "sink_lines": [
+        3
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Dynamic value is strictly constrained by an allowlist dictionary or cast to integer before SQL assembly."
+  },
+  "loc_safe_val_003": {
+    "sample_id": "loc_safe_val_003",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Identifier strictly mapped from static dictionary or validated as integer.",
+      "validation_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Dynamic value is strictly constrained by an allowlist dictionary or cast to integer before SQL assembly."
+  },
+  "loc_safe_val_004": {
+    "sample_id": "loc_safe_val_004",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Identifier strictly mapped from static dictionary or validated as integer.",
+      "validation_lines": [
+        2
+      ],
+      "sink_lines": [
+        3
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Dynamic value is strictly constrained by an allowlist dictionary or cast to integer before SQL assembly."
+  },
+  "loc_safe_val_005": {
+    "sample_id": "loc_safe_val_005",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Identifier strictly mapped from static dictionary or validated as integer.",
+      "validation_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Dynamic value is strictly constrained by an allowlist dictionary or cast to integer before SQL assembly."
+  },
+  "loc_safe_val_006": {
+    "sample_id": "loc_safe_val_006",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Identifier strictly mapped from static dictionary or validated as integer.",
+      "validation_lines": [
+        2
+      ],
+      "sink_lines": [
+        3
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Dynamic value is strictly constrained by an allowlist dictionary or cast to integer before SQL assembly."
+  },
+  "loc_safe_val_007": {
+    "sample_id": "loc_safe_val_007",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Identifier strictly mapped from static dictionary or validated as integer.",
+      "validation_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Dynamic value is strictly constrained by an allowlist dictionary or cast to integer before SQL assembly."
+  },
+  "loc_safe_val_008": {
+    "sample_id": "loc_safe_val_008",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Identifier strictly mapped from static dictionary or validated as integer.",
+      "validation_lines": [
+        2
+      ],
+      "sink_lines": [
+        3
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Dynamic value is strictly constrained by an allowlist dictionary or cast to integer before SQL assembly."
+  },
+  "loc_safe_val_009": {
+    "sample_id": "loc_safe_val_009",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Identifier strictly mapped from static dictionary or validated as integer.",
+      "validation_lines": [
+        3
+      ],
+      "sink_lines": [
+        4
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Dynamic value is strictly constrained by an allowlist dictionary or cast to integer before SQL assembly."
+  },
+  "loc_safe_val_010": {
+    "sample_id": "loc_safe_val_010",
+    "category": "Validated/allowlisted input",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "Identifier strictly mapped from static dictionary or validated as integer.",
+      "validation_lines": [
+        2
+      ],
+      "sink_lines": [
+        3
+      ],
+      "vulnerable_lines": [],
+      "db_api": "sqlite3"
+    },
+    "explanation": "Dynamic value is strictly constrained by an allowlist dictionary or cast to integer before SQL assembly."
+  },
+  "loc_complex_001": {
+    "sample_id": "loc_complex_001",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "filters",
+      "construction_lines": [
+        5
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "COMPLEX_LOOP_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Dynamic multi-clause query iteratively concatenates dictionary values in a loop without parameterized placeholders."
+  },
+  "loc_complex_002": {
+    "sample_id": "loc_complex_002",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "filters",
+      "construction_lines": [
+        5
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "COMPLEX_LOOP_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Dynamic multi-clause query iteratively concatenates dictionary values in a loop without parameterized placeholders."
+  },
+  "loc_complex_003": {
+    "sample_id": "loc_complex_003",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "filters",
+      "construction_lines": [
+        5
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "COMPLEX_LOOP_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Dynamic multi-clause query iteratively concatenates dictionary values in a loop without parameterized placeholders."
+  },
+  "loc_complex_004": {
+    "sample_id": "loc_complex_004",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "filters",
+      "construction_lines": [
+        5
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "COMPLEX_LOOP_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Dynamic multi-clause query iteratively concatenates dictionary values in a loop without parameterized placeholders."
+  },
+  "loc_complex_005": {
+    "sample_id": "loc_complex_005",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "filters",
+      "construction_lines": [
+        5
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "COMPLEX_LOOP_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Dynamic multi-clause query iteratively concatenates dictionary values in a loop without parameterized placeholders."
+  },
+  "loc_complex_006": {
+    "sample_id": "loc_complex_006",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "filters",
+      "construction_lines": [
+        5
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "COMPLEX_LOOP_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Dynamic multi-clause query iteratively concatenates dictionary values in a loop without parameterized placeholders."
+  },
+  "loc_complex_007": {
+    "sample_id": "loc_complex_007",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "filters",
+      "construction_lines": [
+        5
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "COMPLEX_LOOP_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Dynamic multi-clause query iteratively concatenates dictionary values in a loop without parameterized placeholders."
+  },
+  "loc_complex_008": {
+    "sample_id": "loc_complex_008",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "filters",
+      "construction_lines": [
+        5
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "COMPLEX_LOOP_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Dynamic multi-clause query iteratively concatenates dictionary values in a loop without parameterized placeholders."
+  },
+  "loc_complex_009": {
+    "sample_id": "loc_complex_009",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "filters",
+      "construction_lines": [
+        5
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "COMPLEX_LOOP_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Dynamic multi-clause query iteratively concatenates dictionary values in a loop without parameterized placeholders."
+  },
+  "loc_complex_010": {
+    "sample_id": "loc_complex_010",
+    "category": "Complex query construction",
+    "is_vulnerable": true,
+    "ground_truth": {
+      "source_lines": [
+        1
+      ],
+      "source_expr": "filters",
+      "construction_lines": [
+        5
+      ],
+      "sink_lines": [
+        6
+      ],
+      "vulnerable_lines": [
+        5,
+        6
+      ],
+      "vuln_type": "COMPLEX_LOOP_CONCATENATION",
+      "db_api": "psycopg2"
+    },
+    "explanation": "Dynamic multi-clause query iteratively concatenates dictionary values in a loop without parameterized placeholders."
+  },
+  "loc_nosink_001": {
+    "sample_id": "loc_nosink_001",
+    "category": "No SQL injection/no SQL sink",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "No database sinks or SQL statements present in snippet.",
+      "sink_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "none"
+    },
+    "explanation": "Pure business logic without database execution sinks."
+  },
+  "loc_nosink_002": {
+    "sample_id": "loc_nosink_002",
+    "category": "No SQL injection/no SQL sink",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "No database sinks or SQL statements present in snippet.",
+      "sink_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "none"
+    },
+    "explanation": "Pure business logic without database execution sinks."
+  },
+  "loc_nosink_003": {
+    "sample_id": "loc_nosink_003",
+    "category": "No SQL injection/no SQL sink",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "No database sinks or SQL statements present in snippet.",
+      "sink_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "none"
+    },
+    "explanation": "Pure business logic without database execution sinks."
+  },
+  "loc_nosink_004": {
+    "sample_id": "loc_nosink_004",
+    "category": "No SQL injection/no SQL sink",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "No database sinks or SQL statements present in snippet.",
+      "sink_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "none"
+    },
+    "explanation": "Pure business logic without database execution sinks."
+  },
+  "loc_nosink_005": {
+    "sample_id": "loc_nosink_005",
+    "category": "No SQL injection/no SQL sink",
+    "is_vulnerable": false,
+    "ground_truth": {
+      "is_vulnerable": false,
+      "safe_rationale": "No database sinks or SQL statements present in snippet.",
+      "sink_lines": [],
+      "vulnerable_lines": [],
+      "db_api": "none"
+    },
+    "explanation": "Pure business logic without database execution sinks."
+  }
+}

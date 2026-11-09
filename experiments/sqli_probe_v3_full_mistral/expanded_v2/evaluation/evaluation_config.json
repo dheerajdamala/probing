@@ -1,0 +1,17 @@
+{
+  "checkpoint_evaluated": "experiments/sqli_probe_v3_full_mistral/expanded_v2/models/MLP_sink_layer_12_expanded.pt",
+  "checkpoint_sha256": "177b26c85a83007d4e975198c39cb6b866e02167d436b1400e004bd0e994b4d7",
+  "scaler_evaluated": "experiments/sqli_probe_v3_full_mistral/expanded_v2/models/MLP_sink_layer_12_scaler_expanded.joblib",
+  "scaler_sha256": "5085c6bd5a73a3df418fd74449b0d5f8432c3cef04441d6e7794f5a94e3ced24",
+  "historical_checkpoint_sha256": "a096e55e2dc26b6d62476818ff30c1717cfb7d8139c3fc9b7c2b05a55daf479d",
+  "historical_scaler_sha256": "222f28a962647290582a79777fdc953ba6b91b38d7284bddcec9b5c37c598d6a",
+  "selected_seed": 789,
+  "primary_threshold": 0.66,
+  "secondary_threshold": 0.36,
+  "uncertainty_band": [
+    0.61,
+    0.71
+  ],
+  "evaluation_timestamp": "2026-11-09T06:18:22Z",
+  "evaluation_mode": "one_shot_frozen_no_tuning"
+}

@@ -1,0 +1,6 @@
+root_cause_category,sample_count,percentage
+Safe parameterized SQL,151,61.885245901639344
+Dynamic SQL with constant or allowlisted identifiers,86,35.24590163934426
+SQL-like code without an executable SQL sink,3,1.2295081967213115
+Complex interprocedural flow,3,1.2295081967213115
+Other (heuristic boundary case),1,0.4098360655737705

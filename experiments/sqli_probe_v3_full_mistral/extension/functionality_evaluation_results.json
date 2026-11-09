@@ -1,0 +1,30 @@
+{
+  "total_samples": 151,
+  "prediction_accuracy": 0.9470198675496688,
+  "sink_detection": {
+    "true_positives": 119,
+    "false_positives": 0,
+    "false_negatives": 4,
+    "true_negatives": 28,
+    "precision": 1.0,
+    "recall": 0.967479674796748,
+    "f1": 0.9834710743801653
+  },
+  "line_localization": {
+    "vulnerable_samples_evaluated": 83,
+    "mean_precision": 0.6568873395680624,
+    "mean_recall": 0.8463855421686747,
+    "exact_match_rate": 0.37349397590361444
+  },
+  "vulnerability_subtype_classification": {
+    "evaluated_samples": 75,
+    "matched_samples": 64,
+    "accuracy": 0.8533333333333334
+  },
+  "analysis_status_distribution": {
+    "COMPLETE": 107,
+    "PARTIAL": 44,
+    "FAILED": 0
+  },
+  "interprocedural_warning_count": 12
+}

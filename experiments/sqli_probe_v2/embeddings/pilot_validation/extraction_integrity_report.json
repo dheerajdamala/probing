@@ -1,0 +1,84 @@
+{
+  "track": "pilot_validation",
+  "split": "test_pilot",
+  "sample_count": 25,
+  "hidden_dimension": 128,
+  "candidate_layers": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "reference_layer": 3,
+  "elapsed_seconds": 0.6658360958099365,
+  "throughput_samples_per_sec": 37.546777889218355,
+  "sinks_detected": 21,
+  "fallbacks_used": 4,
+  "sink_coverage_pct": 84.0,
+  "layer_audit": {
+    "layer_0": {
+      "mean_shape": [
+        25,
+        128
+      ],
+      "sink_shape": [
+        25,
+        128
+      ],
+      "mean_norm": 0.10871855914592743,
+      "sink_norm": 0.11910203099250793,
+      "mean_storage_bytes": 12800,
+      "sink_storage_bytes": 12800,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "layer_1": {
+      "mean_shape": [
+        25,
+        128
+      ],
+      "sink_shape": [
+        25,
+        128
+      ],
+      "mean_norm": 0.24054528772830963,
+      "sink_norm": 0.2568211555480957,
+      "mean_storage_bytes": 12800,
+      "sink_storage_bytes": 12800,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "layer_2": {
+      "mean_shape": [
+        25,
+        128
+      ],
+      "sink_shape": [
+        25,
+        128
+      ],
+      "mean_norm": 0.4414418339729309,
+      "sink_norm": 0.46403512358665466,
+      "mean_storage_bytes": 12800,
+      "sink_storage_bytes": 12800,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "layer_3": {
+      "mean_shape": [
+        25,
+        128
+      ],
+      "sink_shape": [
+        25,
+        128
+      ],
+      "mean_norm": 9.485616683959961,
+      "sink_norm": 10.168875694274902,
+      "mean_storage_bytes": 12800,
+      "sink_storage_bytes": 12800,
+      "nan_count": 0,
+      "inf_count": 0
+    }
+  }
+}

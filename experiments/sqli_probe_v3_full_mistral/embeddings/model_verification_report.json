@@ -1,0 +1,23 @@
+{
+  "model_name": "mistralai/Mistral-7B-Instruct-v0.3",
+  "gpu_name": "Tesla T4",
+  "total_vram_gb": 14.56219482421875,
+  "load_time_sec": 13.905832529067993,
+  "vram_allocated_mb": 1651.79833984375,
+  "vram_reserved_mb": 1658.0,
+  "hidden_dimension": 4096,
+  "transformer_layers": 32,
+  "candidate_layers": [
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32
+  ],
+  "reference_layer": 16,
+  "quantization": "4-bit NF4 with Double Quantization (bnb)",
+  "mock_mode": false
+}

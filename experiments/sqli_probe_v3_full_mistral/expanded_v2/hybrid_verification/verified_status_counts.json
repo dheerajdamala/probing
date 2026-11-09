@@ -1,0 +1,28 @@
+{
+  "total_test_samples": 695,
+  "conservative_prediction_distribution": {
+    "SAFE": 355,
+    "VULNERABLE": 298,
+    "UNCERTAIN": 42
+  },
+  "conservative_completeness_distribution": {
+    "COMPLETE": 651,
+    "PARTIAL": 44
+  },
+  "operational_prediction_distribution": {
+    "SAFE": 386,
+    "VULNERABLE": 293,
+    "UNCERTAIN": 16
+  },
+  "operational_completeness_distribution": {
+    "PARTIAL": 695
+  },
+  "reconciliation_explanation": {
+    "conservative_uncertain_count": 42,
+    "conservative_partial_status_count": 44,
+    "delta": 2,
+    "cause": "There are exactly 2 samples where an explicit vulnerable sink was confirmed (conservative_prediction = 'VULNERABLE'), but other auxiliary call paths or functions in the same file reached max call depth or had unresolvable external imports (conservative_status = 'PARTIAL'). In cross-tabulation and metric calculations, these 2 samples were correctly counted as confirmed VULNERABLE (leaving 42 uncertain samples). In the completeness summary table, they were listed under PARTIAL (totaling 44).",
+    "operational_uncertain_count": 16,
+    "operational_delta_explanation": "The operational pipeline classifier produced only 16 UNCERTAIN outputs because it uses AST syntax heuristics as fallback when no neural probe is attached, resolving 26 ambiguous cases based on absence of execution sinks."
+  }
+}

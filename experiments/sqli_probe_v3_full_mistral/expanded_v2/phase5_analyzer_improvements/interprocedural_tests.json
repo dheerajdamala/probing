@@ -1,0 +1,90 @@
+{
+  "suite": "interprocedural_tests",
+  "total_tests": 5,
+  "passed_tests": 5,
+  "failed_tests": 0,
+  "pass_rate": 1.0,
+  "results": [
+    {
+      "test_id": "IPT_01",
+      "name": "Nested helper call chain (3 levels) traces complete path",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "status": "PARTIAL",
+      "vulnerable_lines": [
+        {
+          "line": 2,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'cursor.execute'."
+        },
+        {
+          "file": "snippet.py",
+          "line": 8,
+          "column": 11,
+          "role": "SQL_CONSTRUCTION",
+          "function": "level1_build",
+          "evidence": "return f\"SELECT * FROM data WHERE id = '{val}'\""
+        }
+      ]
+    },
+    {
+      "id": "IPT_02",
+      "name": "Cross-file chained re-export resolves target symbol",
+      "passed": true,
+      "prediction": "VULNERABLE",
+      "vulnerable_lines": [
+        {
+          "file": "main_app.py",
+          "line": 4,
+          "column": 13,
+          "role": "SQL_CONSTRUCTION",
+          "function": "handler",
+          "evidence": "raw_exec(f\"SELECT * FROM logs WHERE msg = '{val}'\")"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "test_id": "IPT_03",
+      "name": "Class method invocation traces call to execution sink",
+      "passed": true,
+      "errors": [],
+      "prediction": "VULNERABLE",
+      "status": "PARTIAL",
+      "vulnerable_lines": [
+        {
+          "line": 3,
+          "role": "SQL_SINK",
+          "reason": "SQL query reaches execution method 'cursor.execute'."
+        },
+        {
+          "file": "snippet.py",
+          "line": 7,
+          "column": 18,
+          "role": "SQL_CONSTRUCTION",
+          "function": "api_endpoint",
+          "evidence": "srv.run_query(f\"SELECT * FROM users WHERE name = '{request.args['name']}'\")"
+        }
+      ]
+    },
+    {
+      "test_id": "IPT_04",
+      "name": "Missing imported implementation preserves PARTIAL/UNCERTAIN resolution",
+      "passed": true,
+      "errors": [],
+      "prediction": "UNCERTAIN",
+      "status": "PARTIAL",
+      "vulnerable_lines": []
+    },
+    {
+      "test_id": "IPT_05",
+      "name": "Sanitizer return value through helper propagated as SAFE",
+      "passed": true,
+      "errors": [],
+      "prediction": "SAFE",
+      "status": "PARTIAL",
+      "vulnerable_lines": []
+    }
+  ]
+}

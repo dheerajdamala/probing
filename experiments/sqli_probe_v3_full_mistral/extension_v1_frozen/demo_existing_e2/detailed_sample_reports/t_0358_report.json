@@ -1,0 +1,178 @@
+{
+  "sample_id": "t_0358",
+  "ground_truth": "SAFE",
+  "neural_probe": {
+    "prediction": "VULNERABLE",
+    "vulnerable_prob": 0.8441027402877808,
+    "safe_prob": 0.15589725971221924,
+    "confidence": 0.8441027402877808,
+    "threshold": 0.36,
+    "correct": false,
+    "error_type": "FALSE_POSITIVE"
+  },
+  "static_dataflow_analysis": {
+    "prediction": "SAFE",
+    "confidence": 0.9,
+    "vulnerability_type": [],
+    "sink_location": [
+      {
+        "function": "cur.execute",
+        "file": "t_0358.py",
+        "line": 3,
+        "column": 4
+      }
+    ],
+    "vulnerable_lines": [],
+    "evidence": [
+      {
+        "line": 3,
+        "category": "SQL_EXECUTION",
+        "description": "SQL execution sink 'cur.execute' invoked with parameter bindings.",
+        "support": "AST"
+      },
+      {
+        "line": 3,
+        "category": "SAFE_PARAMETERIZATION",
+        "description": "SQL statement passes parameters as a separate argument to execution sink.",
+        "support": "AST"
+      }
+    ]
+  },
+  "source_code": "def cancel(self, reservation_id, user_id):\n    cur = self.cnx.cursor()\n    cur.execute(\"UPDATE reservations SET status = 'cancelled' WHERE id = %s AND user_id = %s AND status = 'active'\", (reservation_id, user_id))\n    self.cnx.commit()\n    return cur.rowcount == 1",
+  "full_report": {
+    "analysis_status": "PARTIAL",
+    "messages": [
+      "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+    ],
+    "prediction": "SAFE",
+    "confidence": 0.9,
+    "probabilities": {
+      "vulnerable": 0.1,
+      "safe": 0.9
+    },
+    "vulnerability_type": [],
+    "sink_location": [
+      {
+        "function": "cur.execute",
+        "file": "t_0358.py",
+        "line": 3,
+        "column": 4
+      }
+    ],
+    "vulnerable_lines": [],
+    "evidence": [
+      {
+        "line": 3,
+        "category": "SQL_EXECUTION",
+        "description": "SQL execution sink 'cur.execute' invoked with parameter bindings.",
+        "support": "AST"
+      },
+      {
+        "line": 3,
+        "category": "SAFE_PARAMETERIZATION",
+        "description": "SQL statement passes parameters as a separate argument to execution sink.",
+        "support": "AST"
+      }
+    ],
+    "interprocedural_analysis": {
+      "analysis_status": "COMPLETE",
+      "findings": [
+        {
+          "vulnerability_type": "SAFE_PARAMETERIZATION",
+          "is_vulnerable": false,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [],
+          "sink_lines": [
+            {
+              "file": "t_0358.py",
+              "line": 3,
+              "column": 4,
+              "role": "SINK",
+              "function": "cancel",
+              "evidence": "cur.execute(\"UPDATE reservations SET status = 'cancelled' WHERE id = %s AND user_id = %s AND status = 'active'\", (reservation_id, user_id))"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0358.py",
+              "line": 3,
+              "role": "SINK",
+              "function": "cancel",
+              "description": "Query is executed via 'cur.execute'.",
+              "code": "cur.execute(\"UPDATE reservations SET status = 'cancelled' WHERE id = %s AND user_id = %s AND status = 'active'\", (reservation_id, user_id))"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 3,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'cur.execute' invoked.",
+              "support": "AST"
+            },
+            {
+              "line": 3,
+              "category": "SAFE_PARAMETERIZATION",
+              "description": "Query passes parameters via separate argument.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        }
+      ],
+      "functions_analyzed": 1,
+      "call_edges_resolved": 0,
+      "call_edges_unresolved": 3,
+      "maximum_depth_reached": 1,
+      "messages": []
+    },
+    "findings": [
+      {
+        "vulnerability_type": "SAFE_PARAMETERIZATION",
+        "is_vulnerable": false,
+        "source_lines": [],
+        "propagation_lines": [],
+        "vulnerable_lines": [],
+        "sink_lines": [
+          {
+            "file": "t_0358.py",
+            "line": 3,
+            "column": 4,
+            "role": "SINK",
+            "function": "cancel",
+            "evidence": "cur.execute(\"UPDATE reservations SET status = 'cancelled' WHERE id = %s AND user_id = %s AND status = 'active'\", (reservation_id, user_id))"
+          }
+        ],
+        "dataflow_path": [
+          {
+            "step": 1,
+            "file": "t_0358.py",
+            "line": 3,
+            "role": "SINK",
+            "function": "cancel",
+            "description": "Query is executed via 'cur.execute'.",
+            "code": "cur.execute(\"UPDATE reservations SET status = 'cancelled' WHERE id = %s AND user_id = %s AND status = 'active'\", (reservation_id, user_id))"
+          }
+        ],
+        "evidence": [
+          {
+            "line": 3,
+            "category": "SQL_EXECUTION",
+            "description": "SQL execution call 'cur.execute' invoked.",
+            "support": "AST"
+          },
+          {
+            "line": 3,
+            "category": "SAFE_PARAMETERIZATION",
+            "description": "Query passes parameters via separate argument.",
+            "support": "AST"
+          }
+        ],
+        "resolution_status": "RESOLVED",
+        "confidence_note": ""
+      }
+    ]
+  }
+}

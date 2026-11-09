@@ -1,0 +1,340 @@
+{
+  "sample_id": "t_0157",
+  "ground_truth": "VULNERABLE",
+  "neural_probe": {
+    "prediction": "VULNERABLE",
+    "vulnerable_prob": 0.9987704157829285,
+    "safe_prob": 0.0012295842170715332,
+    "confidence": 0.9987704157829285,
+    "threshold": 0.36,
+    "correct": true,
+    "error_type": "NONE"
+  },
+  "static_dataflow_analysis": {
+    "prediction": "VULNERABLE",
+    "confidence": 0.9,
+    "vulnerability_type": [
+      "FORMAT_METHOD"
+    ],
+    "sink_location": [
+      {
+        "function": "cur.execute",
+        "file": "t_0157.py",
+        "line": 3,
+        "column": 8
+      },
+      {
+        "function": "cur.fetchall",
+        "file": "t_0157.py",
+        "line": 4,
+        "column": 15
+      }
+    ],
+    "vulnerable_lines": [
+      {
+        "line": 3,
+        "role": "QUERY_CONSTRUCTION",
+        "reason": "Inline SQL statement constructed dynamically with variables or formatting."
+      },
+      {
+        "line": 4,
+        "role": "SINK",
+        "reason": "SQL query reaches execution method 'cur.fetchall'."
+      }
+    ],
+    "evidence": [
+      {
+        "line": 3,
+        "category": "SQL_EXECUTION",
+        "description": "SQL execution sink 'cur.execute' invoked without parameter bindings.",
+        "support": "AST"
+      },
+      {
+        "line": 3,
+        "category": "FORMAT_METHOD",
+        "description": "Query string formatted using .format() method.",
+        "support": "AST"
+      },
+      {
+        "line": 3,
+        "category": "INTERMEDIATE_DATAFLOW",
+        "description": "Inline SQL statement constructed dynamically with variables or formatting.",
+        "support": "DATAFLOW"
+      },
+      {
+        "line": 4,
+        "category": "SQL_EXECUTION",
+        "description": "SQL execution sink 'cur.fetchall' invoked without parameter bindings.",
+        "support": "AST"
+      }
+    ]
+  },
+  "source_code": "def invoices_for(conn, status, year):\n    with conn.cursor() as cur:\n        cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))\n        return cur.fetchall()",
+  "full_report": {
+    "analysis_status": "PARTIAL",
+    "messages": [
+      "Full Mistral-7B model not loaded in local environment (requires GPU). Prediction evaluated using AST syntax patterns."
+    ],
+    "prediction": "VULNERABLE",
+    "confidence": 0.9,
+    "probabilities": {
+      "vulnerable": 0.9,
+      "safe": 0.1
+    },
+    "vulnerability_type": [
+      "FORMAT_METHOD"
+    ],
+    "sink_location": [
+      {
+        "function": "cur.execute",
+        "file": "t_0157.py",
+        "line": 3,
+        "column": 8
+      },
+      {
+        "function": "cur.fetchall",
+        "file": "t_0157.py",
+        "line": 4,
+        "column": 15
+      }
+    ],
+    "vulnerable_lines": [
+      {
+        "line": 3,
+        "role": "QUERY_CONSTRUCTION",
+        "reason": "Inline SQL statement constructed dynamically with variables or formatting."
+      },
+      {
+        "line": 4,
+        "role": "SINK",
+        "reason": "SQL query reaches execution method 'cur.fetchall'."
+      }
+    ],
+    "evidence": [
+      {
+        "line": 3,
+        "category": "SQL_EXECUTION",
+        "description": "SQL execution sink 'cur.execute' invoked without parameter bindings.",
+        "support": "AST"
+      },
+      {
+        "line": 3,
+        "category": "FORMAT_METHOD",
+        "description": "Query string formatted using .format() method.",
+        "support": "AST"
+      },
+      {
+        "line": 3,
+        "category": "INTERMEDIATE_DATAFLOW",
+        "description": "Inline SQL statement constructed dynamically with variables or formatting.",
+        "support": "DATAFLOW"
+      },
+      {
+        "line": 4,
+        "category": "SQL_EXECUTION",
+        "description": "SQL execution sink 'cur.fetchall' invoked without parameter bindings.",
+        "support": "AST"
+      }
+    ],
+    "interprocedural_analysis": {
+      "analysis_status": "COMPLETE",
+      "findings": [
+        {
+          "vulnerability_type": "FORMAT_METHOD",
+          "is_vulnerable": true,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [
+            {
+              "file": "t_0157.py",
+              "line": 3,
+              "column": 20,
+              "role": "QUERY_CONSTRUCTION",
+              "function": "invoices_for",
+              "evidence": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+            }
+          ],
+          "sink_lines": [
+            {
+              "file": "t_0157.py",
+              "line": 3,
+              "column": 8,
+              "role": "SINK",
+              "function": "invoices_for",
+              "evidence": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0157.py",
+              "line": 3,
+              "role": "QUERY_CONSTRUCTION",
+              "function": "invoices_for",
+              "description": "Unsafe SQL constructed using .format() interpolation.",
+              "code": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+            },
+            {
+              "step": 2,
+              "file": "t_0157.py",
+              "line": 3,
+              "role": "SINK",
+              "function": "invoices_for",
+              "description": "Query is executed via 'cur.execute'.",
+              "code": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 3,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'cur.execute' invoked.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        },
+        {
+          "vulnerability_type": "STATIC_OR_SAFE_SQL",
+          "is_vulnerable": false,
+          "source_lines": [],
+          "propagation_lines": [],
+          "vulnerable_lines": [],
+          "sink_lines": [
+            {
+              "file": "t_0157.py",
+              "line": 4,
+              "column": 15,
+              "role": "SINK",
+              "function": "invoices_for",
+              "evidence": "return cur.fetchall()"
+            }
+          ],
+          "dataflow_path": [
+            {
+              "step": 1,
+              "file": "t_0157.py",
+              "line": 4,
+              "role": "SINK",
+              "function": "invoices_for",
+              "description": "Query is executed via 'cur.fetchall'.",
+              "code": "return cur.fetchall()"
+            }
+          ],
+          "evidence": [
+            {
+              "line": 4,
+              "category": "SQL_EXECUTION",
+              "description": "SQL execution call 'cur.fetchall' invoked.",
+              "support": "AST"
+            }
+          ],
+          "resolution_status": "RESOLVED",
+          "confidence_note": ""
+        }
+      ],
+      "functions_analyzed": 1,
+      "call_edges_resolved": 0,
+      "call_edges_unresolved": 4,
+      "maximum_depth_reached": 1,
+      "messages": []
+    },
+    "findings": [
+      {
+        "vulnerability_type": "FORMAT_METHOD",
+        "is_vulnerable": true,
+        "source_lines": [],
+        "propagation_lines": [],
+        "vulnerable_lines": [
+          {
+            "file": "t_0157.py",
+            "line": 3,
+            "column": 20,
+            "role": "QUERY_CONSTRUCTION",
+            "function": "invoices_for",
+            "evidence": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+          }
+        ],
+        "sink_lines": [
+          {
+            "file": "t_0157.py",
+            "line": 3,
+            "column": 8,
+            "role": "SINK",
+            "function": "invoices_for",
+            "evidence": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+          }
+        ],
+        "dataflow_path": [
+          {
+            "step": 1,
+            "file": "t_0157.py",
+            "line": 3,
+            "role": "QUERY_CONSTRUCTION",
+            "function": "invoices_for",
+            "description": "Unsafe SQL constructed using .format() interpolation.",
+            "code": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+          },
+          {
+            "step": 2,
+            "file": "t_0157.py",
+            "line": 3,
+            "role": "SINK",
+            "function": "invoices_for",
+            "description": "Query is executed via 'cur.execute'.",
+            "code": "cur.execute(\"SELECT id, total FROM invoices WHERE status = '{0}' AND EXTRACT(year FROM issued) = {1}\".format(status, year))"
+          }
+        ],
+        "evidence": [
+          {
+            "line": 3,
+            "category": "SQL_EXECUTION",
+            "description": "SQL execution call 'cur.execute' invoked.",
+            "support": "AST"
+          }
+        ],
+        "resolution_status": "RESOLVED",
+        "confidence_note": ""
+      },
+      {
+        "vulnerability_type": "STATIC_OR_SAFE_SQL",
+        "is_vulnerable": false,
+        "source_lines": [],
+        "propagation_lines": [],
+        "vulnerable_lines": [],
+        "sink_lines": [
+          {
+            "file": "t_0157.py",
+            "line": 4,
+            "column": 15,
+            "role": "SINK",
+            "function": "invoices_for",
+            "evidence": "return cur.fetchall()"
+          }
+        ],
+        "dataflow_path": [
+          {
+            "step": 1,
+            "file": "t_0157.py",
+            "line": 4,
+            "role": "SINK",
+            "function": "invoices_for",
+            "description": "Query is executed via 'cur.fetchall'.",
+            "code": "return cur.fetchall()"
+          }
+        ],
+        "evidence": [
+          {
+            "line": 4,
+            "category": "SQL_EXECUTION",
+            "description": "SQL execution call 'cur.fetchall' invoked.",
+            "support": "AST"
+          }
+        ],
+        "resolution_status": "RESOLVED",
+        "confidence_note": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "test_dataset_jsonl": {
+    "path": "experiments/sqli_probe_v3_full_mistral/data/e2_expanded/splits/test.jsonl",
+    "sha256": "2f7834e98b2e8784f936b1476d15bcbb88364e0487c921553ff1912a9f0135a1"
+  },
+  "expanded_checkpoint_pt": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/models/MLP_sink_layer_12_expanded.pt",
+    "sha256": "177b26c85a83007d4e975198c39cb6b866e02167d436b1400e004bd0e994b4d7"
+  },
+  "expanded_scaler_joblib": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/models/MLP_sink_layer_12_scaler_expanded.joblib",
+    "sha256": "5085c6bd5a73a3df418fd74449b0d5f8432c3cef04441d6e7794f5a94e3ced24"
+  },
+  "test_predictions_json": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/evaluation/test_predictions.json",
+    "sha256": "e70b892a7be8fc24400ee48eb4088702c4d561bb307039c458dd2b7137b5ca2b"
+  },
+  "test_metrics_json": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/evaluation/test_metrics.json",
+    "sha256": "14fce3b137689112c5ead1af452bbf31179b273c0abae77f41e9c5962e91854c"
+  },
+  "test_error_analysis_csv": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/evaluation/test_error_analysis.csv",
+    "sha256": "f6051ba3b56feea113897528abce1d2ef4e64b89c3f242511660a540f805d80d"
+  },
+  "phase_4a_per_sample_csv": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/hybrid_evaluation/per_sample_static_results.csv",
+    "sha256": "a52cb8afbf0ceed2660ca01f154d3e0904836602185eb69fb1a2a95efc1bfbd9"
+  },
+  "phase_4a_fp_analysis_csv": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/hybrid_evaluation/false_positive_analysis.csv",
+    "sha256": "964efa070c5525b11f19157d34d30664388c2c097db997552ac77571fe78befc"
+  },
+  "phase_4a_fn_analysis_csv": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/hybrid_evaluation/false_negative_analysis.csv",
+    "sha256": "e5831e85898a104de90da0c52241ccf62374ac67509002abb2d02bcd0f5c0efc"
+  },
+  "phase_4a_cross_tab_csv": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/hybrid_evaluation/neural_static_cross_tabulation.csv",
+    "sha256": "74be26cfc2f79ab75fb7d7e16a38df91da090e81bc0614f773d63bea277ee9e3"
+  },
+  "phase_4a_hybrid_sim_json": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/hybrid_evaluation/hybrid_policy_simulation.json",
+    "sha256": "227d02cd768ed802e8f2345e913775ee1c7c7ed4d7cd36bc45454a8a40c7eb54"
+  },
+  "phase_4a_metadata_json": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/hybrid_evaluation/analysis_metadata.json",
+    "sha256": "2bba7397aaa5924dd491350bdd45447fcddce966faf52cde14d41341e1c2a69f"
+  },
+  "phase_4a_report_md": {
+    "path": "experiments/sqli_probe_v3_full_mistral/expanded_v2/hybrid_evaluation/PHASE_4A_REPORT.md",
+    "sha256": "7e29377ace499ec6cfb44d32a8374845a0a4bc3818e3ccdfe3a20c939abcf57d"
+  }
+}

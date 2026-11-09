@@ -1,0 +1,19 @@
+{
+  "n_samples": 695,
+  "n_vulnerable": 203,
+  "n_safe": 492,
+  "tp": 195,
+  "fp": 244,
+  "tn": 248,
+  "fn": 8,
+  "precision": 0.44419134396355353,
+  "recall": 0.9605911330049262,
+  "specificity": 0.5040650406504065,
+  "f1": 0.6074766355140186,
+  "accuracy": 0.637410071942446,
+  "balanced_accuracy": 0.7323280868276663,
+  "roc_auc": 0.8977031519083664,
+  "pr_auc": 0.7455520916010714,
+  "threshold_evaluated": 0.66,
+  "status": "EXACT_REPRODUCTION"
+}

@@ -1,0 +1,106 @@
+{
+  "vulnerable_samples_count": 60,
+  "source_localization": {
+    "exact_source_line_accuracy": 0.0,
+    "matched_count": 0
+  },
+  "query_construction_localization": {
+    "exact_construction_line_accuracy": 0.8333333333333334,
+    "matched_count": 50
+  },
+  "sink_localization": {
+    "exact_sink_line_accuracy": 0.75,
+    "matched_count": 45
+  },
+  "vulnerable_line_identification": {
+    "top1_line_accuracy": 0.8333333333333334,
+    "top3_line_accuracy": 0.8333333333333334,
+    "exact_set_match_accuracy": 0.4166666666666667,
+    "mean_line_overlap_precision": 0.7777833333333334,
+    "mean_line_overlap_recall": 0.7083333333333334,
+    "mean_line_overlap_f1": 0.716675
+  },
+  "dataflow_path_localization": {
+    "exact_path_match_accuracy": 0.5833333333333334,
+    "matched_count": 35
+  },
+  "coverage": {
+    "complete_localization_percentage": 58.333333333333336,
+    "partial_localization_percentage": 41.66666666666667,
+    "no_localization_percentage": 0.0
+  },
+  "category_breakdown": {
+    "Complex query construction": {
+      "total_samples": 10,
+      "vulnerable_samples": 10,
+      "top1_accuracy": 0.0,
+      "exact_set_match": 0.0,
+      "sink_accuracy": 1.0,
+      "construction_accuracy": 0.0,
+      "path_accuracy": 0.0
+    },
+    "Cross-file injection": {
+      "total_samples": 15,
+      "vulnerable_samples": 15,
+      "top1_accuracy": 1.0,
+      "exact_set_match": 0.0,
+      "sink_accuracy": 0.0,
+      "construction_accuracy": 1.0,
+      "path_accuracy": 0.0
+    },
+    "Direct SQL injection": {
+      "total_samples": 20,
+      "vulnerable_samples": 20,
+      "top1_accuracy": 1.0,
+      "exact_set_match": 0.5,
+      "sink_accuracy": 1.0,
+      "construction_accuracy": 1.0,
+      "path_accuracy": 1.0
+    },
+    "Helper-function/interprocedural injection": {
+      "total_samples": 15,
+      "vulnerable_samples": 15,
+      "top1_accuracy": 1.0,
+      "exact_set_match": 1.0,
+      "sink_accuracy": 1.0,
+      "construction_accuracy": 1.0,
+      "path_accuracy": 1.0
+    },
+    "No SQL injection/no SQL sink": {
+      "total_samples": 5,
+      "vulnerable_samples": 0,
+      "top1_accuracy": 1.0,
+      "exact_set_match": 1.0,
+      "sink_accuracy": 1.0,
+      "construction_accuracy": 1.0,
+      "path_accuracy": 1.0
+    },
+    "Safe ORM and query construction": {
+      "total_samples": 10,
+      "vulnerable_samples": 0,
+      "top1_accuracy": 1.0,
+      "exact_set_match": 1.0,
+      "sink_accuracy": 1.0,
+      "construction_accuracy": 1.0,
+      "path_accuracy": 1.0
+    },
+    "Safe parameterized SQL": {
+      "total_samples": 15,
+      "vulnerable_samples": 0,
+      "top1_accuracy": 1.0,
+      "exact_set_match": 1.0,
+      "sink_accuracy": 1.0,
+      "construction_accuracy": 1.0,
+      "path_accuracy": 1.0
+    },
+    "Validated/allowlisted input": {
+      "total_samples": 10,
+      "vulnerable_samples": 0,
+      "top1_accuracy": 0.5,
+      "exact_set_match": 0.5,
+      "sink_accuracy": 1.0,
+      "construction_accuracy": 1.0,
+      "path_accuracy": 1.0
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "total_input": 4732,
+  "excel_reference_count": 1000,
+  "syntax_error_quarantined": 59,
+  "conflicting_label_quarantined": 0,
+  "exact_duplicate_skipped": 0,
+  "near_duplicate_skipped": 0,
+  "deduplicated_final": 4673,
+  "final_vulnerable": 1438,
+  "final_safe": 3235
+}
